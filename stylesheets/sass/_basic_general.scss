@@ -1,0 +1,57 @@
+@use 'basic_texts' as *;
+@use 'basic_colors' as *;
+
+$border-radius-container: 25px;
+$border-radius-elements: 10px;
+
+@mixin gridLayout_small {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 5% 90% 5%;
+}
+@mixin centralPositioning {
+    display: flex;
+    flex-wrap: wrap;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+}
+@mixin centralContainer {
+    grid-column: 2;
+    height: 62%;
+    width: 100%;
+    @include centralPositioning;
+}
+@mixin input-fields {
+    width: 80%;
+    height: 42px;
+    padding: {
+        left: 8px;
+        top: 12px;
+        bottom: 12px;
+    }
+    box-sizing: border-box;
+
+    @include text-settings(400, 16px, $support_color3);
+
+    border: 1px solid $support_color3;
+    border-radius: $border-radius-elements;
+}
+
+@mixin input-fields-focus {
+    border: none;
+    outline: 3px dotted $support_color3;
+}
+@mixin btn-general {
+    width: 96px;
+    height: 34px;
+    background-color: $support_color2;
+
+    border: 1px solid $support_color1;
+    border-radius: $border-radius-elements;
+
+    @include text-settings(400, 20px, $support_color1);
+    text-align: center;
+
+    cursor: pointer;
+}

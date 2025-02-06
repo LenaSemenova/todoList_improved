@@ -1,0 +1,79 @@
+@use 'basics' as *;
+
+body {
+    @include gridLayout_small;
+}
+.card-sign-up {
+    @include centralContainer;
+    padding: {
+        top: 30px;
+        bottom: 24px;
+    }
+
+    position: relative;
+    box-sizing: border-box;
+    background-color: $support_color2;
+
+    border: 4px solid transparent;
+    border-radius: $border-radius-container;
+
+    .sign-up-head {
+        .title {
+            margin-bottom: 8px;
+            @include text-settings(700, 32px);
+            @include central-uppercase-text;
+        }
+        .sub-title {
+            margin-bottom: 16px;
+            @include text-settings(400, 16px);
+            @include central-uppercase-text;
+        }
+    }
+    .sign-up-form {
+        @include centralPositioning;
+        input {
+            margin-bottom: 16px;
+            @include input-fields;
+            &:focus {
+                @include input-fields-focus;
+            }
+        }
+        
+    }
+    .btn-box {
+        margin-top: 16px;
+        margin-bottom: 24px;
+
+        width: 100%;
+
+        @include centralPositioning;
+        justify-content: space-evenly;
+        button {
+            @include btn-general;
+        }
+    }
+    span {
+        @include text-settings(400, 16px, $support_color3);
+        text-decoration: underline;
+
+        cursor: pointer;
+    }
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: -8px;
+        z-index: -1;
+        border-radius: 30px;
+        background: $main_theme;
+    }
+}
+.card-login {
+    display: none;
+}
+.modal-window {
+    display: none;
+}
