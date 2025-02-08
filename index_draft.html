@@ -10,6 +10,7 @@
   </head>
   <body>
     <!-- SIGN UP CARD -->
+    <div class="wrapper-card-sign-up">
     <div class="card-sign-up">
         <div class="sign-up-head">
         <div class="title">sign up</div>
@@ -29,15 +30,17 @@
         </div>
         <span>I am registered!</span>
     </div>
+    </div>
     <!-- LOG IN CARD -->
+    <div class="wrapper-card-login">
     <div class="card-login">
         <div class="login-head">
             <div class="title">log in</div>
             <div class="sub-title">if you are already registered</div>
         </div>
         <form class="login-form">
-            <input type="email" id="email" name="email" required />
-            <input type="password" id="password" name="password" />
+            <input type="email" id="email" name="email" placeholder="email" required />
+            <input type="password" id="password" name="password" placeholder="password" required />
             <span>
                 <i id="closedEyeTwo" class="fa-solid fa-eye-slash fa-xs"></i>
             </span>
@@ -45,28 +48,30 @@
         </form>
         <span>I am not registered!</span>
     </div>
+    </div>
     <!-- MODAL WINDOW WITH SOME INFORMATION ABOUT DELETION -->
     <div class ="modal-window">
+        <span class="close">&times;</span>
+        <div class="wrapper-modal-window-content">
         <div class="modal-window-content">
-          <span class="close">&times;</span>
           <p>If you no longer need this app you can easily delete your account by finding there such a button:</p>
           <div class="dropdown">
           <button class="info">?</button>
           <div class="dropdown-content">
-          <button class="info">
+          <button class="info-item">
             <!-- SVG delete basket icon -->
-            <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M7.77881 21.1191C7.22881 21.1191 6.75798 20.9233 6.36631 20.5316C5.97464 20.14 5.77881 19.6691 5.77881 19.1191V6.11914H4.77881V4.11914H9.77881V3.11914H15.7788V4.11914H20.7788V6.11914H19.7788V19.1191C19.7788 19.6691 19.583 20.14 19.1913 20.5316C18.7996 20.9233 18.3288 21.1191 17.7788 21.1191H7.77881ZM17.7788 6.11914H7.77881V19.1191H17.7788V6.11914ZM9.77881 17.1191H11.7788V8.11914H9.77881V17.1191ZM13.7788 17.1191H15.7788V8.11914H13.7788V17.1191Z" fill="#9B6BFF"/>
             </svg>                
           </button>
-          <button class="info">
+          <button class="info-item">
             <!-- SVG delete basket icon -->
-            <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M7.77881 21.1191C7.22881 21.1191 6.75798 20.9233 6.36631 20.5316C5.97464 20.14 5.77881 19.6691 5.77881 19.1191V6.11914H4.77881V4.11914H9.77881V3.11914H15.7788V4.11914H20.7788V6.11914H19.7788V19.1191C19.7788 19.6691 19.583 20.14 19.1913 20.5316C18.7996 20.9233 18.3288 21.1191 17.7788 21.1191H7.77881ZM17.7788 6.11914H7.77881V19.1191H17.7788V6.11914ZM9.77881 17.1191H11.7788V8.11914H9.77881V17.1191ZM13.7788 17.1191H15.7788V8.11914H13.7788V17.1191Z" fill="#9B6BFF"/>
             </svg>
-            ------->
+          -->
             <!-- SVG todo-list icon -->
-            <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="8.83147" y="3.31914" width="13.6" height="2.6" rx="0.8" stroke="#9B6BFF" stroke-width="0.4"/>
             <path d="M10.907 5.1305C10.872 5.1305 10.8419 5.11796 10.8168 5.09286C10.7917 5.06777 10.7792 5.0377 10.7792 5.00266C10.7792 4.96763 10.7917 4.93756 10.8168 4.91246C10.8419 4.88737 10.872 4.87482 10.907 4.87482C10.9421 4.87482 10.9721 4.88737 10.9972 4.91246C11.0223 4.93756 11.0349 4.96763 11.0349 5.00266C11.0349 5.02586 11.029 5.04717 11.0171 5.06658C11.0058 5.086 10.9904 5.10162 10.971 5.11346C10.952 5.12482 10.9307 5.1305 10.907 5.1305ZM11.4578 5.1305C11.4228 5.1305 11.3927 5.11796 11.3676 5.09286C11.3425 5.06777 11.33 5.0377 11.33 5.00266C11.33 4.96763 11.3425 4.93756 11.3676 4.91246C11.3927 4.88737 11.4228 4.87482 11.4578 4.87482C11.4929 4.87482 11.5229 4.88737 11.548 4.91246C11.5731 4.93756 11.5857 4.96763 11.5857 5.00266C11.5857 5.02586 11.5797 5.04717 11.5679 5.06658C11.5565 5.086 11.5412 5.10162 11.5217 5.11346C11.5028 5.12482 11.4815 5.1305 11.4578 5.1305ZM12.0086 5.1305C11.9736 5.1305 11.9435 5.11796 11.9184 5.09286C11.8933 5.06777 11.8808 5.0377 11.8808 5.00266C11.8808 4.96763 11.8933 4.93756 11.9184 4.91246C11.9435 4.88737 11.9736 4.87482 12.0086 4.87482C12.0436 4.87482 12.0737 4.88737 12.0988 4.91246C12.1239 4.93756 12.1364 4.96763 12.1364 5.00266C12.1364 5.02586 12.1305 5.04717 12.1187 5.06658C12.1073 5.086 12.0919 5.10162 12.0725 5.11346C12.0536 5.12482 12.0323 5.1305 12.0086 5.1305ZM12.5594 5.1305C12.5243 5.1305 12.4943 5.11796 12.4692 5.09286C12.4441 5.06777 12.4315 5.0377 12.4315 5.00266C12.4315 4.96763 12.4441 4.93756 12.4692 4.91246C12.4943 4.88737 12.5243 4.87482 12.5594 4.87482C12.5944 4.87482 12.6245 4.88737 12.6496 4.91246C12.6747 4.93756 12.6872 4.96763 12.6872 5.00266C12.6872 5.02586 12.6813 5.04717 12.6695 5.06658C12.6581 5.086 12.6427 5.10162 12.6233 5.11346C12.6044 5.12482 12.5831 5.1305 12.5594 5.1305ZM13.1102 5.1305C13.0751 5.1305 13.0451 5.11796 13.02 5.09286C12.9949 5.06777 12.9823 5.0377 12.9823 5.00266C12.9823 4.96763 12.9949 4.93756 13.02 4.91246C13.0451 4.88737 13.0751 4.87482 13.1102 4.87482C13.1452 4.87482 13.1753 4.88737 13.2004 4.91246C13.2255 4.93756 13.238 4.96763 13.238 5.00266C13.238 5.02586 13.2321 5.04717 13.2202 5.06658C13.2089 5.086 13.1935 5.10162 13.1741 5.11346C13.1551 5.12482 13.1338 5.1305 13.1102 5.1305Z" fill="#9B6BFF"/>
             <rect x="1.83147" y="2.31914" width="4.6" height="4.6" rx="0.8" stroke="#9B6BFF" stroke-width="0.4"/>
@@ -81,7 +86,7 @@
             <rect x="2.63147" y="19.1191" width="3" height="3" rx="0.5" fill="#9B6BFF"/>
             </svg> 
           </button>
-          <button class="info">
+          <button class="info-item">
             <!-- SVG todo-list delete forever icon -->
             <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_129_418)">
@@ -109,7 +114,10 @@
           </button>
           </div>
           </div>
-          <button>ok</button>
+          <div class="btn-container">
+            <button>ok</button>
+          </div>
+        </div>
         </div>
       </div>
     <!-- <script src="/index.js"></script> -->

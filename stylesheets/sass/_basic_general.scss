@@ -4,11 +4,13 @@
 $border-radius-container: 25px;
 $border-radius-elements: 10px;
 
+/* layout for small screens */
 @mixin gridLayout_small {
     height: 100vh;
     display: grid;
     grid-template-columns: 5% 90% 5%;
 }
+/* centering elements of different containers */
 @mixin centralPositioning {
     display: flex;
     flex-wrap: wrap;
@@ -16,12 +18,34 @@ $border-radius-elements: 10px;
     justify-content: center;
     align-items: center;
 }
+/* centering containers */
 @mixin centralContainer {
     grid-column: 2;
     height: 62%;
     width: 100%;
     @include centralPositioning;
 }
+/* styling of main containers */
+@mixin wrapper-card {
+    @include centralContainer;
+    
+    position: relative;
+    background: $main_theme;
+    border-radius: $border-radius-container;
+    
+}
+@mixin within-card {
+    @include centralContainer;
+    position: absolute;
+    height: 98%;
+    width: 98%;
+    
+    box-sizing: border-box;
+    background-color: $support_color2;
+    
+    border-radius: 22px;
+}
+/* styling of input fields */
 @mixin input-fields {
     width: 80%;
     height: 42px;
@@ -37,11 +61,12 @@ $border-radius-elements: 10px;
     border: 1px solid $support_color3;
     border-radius: $border-radius-elements;
 }
-
+/* styling of focused input fields */
 @mixin input-fields-focus {
     border: none;
     outline: 3px dotted $support_color3;
 }
+/* styling buttons */
 @mixin btn-general {
     width: 96px;
     height: 34px;
