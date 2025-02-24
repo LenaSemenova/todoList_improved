@@ -1,0 +1,70 @@
+@use 'sass:map';
+
+/* map: settings for inputs */
+$inputs: (
+    'small': (
+        'portrait': (
+            'width': 80%,
+            'height': 42px    
+        ),
+        'landscape': (
+            'width': 70%,
+            'height': 38px
+        )
+    ),
+    'medium-600px': (
+        'portrait': (
+            'width': 55%,
+            'height': 46px
+        )
+    ),
+    'medium-742px': (
+        'landscape': (
+            'width': 70%,
+            'height': 46px
+        )
+    ),
+    'medium-800px': (
+        'portrait': (
+            'width': 63%
+        )
+    ),
+    'large-1024px': (
+        'landscape': (
+            'width': 80%,
+            'height': 46px
+        )
+    )
+); 
+
+/* map: settings for buttons */
+$buttons: (
+    'small': (
+        'portrait': (
+            'width': 96px,
+            'height': 34px 
+        ),
+        'landscape': (
+            'width': 80px,
+            'height': 32px
+        )
+    ),
+    'medium-600px': (
+        'portrait': (
+            'width': 148px,
+            'height': 46px
+        )
+    ),
+    'medium-742px': (
+        'landscape': (
+            'width': 120px,
+            'height': 40px
+        )
+    ),
+    'large-1024px': (
+        'landscape': (
+            'width': 114px,
+            'height': 38px
+        )
+    )
+);

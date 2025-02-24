@@ -1,9 +1,59 @@
+@use 'sass:map';
+
 @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-@mixin central-uppercase-text {
+
+$font-weights: (
+    'regular': 400,
+    'bold': 700
+);
+
+$font-settings: (
+    'small': (
+        'portrait': (
+            'title': 32px,
+            'sub-title': 16px,
+            'input': 16px,
+            'button': 20px,
+            'span': 16px 
+        ),
+        'landscape': (
+            'title': 32px,
+            'sub-title': 16px,
+            'input': 16px,
+            'button': 16px,
+            'span': 16px 
+        )
+    ),
+    'medium-600px': (
+        'portrait': (
+            'title': 40px,
+            'sub-title': 24px,
+            'input': 20px,
+            'button': 24px,
+            'span': 24px
+        )
+    ),
+    'medium-742px': (
+        'landscape': (
+            'title': 40px,
+            'sub-title': 24px,
+            'input': 20px,
+            'button': 20px,
+            'span': 20px
+        )
+    ),
+    'large-1024px': (
+        'input': 20px,
+        'button': 20px,
+        'span': 20px
+    )
+);
+
+@mixin uppercase-text($alignment) {
     text: {
         transform: uppercase;
-        align: center;
+        align: $alignment;
     }
 }
 @mixin text-settings($weight, $size, $color: black) {

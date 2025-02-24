@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use 'basic_texts' as *;
 @use 'basic_colors' as *;
 
@@ -5,10 +6,10 @@ $border-radius-container: 25px;
 $border-radius-elements: 10px;
 
 /* layout for small screens */
-@mixin gridLayout_small {
+@mixin gridLayout($firstCol, $secondCol, $thirdCol) {
     height: 100vh;
     display: grid;
-    grid-template-columns: 5% 90% 5%;
+    grid-template-columns: $firstCol $secondCol $thirdCol;
 }
 /* centering elements of different containers */
 @mixin centralPositioning {
@@ -45,10 +46,11 @@ $border-radius-elements: 10px;
     
     border-radius: 22px;
 }
+
 /* styling of input fields */
-@mixin input-fields {
-    width: 80%;
-    height: 42px;
+@mixin input-fields ($width, $height, $fontSize) {
+    width: $width;
+    height: $height;
     padding: {
         left: 8px;
         top: 12px;
@@ -56,7 +58,7 @@ $border-radius-elements: 10px;
     }
     box-sizing: border-box;
 
-    @include text-settings(400, 16px, $support_color3);
+    @include text-settings(400, $fontSize, $support_color3);
 
     border: 1px solid $support_color3;
     border-radius: $border-radius-elements;
@@ -64,19 +66,42 @@ $border-radius-elements: 10px;
 /* styling of focused input fields */
 @mixin input-fields-focus {
     border: none;
-    outline: 3px dotted $support_color3;
+    outline: 1px dashed $support_color3;
+}
+
+/* styling button containers */
+@mixin btn-container-settings {
+    width: 100%;
+    @include centralPositioning;
 }
 /* styling buttons */
-@mixin btn-general {
-    width: 96px;
-    height: 34px;
+@mixin btn-general ($width, $height, $fontSize) {
+    width: $width;
+    height: $height;
     background-color: $support_color2;
 
     border: 1px solid $support_color1;
     border-radius: $border-radius-elements;
 
-    @include text-settings(400, 20px, $support_color1);
+    @include text-settings(400, $fontSize, $support_color1);
     text-align: center;
 
     cursor: pointer;
+}
+@mixin btn-general-hover {
+    background-color: $support_color1;
+    color: $support_color2;
+}
+/* styling span-elements */
+@mixin info-in-span($fontWeight, $fontSize, $fontColor) {
+    @include text-settings($fontWeight, $fontSize, $fontColor);
+    text: {
+        align: center;
+        decoration: underline;
+    }
+    cursor: pointer;
+}
+@mixin info-in-span-hover {
+    background-color: $support_color3;
+    color: $support_color2;
 }

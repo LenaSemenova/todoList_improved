@@ -10,6 +10,7 @@
   </head>
   <body>
     <!-- SIGN UP CARD -->
+    <div class="sign-up-area" id="sign-up-area">
     <div class="wrapper-card-sign-up">
     <div class="card-sign-up">
         <div class="sign-up-head">
@@ -28,10 +29,12 @@
             <button class="btn-submit">go</button>
             <button class="btn-informed" value="true">?</button>
         </div>
-        <span>I am registered!</span>
+        <a href="#login-area"><span>I am registered!</span></a>
+    </div>
     </div>
     </div>
     <!-- LOG IN CARD -->
+    <div class="login-area" id="login-area">
     <div class="wrapper-card-login">
     <div class="card-login">
         <div class="login-head">
@@ -44,9 +47,12 @@
             <span>
                 <i id="closedEyeTwo" class="fa-solid fa-eye-slash fa-xs"></i>
             </span>
+            <div class="btn-box">
             <button class="btn-submit">go</button> 
+            </div>
         </form>
-        <span>I am not registered!</span>
+        <a href="#sign-up-area"><span>I am not registered!</span></a>
+    </div>
     </div>
     </div>
     <!-- MODAL WINDOW WITH SOME INFORMATION ABOUT DELETION -->
@@ -119,6 +125,50 @@
           </div>
         </div>
         </div>
+      </div>
+      <!-- SIGN UP CARD LANDSCAPE ORIENTATION -->
+      <div class="sign-up-landscape-area" id="sign-up-landscape-area">
+      <div class="wrapper-card-sign-up-landscape">
+        <div class="card-sign-up-landscape">
+        <div class="intro-box">
+          <div class="title">sign up</div>
+          <div class="sub-title-one">to keep</div>
+          <div class="sub-title-two">everything</div>
+          <div class="sub-title-three">in order</div>
+        </div>
+        <form class="sign-up-form">
+          <input type="text" id="name" name="name" placeholder="name" required />
+          <input type="email" id="email" name="email" placeholder="email" required />
+          <input type="password" id="password" name="password" placeholder="password" required />
+          <div class="btn-box">
+            <button class="btn-submit">go</button>
+            <button class="btn-informed" value="true">?</button>
+        </div>
+        <a href="#login-landscape-area"><span>I am registered!</span></a>
+        </form>
+      </div>
+      </div>
+      </div>
+      <!-- LOGIN CARD LANDSCAPE ORIENTATION -->
+      <div class="login-landscape-area" id="login-landscape-area">
+      <div class="wrapper-card-login-landscape">
+        <div class="card-login-landscape">
+        <div class="intro-box">
+          <div class="title">log in</div>
+          <div class="sub-title-one">if you are</div>
+          <div class="sub-title-two">already</div>
+          <div class="sub-title-three">registered</div>
+        </div>
+        <form class="login-form">
+          <input type="email" id="email" name="email" placeholder="email" required />
+          <input type="password" id="password" name="password" placeholder="password" required />
+          <div class="btn-box">
+            <button class="btn-submit">go</button>
+        </div>
+        <a href="#sign-up-landscape-area"><span>I am not registered!</span></a>
+        </form>
+      </div>
+      </div>
       </div>
     <!-- <script src="/index.js"></script> -->
   </body>
