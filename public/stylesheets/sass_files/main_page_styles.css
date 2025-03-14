@@ -1,0 +1,2093 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+/* map: settings for inputs */
+/* map: settings for buttons */
+/* general colors */
+/* colors of different second-important elements (buttons, icons etc) */
+/* background-color for modal-windows */
+/* layout for small screens */
+/* centering elements of different containers */
+/* centering containers */
+/* styling of main containers */
+/* styling of input fields */
+/* styling of focused input fields */
+/* styling button containers */
+/* styling buttons */
+/* styling span-elements */
+body {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 5% 90% 5%;
+}
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  /*background: $support_color2;*/
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(rgba(83, 2, 255, 0.5), rgba(255, 1, 62, 0.5));
+}
+
+::-webkit-scrollbar-button:single-button {
+  background-color: #ffffff;
+  display: block;
+  border: 2px solid #777676;
+  height: 16px;
+  width: 10px;
+}
+
+::-webkit-scrollbar-button:single-button:hover {
+  border: 2px solid #9B6BFF;
+}
+
+/* SIMPLE KEY FRAMES ANIMATIONS */
+@keyframes moveDownwards {
+  from {
+    top: -24%;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+@keyframes moveUpwards {
+  from {
+    bottom: -24%;
+    opacity: 0;
+  }
+  to {
+    bottom: 0;
+    opacity: 1;
+  }
+}
+@keyframes opacityChanger {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* STYLING OF SIGN UP CONTAINER */
+.sign-up-area {
+  grid-column: 2;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  /*display: none;*/
+}
+.sign-up-area .wrapper-card-sign-up {
+  grid-column: 2;
+  height: 62%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: linear-gradient(rgba(83, 2, 255, 0.5), rgba(255, 1, 62, 0.5));
+  border-radius: 25px;
+  animation: moveDownwards 2s ease;
+}
+.sign-up-area .wrapper-card-sign-up .card-sign-up {
+  grid-column: 2;
+  height: 62%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 98%;
+  width: 98%;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 22px;
+  padding-top: 30px;
+  padding-bottom: 24px;
+}
+.sign-up-area .wrapper-card-sign-up .card-sign-up .sign-up-head .title {
+  margin-bottom: 8px;
+  color: black;
+  font-family: "Inter";
+  font-weight: 700;
+  font-size: 32px;
+  text-transform: uppercase;
+  text-align: center;
+}
+.sign-up-area .wrapper-card-sign-up .card-sign-up .sign-up-head .sub-title {
+  opacity: 0;
+  margin-bottom: 16px;
+  color: black;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  text-transform: uppercase;
+  text-align: center;
+}
+.sign-up-area .wrapper-card-sign-up .card-sign-up .sign-up-form-p {
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+}
+.sign-up-area .wrapper-card-sign-up .card-sign-up .sign-up-form-p input {
+  margin-bottom: 16px;
+  width: 80%;
+  height: 42px;
+  padding-left: 8px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  box-sizing: border-box;
+  color: #777676;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  border: 1px solid #777676;
+  border-radius: 10px;
+}
+.sign-up-area .wrapper-card-sign-up .card-sign-up .sign-up-form-p input:focus {
+  border: none;
+  outline: 1px dashed #777676;
+}
+.sign-up-area .wrapper-card-sign-up .card-sign-up .sign-up-form-p .icon-wrapper {
+  width: 0%;
+  position: relative;
+  left: -44px;
+  top: -5px;
+  cursor: pointer;
+  cursor: pointer;
+}
+.sign-up-area .wrapper-card-sign-up .card-sign-up .sign-up-form-p .icon-wrapper img {
+  width: 30px;
+  height: 30px;
+}
+.sign-up-area .wrapper-card-sign-up .card-sign-up .btn-box {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+  margin-bottom: 24px;
+  justify-content: space-evenly;
+}
+.sign-up-area .wrapper-card-sign-up .card-sign-up .btn-box button {
+  width: 96px;
+  height: 34px;
+  background-color: #ffffff;
+  border: 1px solid #9B6BFF;
+  border-radius: 10px;
+  color: #9B6BFF;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+.sign-up-area .wrapper-card-sign-up .card-sign-up .btn-box button:hover {
+  background-color: #9B6BFF;
+  color: #ffffff;
+}
+.sign-up-area .wrapper-card-sign-up .card-sign-up span {
+  color: #777676;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.sign-up-area .wrapper-card-sign-up .card-sign-up span:hover {
+  background-color: #777676;
+  color: #ffffff;
+}
+
+/* STYLING OF LOGIN CONTAINER */
+.login-area {
+  grid-column: 2;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  /*display: none;*/
+}
+.login-area .wrapper-card-login {
+  grid-column: 2;
+  height: 62%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: linear-gradient(rgba(83, 2, 255, 0.5), rgba(255, 1, 62, 0.5));
+  border-radius: 25px;
+  animation: moveUpwards 2s ease;
+}
+.login-area .wrapper-card-login .card-login {
+  grid-column: 2;
+  height: 62%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 98%;
+  width: 98%;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 22px;
+}
+.login-area .wrapper-card-login .card-login .login-head .title {
+  margin-top: 18px;
+  color: black;
+  font-family: "Inter";
+  font-weight: 700;
+  font-size: 32px;
+  text-transform: uppercase;
+  text-align: center;
+}
+.login-area .wrapper-card-login .card-login .login-head .sub-title {
+  opacity: 0;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  margin-left: 6px;
+  margin-right: 6px;
+  color: black;
+  font-family: "Inter";
+  font-weight: 400;
+  text-transform: uppercase;
+  text-align: center;
+}
+.login-area .wrapper-card-login .card-login .login-form-p {
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+}
+.login-area .wrapper-card-login .card-login .login-form-p input {
+  margin-bottom: 16px;
+  width: 80%;
+  height: 42px;
+  padding-left: 8px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  box-sizing: border-box;
+  color: #777676;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  border: 1px solid #777676;
+  border-radius: 10px;
+}
+.login-area .wrapper-card-login .card-login .login-form-p input:focus {
+  border: none;
+  outline: 1px dashed #777676;
+}
+.login-area .wrapper-card-login .card-login .login-form-p .icon-wrapper {
+  width: 0%;
+  position: relative;
+  left: -44px;
+  top: -5px;
+  cursor: pointer;
+  cursor: pointer;
+}
+.login-area .wrapper-card-login .card-login .login-form-p .icon-wrapper img {
+  width: 30px;
+  height: 30px;
+}
+.login-area .wrapper-card-login .card-login .btn-box {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.login-area .wrapper-card-login .card-login .btn-box button {
+  /*margin-top: 18px;*/
+  width: 96px;
+  height: 34px;
+  background-color: #ffffff;
+  border: 1px solid #9B6BFF;
+  border-radius: 10px;
+  color: #9B6BFF;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+.login-area .wrapper-card-login .card-login .btn-box button:hover {
+  background-color: #9B6BFF;
+  color: #ffffff;
+}
+.login-area .wrapper-card-login .card-login .btn-box span.forgotten-password {
+  margin: 0;
+  padding: 2px;
+  width: 96px;
+  height: 40px;
+  border: 1px solid #777676;
+  border-radius: 10px;
+  color: #777676;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: underline;
+  cursor: pointer;
+  text-decoration: none;
+}
+.login-area .wrapper-card-login .card-login .btn-box span.forgotten-password:hover {
+  background-color: #777676;
+  color: #ffffff;
+}
+.login-area .wrapper-card-login .card-login span {
+  margin-bottom: 30px;
+  color: #777676;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.login-area .wrapper-card-login .card-login span:hover {
+  background-color: #777676;
+  color: #ffffff;
+}
+
+/* STYLING OF MODAL WINDOW */
+.modal-window {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  padding-top: 25%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+}
+.modal-window .wrapper-modal-window-content {
+  grid-column: 2;
+  height: 62%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: linear-gradient(rgba(83, 2, 255, 0.5), rgba(255, 1, 62, 0.5));
+  border-radius: 25px;
+  width: 80%;
+  margin: auto;
+  animation: moveDownwards 2s ease;
+}
+.modal-window .wrapper-modal-window-content .modal-window-content {
+  grid-column: 2;
+  height: 62%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 98%;
+  width: 98%;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 22px;
+  width: 98%;
+  padding: 28px;
+}
+.modal-window .wrapper-modal-window-content .modal-window-content p {
+  color: black;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+}
+.modal-window .wrapper-modal-window-content .modal-window-content .dropdown {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+}
+.modal-window .wrapper-modal-window-content .modal-window-content .dropdown .info {
+  width: 96px;
+  height: 34px;
+  background-color: #ffffff;
+  border: 1px solid #9B6BFF;
+  border-radius: 10px;
+  color: #9B6BFF;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 2px;
+}
+.modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content {
+  width: 96px;
+  height: 112px;
+  background-color: #ffffff;
+  border: 1px solid #9B6BFF;
+  border-radius: 10px;
+  color: #9B6BFF;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 4px;
+}
+.modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item {
+  position: relative;
+  width: 86px;
+  height: 34px;
+  background-color: #ffffff;
+  border: 1px solid #9B6BFF;
+  border-radius: 10px;
+  color: #9B6BFF;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item .tooltip {
+  visibility: hidden;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 116%;
+  width: 86px;
+  padding: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  color: #9B6BFF;
+  font-size: 12px;
+  border: 1px solid #9B6BFF;
+  border-radius: 10px;
+}
+.modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item .tooltip::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent #9B6BFF transparent transparent;
+}
+.modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item:hover .tooltip {
+  visibility: visible;
+}
+.modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item + .info-item + .info-item {
+  width: 86px;
+  height: 34px;
+  background-color: #ffffff;
+  border: 1px solid #9B6BFF;
+  border-radius: 10px;
+  color: #9B6BFF;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #9B6BFF;
+}
+.modal-window .wrapper-modal-window-content .modal-window-content .btn-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+}
+.modal-window .wrapper-modal-window-content .modal-window-content .btn-container button {
+  width: 96px;
+  height: 34px;
+  background-color: #ffffff;
+  border: 1px solid #9B6BFF;
+  border-radius: 10px;
+  color: #9B6BFF;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+.modal-window .wrapper-modal-window-content .modal-window-content .btn-container button:hover {
+  background-color: #9B6BFF;
+  color: #ffffff;
+}
+.modal-window .close {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  color: #777676;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* STYLING MODAL WINDOW FOR VALIDATION ERRORS */
+.modal-window-errors {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  padding-top: 25%;
+  background-color: rgba(119, 118, 118, 0.8);
+  display: none;
+}
+.modal-window-errors .wrapper-modal-window-errors-content {
+  grid-column: 2;
+  height: 62%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: linear-gradient(rgba(83, 2, 255, 0.5), rgba(255, 1, 62, 0.5));
+  border-radius: 25px;
+  width: 80%;
+  margin: auto;
+}
+.modal-window-errors .wrapper-modal-window-errors-content .modal-window-errors-content {
+  grid-column: 2;
+  height: 62%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 98%;
+  width: 98%;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 22px;
+  width: 98%;
+  padding: 28px;
+}
+.modal-window-errors .wrapper-modal-window-errors-content .modal-window-errors-content p {
+  width: 100%;
+  color: black;
+  font-family: "Inter";
+  font-weight: 700;
+  font-size: 16px;
+}
+.modal-window-errors .wrapper-modal-window-errors-content .modal-window-errors-content .container-for-errors {
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  color: black;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+}
+.modal-window-errors .wrapper-modal-window-errors-content .modal-window-errors-content .container-for-errors span {
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+.modal-window-errors .wrapper-modal-window-errors-content .modal-window-errors-content .container-for-errors span img {
+  margin-right: 16px;
+}
+.modal-window-errors .wrapper-modal-window-errors-content .modal-window-errors-content .btn-ok-errors {
+  width: 96px;
+  height: 34px;
+  background-color: #ffffff;
+  border: 1px solid #9B6BFF;
+  border-radius: 10px;
+  color: #9B6BFF;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+.modal-window-errors .wrapper-modal-window-errors-content .modal-window-errors-content .btn-ok-errors:hover {
+  background-color: #9B6BFF;
+  color: #ffffff;
+}
+.modal-window-errors .errors-close {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* MODAL WINDOW FOR RESETTING PASSWORDS */
+.modal-window-new-password {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  padding-top: 25%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+}
+.modal-window-new-password .wrapper-modal-window-new-password {
+  grid-column: 2;
+  height: 62%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: linear-gradient(rgba(83, 2, 255, 0.5), rgba(255, 1, 62, 0.5));
+  border-radius: 25px;
+  border-radius: 25px 0px 0px 25px;
+  width: 90%;
+  height: 75%;
+  margin: auto;
+}
+.modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content {
+  grid-column: 2;
+  height: 62%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 98%;
+  width: 98%;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 22px;
+  border-radius: 22px 0px 0px 22px;
+  justify-content: flex-start;
+  padding: 28px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+.modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content::-webkit-scrollbar {
+  width: 5px;
+  background-color: #ffffff;
+}
+.modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content::-webkit-scrollbar-thumb {
+  background: #9B6BFF;
+}
+.modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content .current-info {
+  width: 100%;
+  text-align: center;
+  color: #9B6BFF;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  border: 1px solid #9B6BFF;
+  border-radius: 10px;
+  padding-top: 4px;
+  padding-right: 16px;
+  padding-left: 16px;
+  padding-bottom: 4px;
+}
+.modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content .step {
+  color: black;
+  font-family: "Inter";
+  font-weight: 700;
+  font-size: 16px;
+}
+.modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content .hidden-username {
+  margin-left: 16px;
+  color: #9B6BFF;
+  font-family: "Inter";
+  font-weight: 700;
+  font-size: 16px;
+  text-decoration: underline;
+}
+.modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content input {
+  margin-right: 8px;
+  width: 76%;
+  height: 42px;
+  padding-left: 8px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  box-sizing: border-box;
+  color: #777676;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  border: 1px solid #777676;
+  border-radius: 10px;
+}
+.modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content input:focus {
+  border: none;
+  outline: 1px dashed #777676;
+}
+.modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content button {
+  width: 42px;
+  height: 42px;
+  background-color: #ffffff;
+  border: 1px solid #9B6BFF;
+  border-radius: 10px;
+  color: #9B6BFF;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+.modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content button:hover {
+  background-color: #9B6BFF;
+  color: #ffffff;
+}
+.modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content button.modal-window-new-password-ok {
+  margin: auto;
+  width: 96px;
+  height: 34px;
+  background-color: #ffffff;
+  border: 1px solid #9B6BFF;
+  border-radius: 10px;
+  color: #9B6BFF;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+.modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content button.modal-window-new-password-ok:hover {
+  background-color: #9B6BFF;
+  color: #ffffff;
+}
+.modal-window-new-password .reset-password-close {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  color: #777676;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* STYLING OF SIGN UP CONTAINER ON LANDSCAPE SCREENS */
+.sign-up-landscape-area {
+  grid-column: 2;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+.sign-up-landscape-area .wrapper-card-sign-up-landscape {
+  grid-column: 2;
+  height: 62%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: linear-gradient(rgba(83, 2, 255, 0.5), rgba(255, 1, 62, 0.5));
+  border-radius: 25px;
+  height: 75%;
+  animation: moveDownwards 2s ease;
+}
+.sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape {
+  grid-column: 2;
+  height: 62%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 98%;
+  width: 98%;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 22px;
+}
+.sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .intro-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  padding-left: 60px;
+  box-sizing: border-box;
+  border-right-width: 2px;
+  border-right-style: solid;
+  border-right-color: #777676;
+}
+.sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .intro-box .title {
+  width: 100%;
+  margin-bottom: 20px;
+  color: black;
+  font-family: "Inter";
+  font-weight: 700;
+  font-size: 32px;
+  text-transform: uppercase;
+  text-align: left;
+}
+.sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .intro-box .sub-title-one,
+.sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .intro-box .sub-title-two,
+.sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .intro-box .sub-title-three {
+  opacity: 0;
+  width: 100%;
+  color: black;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  text-transform: uppercase;
+  text-align: left;
+}
+.sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .sign-up-form-l {
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 90%;
+  box-sizing: border-box;
+}
+.sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .sign-up-form-l input {
+  width: 70%;
+  height: 38px;
+  padding-left: 8px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  box-sizing: border-box;
+  color: #777676;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  border: 1px solid #777676;
+  border-radius: 10px;
+}
+.sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .sign-up-form-l input:focus {
+  border: none;
+  outline: 1px dashed #777676;
+}
+.sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .sign-up-form-l .icon-wrapper {
+  width: 0%;
+  position: relative;
+  left: -44px;
+  top: 3px;
+  cursor: pointer;
+  cursor: pointer;
+}
+.sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .sign-up-form-l .icon-wrapper img {
+  width: 30px;
+  height: 30px;
+}
+.sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .sign-up-form-l .btn-box {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .sign-up-form-l .btn-box button {
+  width: 80px;
+  height: 32px;
+  background-color: #ffffff;
+  border: 1px solid #9B6BFF;
+  border-radius: 10px;
+  color: #9B6BFF;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+}
+.sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .sign-up-form-l .btn-box button:hover {
+  background-color: #9B6BFF;
+  color: #ffffff;
+}
+.sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .sign-up-form-l span {
+  color: #777676;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .sign-up-form-l span:hover {
+  background-color: #777676;
+  color: #ffffff;
+}
+
+/* STYLING LOGIN CONTAINER ON LANDSCAPE SCREENS */
+.login-landscape-area {
+  grid-column: 2;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+.login-landscape-area .wrapper-card-login-landscape {
+  height: 75%;
+  grid-column: 2;
+  height: 62%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: linear-gradient(rgba(83, 2, 255, 0.5), rgba(255, 1, 62, 0.5));
+  border-radius: 25px;
+  animation: moveUpwards 2s ease;
+}
+.login-landscape-area .wrapper-card-login-landscape .card-login-landscape {
+  grid-column: 2;
+  height: 62%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 98%;
+  width: 98%;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 22px;
+}
+.login-landscape-area .wrapper-card-login-landscape .card-login-landscape .intro-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  padding-left: 60px;
+  box-sizing: border-box;
+  border-right-width: 2px;
+  border-right-style: solid;
+  border-right-color: #777676;
+}
+.login-landscape-area .wrapper-card-login-landscape .card-login-landscape .intro-box .title {
+  width: 100%;
+  margin-bottom: 20px;
+  color: black;
+  font-family: "Inter";
+  font-weight: 700;
+  font-size: 32px;
+  text-transform: uppercase;
+  text-align: left;
+}
+.login-landscape-area .wrapper-card-login-landscape .card-login-landscape .intro-box .sub-title-one,
+.login-landscape-area .wrapper-card-login-landscape .card-login-landscape .intro-box .sub-title-two,
+.login-landscape-area .wrapper-card-login-landscape .card-login-landscape .intro-box .sub-title-three {
+  opacity: 0;
+  width: 100%;
+  color: black;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  text-transform: uppercase;
+  text-align: left;
+}
+.login-landscape-area .wrapper-card-login-landscape .card-login-landscape .login-form-l {
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 75%;
+  box-sizing: border-box;
+}
+.login-landscape-area .wrapper-card-login-landscape .card-login-landscape .login-form-l input {
+  width: 70%;
+  height: 38px;
+  padding-left: 8px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  box-sizing: border-box;
+  color: #777676;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  border: 1px solid #777676;
+  border-radius: 10px;
+}
+.login-landscape-area .wrapper-card-login-landscape .card-login-landscape .login-form-l input:focus {
+  border: none;
+  outline: 1px dashed #777676;
+}
+.login-landscape-area .wrapper-card-login-landscape .card-login-landscape .login-form-l .icon-wrapper {
+  width: 0%;
+  position: relative;
+  left: -44px;
+  top: 3px;
+  cursor: pointer;
+  cursor: pointer;
+}
+.login-landscape-area .wrapper-card-login-landscape .card-login-landscape .login-form-l .icon-wrapper img {
+  width: 30px;
+  height: 30px;
+}
+.login-landscape-area .wrapper-card-login-landscape .card-login-landscape .login-form-l .btn-box {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.login-landscape-area .wrapper-card-login-landscape .card-login-landscape .login-form-l .btn-box button {
+  width: 80px;
+  height: 32px;
+  background-color: #ffffff;
+  border: 1px solid #9B6BFF;
+  border-radius: 10px;
+  color: #9B6BFF;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+}
+.login-landscape-area .wrapper-card-login-landscape .card-login-landscape .login-form-l .btn-box button:hover {
+  background-color: #9B6BFF;
+  color: #ffffff;
+}
+.login-landscape-area .wrapper-card-login-landscape .card-login-landscape .login-form-l .btn-box span.forgotten-password {
+  margin: 0;
+  width: 110px;
+  height: 40px;
+  border: 1px solid #777676;
+  border-radius: 10px;
+  color: #777676;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: underline;
+  cursor: pointer;
+  text-decoration: none;
+}
+.login-landscape-area .wrapper-card-login-landscape .card-login-landscape .login-form-l .btn-box span.forgotten-password:hover {
+  background-color: #777676;
+  color: #ffffff;
+}
+.login-landscape-area .wrapper-card-login-landscape .card-login-landscape .login-form-l span {
+  color: #777676;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.login-landscape-area .wrapper-card-login-landscape .card-login-landscape .login-form-l span:hover {
+  background-color: #777676;
+  color: #ffffff;
+}
+
+/* VERY SMALL SCREENS (Nokia Lumia 530, IPhone SE, IPhone 4) */
+@media only screen and (max-height: 640px) and (orientation: portrait) {
+  .sign-up-area .wrapper-card-sign-up {
+    height: 85%;
+  }
+  .login-area .wrapper-card-login {
+    height: 85%;
+  }
+  .modal-window {
+    padding-top: 20%;
+  }
+  .modal-window .wrapper-modal-window-content {
+    height: 85%;
+  }
+  .modal-window .close {
+    top: 15px;
+    right: 20px;
+  }
+  .modal-window-errors {
+    padding-top: 20%;
+  }
+  .modal-window-errors .wrapper-modal-window-errors-content {
+    height: 85%;
+  }
+  .modal-window-errors .errors-close {
+    top: 15px;
+    right: 20px;
+  }
+  .modal-window-new-password {
+    padding-top: 20%;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password {
+    height: 85%;
+  }
+  .modal-window-new-password .reset-password-close {
+    top: 15px;
+    right: 20px;
+  }
+}
+@media only screen and (max-height: 320px) and (orientation: landscape) {
+  .sign-up-landscape-area {
+    display: flex;
+    /*display: none;*/
+  }
+  .sign-up-landscape-area .wrapper-card-sign-up-landscape {
+    display: flex;
+    height: 76%;
+  }
+  .sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .intro-box {
+    padding-left: 40px;
+  }
+  .sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .sign-up-form-l input {
+    width: 80%;
+  }
+  .sign-up-area {
+    display: none;
+  }
+  .login-landscape-area {
+    display: flex;
+    /*display: none;*/
+  }
+  .login-landscape-area .wrapper-card-login-landscape {
+    display: flex;
+    height: 76%;
+  }
+  .login-landscape-area .wrapper-card-login-landscape .card-login-landscape .intro-box {
+    padding-left: 40px;
+  }
+  .login-landscape-area .wrapper-card-login-landscape .card-login-landscape .login-form-l input {
+    width: 80%;
+  }
+  .login-area {
+    display: none;
+  }
+  .modal-window {
+    padding-top: 7%;
+  }
+  .modal-window .wrapper-modal-window-content {
+    height: 86%;
+    width: 86%;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content {
+    padding-top: 16px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 16px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content p {
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown {
+    width: 30%;
+    margin-bottom: 2px;
+  }
+  .modal-window .close {
+    top: 15px;
+    right: 20px;
+  }
+  .modal-window-errors {
+    padding-top: 7%;
+  }
+  .modal-window-errors .wrapper-modal-window-errors-content {
+    height: 80%;
+    width: 86%;
+  }
+  .modal-window-errors .errors-close {
+    top: 15px;
+    right: 20px;
+  }
+  .modal-window-new-password {
+    padding-top: 5%;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password {
+    width: 90%;
+    height: 88%;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content {
+    padding-top: 16px;
+    padding-right: 32px;
+    padding-bottom: 16px;
+    padding-left: 32px;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content .current-info {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 6px;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content .step {
+    margin-bottom: 4px;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content input {
+    height: 36px;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content button {
+    height: 36px;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content button.modal-window-new-password-ok {
+    margin-top: 6px;
+  }
+  .modal-window-new-password .reset-password-close {
+    top: 2px;
+    right: 10px;
+  }
+}
+/* SPECIAL SETTINGS FOR SURFACE DUO */
+@media only screen and (min-height: 650px) and (max-height: 940px) and (max-width: 500px) {
+  .modal-window {
+    padding-top: 36%;
+  }
+}
+/* LARGER MOBILE SCREENS AND / OR ORIENTATION LANDSCAPE ON MOBILE DEVICES WITH SMALL SCREENS */
+@media only screen and (min-width: 600px) and (orientation: landscape) {
+  .sign-up-area {
+    display: none;
+  }
+  .sign-up-landscape-area {
+    display: flex;
+    animation: moveDownwards 2s ease;
+    /*display: none;*/
+  }
+  .login-area {
+    display: none;
+  }
+  .login-landscape-area {
+    display: flex;
+    /*display: none;*/
+  }
+  .modal-window {
+    padding-top: 7%;
+  }
+  .modal-window .wrapper-modal-window-content {
+    height: 84%;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content {
+    padding-top: 16px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 16px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown {
+    width: 30%;
+    margin-bottom: 2px;
+  }
+  .modal-window .close {
+    top: 15px;
+    right: 20px;
+  }
+  .modal-window-errors {
+    padding-top: 7%;
+  }
+  .modal-window-errors .wrapper-modal-window-errors-content {
+    height: 84%;
+  }
+  .modal-window-errors .errors-close {
+    top: 15px;
+    right: 20px;
+  }
+  .modal-window-new-password {
+    padding-top: 7%;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password {
+    height: 84%;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content {
+    padding-top: 16px;
+    padding-right: 32px;
+    padding-bottom: 16px;
+    padding-left: 32px;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content .current-info {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 6px;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content .step {
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content input {
+    height: 36px;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content button {
+    height: 36px;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content button.modal-window-new-password-ok {
+    margin-top: 6px;
+  }
+  .modal-window-new-password .reset-password-close {
+    top: 15px;
+    right: 20px;
+  }
+}
+@media only screen and (min-width: 600px) and (orientation: portrait) {
+  .sign-up-area {
+    display: flex;
+    /*display: none;*/
+  }
+  .sign-up-area .wrapper-card-sign-up .card-sign-up .sign-up-head .title {
+    font-size: 40px;
+  }
+  .sign-up-area .wrapper-card-sign-up .card-sign-up .sign-up-head .sub-title {
+    font-size: 24px;
+    margin-bottom: 0;
+  }
+  .sign-up-area .wrapper-card-sign-up .card-sign-up .sign-up-form-p {
+    width: 100%;
+  }
+  .sign-up-area .wrapper-card-sign-up .card-sign-up .sign-up-form-p input {
+    width: 55%;
+    height: 46px;
+    padding-left: 8px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    box-sizing: border-box;
+    color: #777676;
+    font-family: "Inter";
+    font-weight: 400;
+    font-size: 20px;
+    border: 1px solid #777676;
+    border-radius: 10px;
+  }
+  .sign-up-area .wrapper-card-sign-up .card-sign-up .btn-box {
+    width: 80%;
+  }
+  .sign-up-area .wrapper-card-sign-up .card-sign-up .btn-box button {
+    width: 148px;
+    height: 46px;
+    background-color: #ffffff;
+    border: 1px solid #9B6BFF;
+    border-radius: 10px;
+    color: #9B6BFF;
+    font-family: "Inter";
+    font-weight: 400;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .sign-up-area .wrapper-card-sign-up .card-sign-up span {
+    width: 100%;
+    font-size: 24px;
+  }
+  .login-area {
+    display: flex;
+    /*display: none;*/
+  }
+  .login-area .wrapper-card-login .card-login .login-head .title {
+    font-size: 40px;
+  }
+  .login-area .wrapper-card-login .card-login .login-head .sub-title {
+    font-size: 24px;
+    margin-bottom: 0;
+  }
+  .login-area .wrapper-card-login .card-login .login-form-p input {
+    width: 55%;
+    height: 46px;
+    padding-left: 8px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    box-sizing: border-box;
+    color: #777676;
+    font-family: "Inter";
+    font-weight: 400;
+    font-size: 20px;
+    border: 1px solid #777676;
+    border-radius: 10px;
+  }
+  .login-area .wrapper-card-login .card-login .btn-box button {
+    width: 148px;
+    height: 46px;
+    background-color: #ffffff;
+    border: 1px solid #9B6BFF;
+    border-radius: 10px;
+    color: #9B6BFF;
+    font-family: "Inter";
+    font-weight: 400;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .login-area .wrapper-card-login .card-login .btn-box span.forgotten-password {
+    width: 148px;
+    height: 62px;
+    font-size: 24px;
+  }
+  .login-area .wrapper-card-login .card-login span {
+    font-size: 24px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content p {
+    width: 80%;
+    font-size: 24px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown .info {
+    width: 148px;
+    height: 46px;
+    font-size: 24px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content {
+    width: 148px;
+    height: 148px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item,
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item + .info-item + .info-item {
+    width: 138px;
+    height: 46px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item svg,
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item + .info-item + .info-item svg {
+    width: 34px;
+    height: 34px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item .tooltip,
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item + .info-item + .info-item .tooltip {
+    width: 148px;
+    font-size: 20px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .btn-container button {
+    width: 148px;
+    height: 46px;
+    font-size: 24px;
+  }
+  .modal-window .close {
+    font-size: 34px;
+  }
+  .modal-window-errors .wrapper-modal-window-errors-content .modal-window-errors-content p {
+    width: 80%;
+    font-size: 24px;
+  }
+  .modal-window-errors .wrapper-modal-window-errors-content .modal-window-errors-content .container-for-errors {
+    font-size: 24px;
+  }
+  .modal-window-errors .wrapper-modal-window-errors-content .modal-window-errors-content .btn-ok-errors {
+    width: 148px;
+    height: 46px;
+    background-color: #ffffff;
+    border: 1px solid #9B6BFF;
+    border-radius: 10px;
+    color: #9B6BFF;
+    font-family: "Inter";
+    font-weight: 400;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .modal-window-errors .errors-close {
+    font-size: 34px;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password {
+    height: 62%;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content .current-info,
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content .step,
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content .hidden-username {
+    font-size: 24px;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content input {
+    height: 46px;
+    font-size: 20px;
+    margin-right: 16px;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content button {
+    width: 46px;
+    height: 46px;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content button.modal-window-new-password-ok {
+    width: 148px;
+    height: 46px;
+    font-size: 24px;
+  }
+  .modal-window-new-password .reset-password-close {
+    font-size: 34px;
+  }
+}
+/* MEDIUM LARGE SCREENS (TABLETS) AND / OR ORIENTATION ON DEVICES WITH MEDIUM LARGE SCREENS */
+@media only screen and (min-width: 742px) and (orientation: landscape) {
+  .sign-up-area {
+    display: none;
+  }
+  .sign-up-landscape-area {
+    display: flex;
+    /*display: none;*/
+  }
+  .sign-up-landscape-area .wrapper-card-sign-up-landscape {
+    display: flex;
+  }
+  .sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .intro-box .title {
+    font-size: 40px;
+  }
+  .sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .intro-box .sub-title-one,
+  .sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .intro-box .sub-title-two,
+  .sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .intro-box .sub-title-three {
+    font-size: 24px;
+  }
+  .sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .sign-up-form-l {
+    height: 70%;
+  }
+  .sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .sign-up-form-l input {
+    height: 46px;
+    padding-left: 12px;
+  }
+  .sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .sign-up-form-l .btn-box button {
+    width: 120px;
+  }
+  .login-area {
+    display: none;
+  }
+  .login-landscape-area {
+    display: flex;
+    /*display: none;*/
+  }
+  .login-landscape-area .wrapper-card-login-landscape .card-login-landscape .intro-box .title {
+    font-size: 40px;
+  }
+  .login-landscape-area .wrapper-card-login-landscape .card-login-landscape .intro-box .sub-title-one,
+  .login-landscape-area .wrapper-card-login-landscape .card-login-landscape .intro-box .sub-title-two,
+  .login-landscape-area .wrapper-card-login-landscape .card-login-landscape .intro-box .sub-title-three {
+    font-size: 24px;
+  }
+  .login-landscape-area .wrapper-card-login-landscape .card-login-landscape .login-form-l {
+    height: 70%;
+  }
+  .login-landscape-area .wrapper-card-login-landscape .card-login-landscape .login-form-l input {
+    height: 46px;
+    padding-left: 12px;
+  }
+  .login-landscape-area .wrapper-card-login-landscape .card-login-landscape .login-form-l .btn-box button {
+    width: 120px;
+  }
+  .login-landscape-area .wrapper-card-login-landscape .card-login-landscape .login-form-l .btn-box span.forgotten-password {
+    padding: 2px;
+  }
+  .modal-window .wrapper-modal-window-content {
+    height: 74%;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content {
+    padding-top: 16px;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-bottom: 16px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content p {
+    font-size: 24px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown {
+    width: 22%;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown .info {
+    width: 120px;
+    height: 40px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content {
+    width: 120px;
+    height: 130px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item,
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item + .info-item + .info-item {
+    width: 110px;
+    height: 40px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item .tooltip,
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item + .info-item + .info-item .tooltip {
+    width: 120px;
+    font-size: 16px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .btn-container button {
+    width: 120px;
+    height: 40px;
+  }
+  .modal-window .close {
+    font-size: 34px;
+  }
+  .modal-window-errors .wrapper-modal-window-errors-content {
+    height: 74%;
+  }
+  .modal-window-errors .wrapper-modal-window-errors-content .modal-window-errors-content p {
+    font-size: 24px;
+  }
+  .modal-window-errors .wrapper-modal-window-errors-content .modal-window-errors-content .container-for-errors {
+    font-size: 24px;
+  }
+  .modal-window-errors .wrapper-modal-window-errors-content .modal-window-errors-content .btn-ok-errors {
+    width: 120px;
+    height: 40px;
+  }
+  .modal-window-errors .errors-close {
+    font-size: 34px;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content .current-info,
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content .step,
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content .hidden-username {
+    font-size: 20px;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content input {
+    height: 46px;
+    font-size: 20px;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content button {
+    width: 46px;
+    height: 46px;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content button.modal-window-new-password-ok {
+    width: 120px;
+    height: 40px;
+    font-size: 20px;
+  }
+  .modal-window-new-password .reset-password-close {
+    font-size: 34px;
+  }
+}
+@media only screen and (min-width: 742px) and (max-height: 420px) and (orientation: landscape) {
+  .sign-up-landscape-area {
+    /*display: none;*/
+  }
+  .sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .sign-up-form-l {
+    height: 85%;
+  }
+  .sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .sign-up-form-l input {
+    width: 76%;
+    height: 36px;
+  }
+  .login-landscape-area {
+    /*display: none;*/
+  }
+  .login-landscape-area .wrapper-card-login-landscape .card-login-landscape .login-form-l {
+    height: 85%;
+  }
+  .login-landscape-area .wrapper-card-login-landscape .card-login-landscape .login-form-l input {
+    width: 76%;
+    height: 36px;
+  }
+  .modal-window .wrapper-modal-window-content {
+    height: 78%;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content {
+    padding-top: 16px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 16px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content p {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown {
+    width: 22%;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown .info {
+    width: 96px;
+    height: 34px;
+    font-size: 16px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content {
+    width: 96px;
+    height: 112px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item,
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item + .info-item + .info-item {
+    width: 86px;
+    height: 34px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item .tooltip,
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item + .info-item + .info-item .tooltip {
+    width: 86px;
+    font-size: 12px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .btn-container button {
+    width: 96px;
+    height: 34px;
+    font-size: 16px;
+  }
+  .modal-window-errors .wrapper-modal-window-errors-content {
+    height: 78%;
+  }
+  .modal-window-errors .wrapper-modal-window-errors-content .modal-window-errors-content p {
+    font-size: 16px;
+  }
+  .modal-window-errors .wrapper-modal-window-errors-content .modal-window-errors-content .container-for-errors {
+    font-size: 16px;
+  }
+  .modal-window-errors .wrapper-modal-window-errors-content .modal-window-errors-content .btn-ok-errors {
+    width: 96px;
+    height: 34px;
+    background-color: #ffffff;
+    border: 1px solid #9B6BFF;
+    border-radius: 10px;
+    color: #9B6BFF;
+    font-family: "Inter";
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .modal-window-new-password {
+    padding-top: 5%;
+  }
+  .modal-window-new-password .reset-password-close {
+    top: 10px;
+    right: 15px;
+  }
+}
+@media only screen and (min-width: 800px) and (orientation: portrait) {
+  body {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+  }
+  .sign-up-area {
+    /*display: none;*/
+  }
+  .sign-up-area .wrapper-card-sign-up {
+    height: 52%;
+  }
+  .sign-up-area .wrapper-card-sign-up .card-sign-up .sign-up-form-p input {
+    width: 63%;
+    padding-left: 12px;
+  }
+  .sign-up-area .wrapper-card-sign-up .card-sign-up .btn-box {
+    width: 80%;
+  }
+  .login-area {
+    /*display: none;*/
+  }
+  .login-area .wrapper-card-login {
+    height: 52%;
+  }
+  .login-area .wrapper-card-login .card-login .login-form-p input {
+    width: 63%;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown {
+    width: 28%;
+  }
+  .modal-window .close {
+    font-size: 44px;
+  }
+  .modal-window-errors .errors-close {
+    font-size: 44px;
+  }
+  .modal-window-new-password .reset-password-close {
+    font-size: 44px;
+  }
+}
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
+  body {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+  }
+  .sign-up-landscape-area {
+    /*display: none;*/
+  }
+  .sign-up-landscape-area .wrapper-card-sign-up-landscape {
+    height: 60%;
+  }
+  .sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .intro-box {
+    padding-left: 40px;
+  }
+  .sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .sign-up-form-l input {
+    width: 80%;
+    height: 46px;
+    padding-left: 8px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    box-sizing: border-box;
+    color: #777676;
+    font-family: "Inter";
+    font-weight: 400;
+    border: 1px solid #777676;
+    border-radius: 10px;
+    padding-left: 12px;
+  }
+  .sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .sign-up-form-l .btn-box button {
+    width: 114px;
+    height: 38px;
+    background-color: #ffffff;
+    border: 1px solid #9B6BFF;
+    border-radius: 10px;
+    color: #9B6BFF;
+    font-family: "Inter";
+    font-weight: 400;
+    text-align: center;
+    cursor: pointer;
+  }
+  .login-landscape-area {
+    /*display: none;*/
+  }
+  .login-landscape-area .wrapper-card-login-landscape {
+    height: 60%;
+  }
+  .login-landscape-area .wrapper-card-login-landscape .card-login-landscape .intro-box {
+    padding-left: 40px;
+  }
+  .login-landscape-area .wrapper-card-login-landscape .card-login-landscape .login-form-l {
+    height: 60%;
+  }
+  .login-landscape-area .wrapper-card-login-landscape .card-login-landscape .login-form-l input {
+    width: 80%;
+    height: 46px;
+    padding-left: 8px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    box-sizing: border-box;
+    color: #777676;
+    font-family: "Inter";
+    font-weight: 400;
+    border: 1px solid #777676;
+    border-radius: 10px;
+    padding-left: 12px;
+  }
+  .login-landscape-area .wrapper-card-login-landscape .card-login-landscape .login-form-l .btn-box button {
+    width: 114px;
+    height: 38px;
+    background-color: #ffffff;
+    border: 1px solid #9B6BFF;
+    border-radius: 10px;
+    color: #9B6BFF;
+    font-family: "Inter";
+    font-weight: 400;
+    text-align: center;
+    cursor: pointer;
+  }
+  .login-landscape-area .wrapper-card-login-landscape .card-login-landscape .login-form-l .btn-box span.forgotten-password {
+    padding: 4px;
+  }
+  .modal-window .wrapper-modal-window-content {
+    width: 70%;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content p {
+    font-size: 24px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown .info {
+    width: 114px;
+    height: 38px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content {
+    width: 114px;
+    height: 124px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item,
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item + .info-item + .info-item {
+    width: 104px;
+    height: 38px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item .tooltip,
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item + .info-item + .info-item .tooltip {
+    width: 104px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .btn-container button {
+    width: 114px;
+    height: 38px;
+  }
+  .modal-window .close {
+    top: 25px;
+    right: 40px;
+    font-size: 44px;
+  }
+  .modal-window-errors .wrapper-modal-window-errors-content {
+    width: 70%;
+  }
+  .modal-window-errors .wrapper-modal-window-errors-content .modal-window-errors-content .btn-ok-errors {
+    width: 114px;
+    height: 38px;
+    background-color: #ffffff;
+    border: 1px solid #9B6BFF;
+    border-radius: 10px;
+    color: #9B6BFF;
+    font-family: "Inter";
+    font-weight: 400;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .modal-window-errors .errors-close {
+    top: 25px;
+    right: 40px;
+    font-size: 44px;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password {
+    width: 70%;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content .current-info,
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content .step,
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content .hidden-username {
+    font-size: 24px;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content button.modal-window-new-password-ok {
+    width: 114px;
+    height: 38px;
+  }
+  .modal-window-new-password .reset-password-close {
+    top: 25px;
+    right: 40px;
+    font-size: 44px;
+  }
+}
+@media only screen and (min-width: 1024px) and (orientation: portrait) {
+  .modal-window-new-password .wrapper-modal-window-new-password {
+    height: 55%;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content {
+    padding-top: 16px;
+    padding-right: 60px;
+    padding-bottom: 16px;
+    padding-left: 60px;
+  }
+  .modal-window-new-password .reset-password-close {
+    top: 25px;
+    right: 40px;
+    font-size: 44px;
+  }
+}
+@media only screen and (min-width: 1280px) and (orientation: landscape) {
+  .sign-up-landscape-area {
+    /*display: none;*/
+  }
+  .sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .sign-up-form-l {
+    height: 70%;
+  }
+  .login-landscape-area {
+    /*display: none;*/
+  }
+  .login-landscape-area .wrapper-card-login-landscape {
+    height: 50%;
+  }
+  .login-landscape-area .wrapper-card-login-landscape .card-login-landscape .login-form-l {
+    height: 65%;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown {
+    width: 20%;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown .info {
+    width: 148px;
+    height: 46px;
+    font-size: 24px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content {
+    width: 148px;
+    height: 148px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item,
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item + .info-item + .info-item {
+    width: 138px;
+    height: 46px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item svg,
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item + .info-item + .info-item svg {
+    width: 34px;
+    height: 34px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item .tooltip,
+  .modal-window .wrapper-modal-window-content .modal-window-content .dropdown-content .info-item + .info-item + .info-item .tooltip {
+    width: 138px;
+    font-size: 20px;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content .btn-container button {
+    width: 148px;
+    height: 46px;
+    font-size: 24px;
+  }
+  .modal-window-errors .wrapper-modal-window-errors-content .modal-window-errors-content .btn-ok-errors {
+    width: 148px;
+    height: 46px;
+    background-color: #ffffff;
+    border: 1px solid #9B6BFF;
+    border-radius: 10px;
+    color: #9B6BFF;
+    font-family: "Inter";
+    font-weight: 400;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password {
+    width: 60%;
+    height: 70%;
+  }
+}
+@media only screen and (min-width: 1280px) and (min-height: 900px) and (orientation: landscape) {
+  .sign-up-landscape-area {
+    /*display: none;*/
+  }
+  .sign-up-landscape-area .wrapper-card-sign-up-landscape {
+    height: 50%;
+  }
+  .sign-up-landscape-area .wrapper-card-sign-up-landscape .card-sign-up-landscape .sign-up-form-l {
+    height: 70%;
+  }
+  .modal-window .wrapper-modal-window-content {
+    height: 70%;
+  }
+  .modal-window .wrapper-modal-window-content .modal-window-content {
+    padding-top: 16px;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-bottom: 16px;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password {
+    width: 56%;
+    height: 70%;
+  }
+}
+
+/*# sourceMappingURL=main_page_styles.css.map */
