@@ -34,7 +34,7 @@ const errors = [];
 function handlingValidationErrors(errors) {
     errors.forEach((err) => {
         const newError = document.createElement('span');
-        newError.innerHTML = `<img src="../public/pictures_and_icons/favicon_single.png" /> ${err} \n`;
+        newError.innerHTML = `<img src="pictures_and_icons/favicon_single.png" /> ${err} \n`;
         containerForErrors.appendChild(newError);
     })
     btnCloseErrors.onclick = () => {
@@ -59,9 +59,17 @@ function handlingValidationErrors(errors) {
     modalWindowErrors.style.zIndex = '2';
 }
 
+async function collectServerErrors (response) {
+    const result = await response.json();
+    const errorMessage = [];
+    errorMessage.push(result.errorMessage);
+    handlingValidationErrors(errorMessage);
+}
+
 async function sendData(data) {
+    console.log('data has been sent');
     try {
-        return await fetch('URL', {
+        return await fetch('/todos/sign_up', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -80,7 +88,7 @@ function userKnowsRules() {
 
 async function collectDataSignUpPortrait(event) {
     event.preventDefault();
-
+    
     // collecting user's data
     if (!nameP.value || nameP.value.length < 5 || nameP.value.length > 20) {
         errors.push("Your name must consist of at least 5 symbols and it mustn't be longer than 20 symbols");
@@ -103,8 +111,12 @@ async function collectDataSignUpPortrait(event) {
         handlingValidationErrors(errors);
     } else {
         const response = await sendData(newUser);
+        console.log('data has been sent', newUser);
         if (response.status === 200) {
             window.location.href = response.url;
+        }
+        if (response.status === 409) {
+            await collectServerErrors(response);
         }
         const result = await response.json();
         const receivedErrors = result.errors;
@@ -141,8 +153,12 @@ async function collectDataSignUpLandscape(event) {
         handlingValidationErrors(errors);
     } else {
         const response = await sendData(newUser);
+        console.log('data has been sent', newUser);
         if (response.status === 200) {
             window.location.href = response.url;
+        }
+        if (response.status === 409) {
+            await collectServerErrors(response);
         }
         const result = await response.json();
         const receivedErrors = result.errors;

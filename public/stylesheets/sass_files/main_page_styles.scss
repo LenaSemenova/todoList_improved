@@ -423,14 +423,31 @@ body {
 
     .wrapper-modal-window-errors-content {
         @include wrapper-card;
-        width: 80%;
+        width: 90%;
         margin: auto;
 
         .modal-window-errors-content {
             @include within-card;
 
             width: 98%;
-            padding: 28px;
+            padding: 20px;
+
+            /*
+            overflow: scroll;
+            overflow-x: hidden;
+
+            &::-webkit-scrollbar {
+                width: 5px;
+                background-color: $support_color2;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: $support_color1;
+            }
+            &::-webkit-scrollbar-button {
+                display: none;
+            }
+            */
 
             p {
                 width: 100%;
@@ -445,6 +462,7 @@ body {
                     map.get($font-settings, 'small', 'portrait', 'sub-title'));
 
                 span {
+                    width: 100%;
                     height: 60px;
                     display: flex;
                     align-items: center;
@@ -453,6 +471,7 @@ body {
                         margin-right: 16px;
                     }
                 }
+                width: 100%;
             }
 
             .btn-ok-errors {
@@ -1106,6 +1125,14 @@ body {
 
         .wrapper-modal-window-errors-content {
             height: 84%;
+            .modal-window-errors-content {
+                padding: {
+                    top: 20px;
+                    right: 28px;
+                    bottom: 20px;
+                    left: 28px;
+                }
+            }
         }
 
         .errors-close {

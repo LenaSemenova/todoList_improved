@@ -66,7 +66,7 @@ function clearPasswordField () {
     })
     // change the eye-icon to its default view 
     iconsEyePassword.forEach((iconEye) => {
-        iconEye.src = '../public/pictures_and_icons/eye_closed.png';
+        iconEye.src = 'pictures_and_icons/eye_closed.png';
     })
 }
 
@@ -182,10 +182,10 @@ function closeOpenEyePassword () {
                 const type = input.getAttribute('type');
                 if (type === 'password') {
                     input.setAttribute('type', 'text');
-                    iconEye.src = '../public/pictures_and_icons/eye_opened.png';
+                    iconEye.src = 'pictures_and_icons/eye_opened.png';
                 } else {
                     input.setAttribute('type', 'password');
-                    iconEye.src = '../public/pictures_and_icons/eye_closed.png';
+                    iconEye.src = 'pictures_and_icons/eye_closed.png';
                 }
             })
             

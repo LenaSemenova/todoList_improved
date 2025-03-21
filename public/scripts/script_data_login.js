@@ -37,7 +37,7 @@ const userData = {
 
 async function sendLoginData(data) {
     try {
-        return await fetch('URL', {
+        return await fetch('/todos/log_in', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -75,6 +75,12 @@ async function collectDataLoginPortrait(event) {
         if (response.status === 200) {
             window.location.href = response.url;
         }
+        if (response.status === 403) {
+            await collectServerErrors(response);
+        }
+        if (response.status === 401) {
+            await collectServerErrors(response);
+        }
         const result = await response.json();
         const receivedErrors = result.errors;
         const serverErrors = [];
@@ -110,6 +116,12 @@ async function collectDataLoginLandscape(event) {
         if (response.status === 200) {
             window.location.href = response.url;
         }
+        if (response.status === 403) {
+            await collectServerErrors(response);
+        }
+        if (response.status === 401) {
+            await collectServerErrors(response);
+        }
         const result = await response.json();
         const receivedErrors = result.errors;
         const serverErrors = [];
@@ -127,7 +139,7 @@ let newPassword;
 
 // ONE FURTHER ADDITION: LIMIT THE ATTEMPTS OF CHANGING THE PASSWORD!
 
-function resettingPassword() {
+function resetPassword() {
     forgottenPasswords.forEach((btn) => {
         btn.onclick = () => {
             modalWindowNewPassword.style.display = 'block';
@@ -194,7 +206,7 @@ function init() {
     // from data_login.js
     btnLoginSbmtP.addEventListener('click', collectDataLoginPortrait);
     btnLoginSbmtL.addEventListener('click', collectDataLoginLandscape);
-    resettingPassword();
+    resetPassword();
     closeModalWindowNewPassword();
 }
 
