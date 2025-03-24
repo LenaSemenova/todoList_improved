@@ -55,7 +55,7 @@ body {
     }
 }
 
-@keyframes slideInFromTheLeft {
+@keyframes slideInFromTheTop {
     from {
         height: 0;
         bottom: 100%;
@@ -638,6 +638,7 @@ body {
                 }
             }
         }
+        animation: moveUpwards 2s ease;
     }
 
     .reset-password-close {
@@ -1087,7 +1088,7 @@ body {
                 }
 
                 button.modal-window-new-password-ok {
-                    margin-top: 6px;
+                    margin-top: 12px;
                 }
             }
         }
@@ -1104,6 +1105,9 @@ body {
 @media only screen and (min-height: 650px) and (max-height: 940px) and (max-width: 500px) {
     .modal-window {
         padding-top: 36%;
+    }
+    .modal-window-new-password {
+        padding-top: 16%;
     }
 }
 
@@ -1215,7 +1219,7 @@ body {
                 }
 
                 button.modal-window-new-password-ok {
-                    margin-top: 6px;
+                    margin-top: 12px;
                 }
             }
         }
@@ -1633,6 +1637,7 @@ body {
                 button {
                     width: 46px;
                     height: 46px;
+                    margin: 12px;
                 }
 
                 button.modal-window-new-password-ok {

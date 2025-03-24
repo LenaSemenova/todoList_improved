@@ -179,9 +179,12 @@ const resetPassword_stepThree = async(req, res) => {
         const hashedPassword = hashPasswordsBcrypt(user_data.user_password);
         user_data.user_password = hashedPassword;
         const isReset = await generalQueries.resetPassword(user_data);
-        console.log(isReset); 
+        if (!isReset) {
+            res.status(400).json({ errorMessage: 'Something went wrong. Try to reset the password again'});
+        } else {
+            res.status(200).json({ successMessage: 'You have just reset your password. You can log in now'});
+        }
     }
-
 }
 
 export default {

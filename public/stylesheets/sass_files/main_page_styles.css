@@ -62,7 +62,7 @@ body {
     opacity: 1;
   }
 }
-@keyframes slideInFromTheLeft {
+@keyframes slideInFromTheTop {
   from {
     height: 0;
     bottom: 100%;
@@ -714,6 +714,7 @@ body {
   width: 90%;
   height: 75%;
   margin: auto;
+  animation: moveUpwards 2s ease;
 }
 .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content {
   grid-column: 2;
@@ -1335,7 +1336,7 @@ body {
     height: 36px;
   }
   .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content button.modal-window-new-password-ok {
-    margin-top: 6px;
+    margin-top: 12px;
   }
   .modal-window-new-password .reset-password-close {
     top: 2px;
@@ -1346,6 +1347,9 @@ body {
 @media only screen and (min-height: 650px) and (max-height: 940px) and (max-width: 500px) {
   .modal-window {
     padding-top: 36%;
+  }
+  .modal-window-new-password {
+    padding-top: 16%;
   }
 }
 /* LARGER MOBILE SCREENS AND / OR ORIENTATION LANDSCAPE ON MOBILE DEVICES WITH SMALL SCREENS */
@@ -1429,7 +1433,7 @@ body {
     height: 36px;
   }
   .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content button.modal-window-new-password-ok {
-    margin-top: 6px;
+    margin-top: 12px;
   }
   .modal-window-new-password .reset-password-close {
     top: 15px;
@@ -1745,6 +1749,7 @@ body {
   .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content button {
     width: 46px;
     height: 46px;
+    margin: 12px;
   }
   .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content button.modal-window-new-password-ok {
     width: 120px;
