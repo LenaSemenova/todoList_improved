@@ -30,15 +30,7 @@ body {
 }
 
 ::-webkit-scrollbar-button:single-button {
-  background-color: #ffffff;
-  display: block;
-  border: 2px solid #777676;
-  height: 16px;
-  width: 10px;
-}
-
-::-webkit-scrollbar-button:single-button:hover {
-  border: 2px solid #9B6BFF;
+  display: none;
 }
 
 /* SIMPLE KEY FRAMES ANIMATIONS */
@@ -68,6 +60,16 @@ body {
   }
   to {
     opacity: 1;
+  }
+}
+@keyframes slideInFromTheLeft {
+  from {
+    height: 0;
+    bottom: 100%;
+  }
+  to {
+    bottom: 0;
+    height: 100%;
   }
 }
 /* STYLING OF SIGN UP CONTAINER */
@@ -743,6 +745,13 @@ body {
 }
 .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content .current-info {
   width: 100%;
+  height: 20%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  letter-spacing: 1px;
   text-align: center;
   color: #9B6BFF;
   font-family: "Inter";
@@ -755,7 +764,17 @@ body {
   padding-left: 16px;
   padding-bottom: 4px;
 }
+.modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content .current-info-message {
+  position: relative;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
 .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content .step {
+  width: 100%;
   color: black;
   font-family: "Inter";
   font-weight: 700;
@@ -787,6 +806,18 @@ body {
 .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content input:focus {
   border: none;
   outline: 1px dashed #777676;
+}
+.modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content .icon-wrapper {
+  width: 0%;
+  position: relative;
+  left: -47px;
+  top: 3px;
+  cursor: pointer;
+  cursor: pointer;
+}
+.modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content .icon-wrapper img {
+  width: 30px;
+  height: 30px;
 }
 .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content button {
   width: 42px;
@@ -1571,6 +1602,9 @@ body {
     height: 46px;
     font-size: 20px;
     margin-right: 16px;
+  }
+  .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content .icon-wrapper {
+    left: -56px;
   }
   .modal-window-new-password .wrapper-modal-window-new-password .modal-window-new-password-content button {
     width: 46px;

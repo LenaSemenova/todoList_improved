@@ -15,4 +15,13 @@ const isRegistered = async(user_email) => {
         return result;
 }
 
-export default isRegistered;
+const resetPassword = async(user_data) => {
+    const [result] = await db_connection.query('UPDATE user_info SET user_password = ? WHERE user_name = ? AND user_email = ?',
+        [user_data.user_password, user_data.user_name, user_data.user_email]);
+        return result.affectedRows;
+}
+
+export default {
+    isRegistered,
+    resetPassword
+};

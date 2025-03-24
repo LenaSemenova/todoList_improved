@@ -215,16 +215,22 @@
     <span class="reset-password-close">&times;</span>
     <div class="wrapper-modal-window-new-password">
       <div class="modal-window-new-password-content">
-    <div class="current-info">Your attempts to reset the password are limited</div>
-    <span class="step">Enter the e-mail that you used when you signed up: </span>
+    <div class="current-info">
+      <div class="current-info-message">Your attempts to reset the password are limited</div>
+      </div>
+    <div class="step">Enter the e-mail that you used when you signed up: </div>
     <input type="email" id="reset-password-email" name="email" placeholder="that email!" />
     <button class="modal-window-submit-email">&#128077;</button>
-    <span class="step">Enter your full username: </span>
-    <span class="hidden-username"></span>
+    <div class="step">Enter your full username:
+    <div class="hidden-username"></div>
+    </div>
     <input type="text" id="full-username" name="full-username" placeholder="that full username!" disabled />
     <button class="modal-window-submit-username" disabled>&#128077;</button>
-    <span class="step">Enter your new password: </span>
-    <input type="password" id="reset-password" name="reset-password" placeholder="don't forget it again!" disabled />
+    <div class="step">Enter your new password: </div>
+    <input class="password" type="password" id="reset-password" name="reset-password" placeholder="don't forget it again!" disabled />
+    <div class="icon-wrapper">
+      <img src="pictures_and_icons/eye_closed.png" />
+    </div>
     <button class="modal-window-submit-new-password" disabled>&#128077;</button>
     <button class="modal-window-new-password-ok">ok</button>
   </div>      

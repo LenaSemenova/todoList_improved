@@ -8,6 +8,9 @@ router.get('/', controllers.redirect);
 router.get('/todos', controllers.openMainPage);
 router.post('/todos/sign_up', controllers.getSignUpData);
 router.post('/todos/log_in', controllers.getLogInData);
+router.post('/todos/reset_password_stepOne', controllers.resetPassword_stepOne);
+router.post('/todos/reset_password_stepTwo', controllers.resetPassword_stepTwo);
+router.post('/todos/reset_password_stepThree', controllers.resetPassword_stepThree);
 
 export default router;
 

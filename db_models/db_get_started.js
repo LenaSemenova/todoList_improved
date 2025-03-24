@@ -35,5 +35,5 @@ const createAccount = async(user_data) => {
         connectionTransaction.release();
     }
 }
-
+// nothing has been changed yet
 export default createAccount;
