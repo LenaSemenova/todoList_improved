@@ -1,0 +1,1603 @@
+@use 'sass:map';
+@use '../sass_basics/basics' as *;
+
+body {
+    @include gridLayout(5%, 90%, 5%);
+}
+
+/* SIMPLE ANIMATIONS */
+
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    /*background: $support_color2;*/
+}
+
+::-webkit-scrollbar-thumb {
+    background: $main_theme;
+}
+
+::-webkit-scrollbar-button:single-button {
+    display: none;
+}
+
+.container-general {
+    grid-column: 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    .wrapper-btn {
+        width: 100%;
+        text-align: center;
+
+        .btn-informed {
+            @include btn-general(map.get($buttons, 'small', 'portrait', 'width'),
+                map.get($buttons, 'small', 'portrait', 'height'),
+                map.get($font-settings, 'small', 'portrait', 'button'));
+
+            &:hover {
+                @include btn-general-hover;
+            }
+        }
+    }
+}
+
+.wrapper-add-todo {
+    width: 98%;
+    height: 42%;
+    margin-bottom: 20px;
+
+    @include centralPositioning;
+    border-radius: $border-radius-container;
+    background: $main_theme;
+    box-shadow: $box-shadow;
+    transition: 0.2s;
+
+
+    h1 {
+        margin: {
+            top: 20px;
+            bottom: 0;
+        }
+
+        @include text-settings(map.get($font-weights, 'bold'),
+            map.get($font-settings, 'small', 'portrait', 'title'),
+            $support_color2);
+    }
+
+    .separating-line {
+        width: 90%;
+        height: 3px;
+        background: $support_color2;
+    }
+
+    #form-post {
+        height: 60%;
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 10px;
+
+        input {
+            @include input-fields(map.get($inputs, 'small', 'portrait', 'width'),
+                map.get($inputs, 'small', 'portrait', 'height'),
+                map.get($font-settings, 'small', 'portrait', 'input'));
+
+            &:focus {
+                @include input-fields-focus;
+            }
+        }
+
+        textarea {
+            resize: none;
+            overflow: hidden;
+
+            @include input-fields(map.get($inputs, 'small', 'portrait', 'width'),
+                64px,
+                map.get($font-settings, 'small', 'portrait', 'input'));
+
+            &:focus {
+                @include input-fields-focus;
+            }
+        }
+
+        .wrapper-btn {
+            width: 100%;
+            text-align: center;
+
+            button {
+                @include btn-general(map.get($buttons, 'small', 'portrait', 'width'),
+                    map.get($buttons, 'small', 'portrait', 'height'),
+                    map.get($font-settings, 'small', 'portrait', 'button'));
+
+                &:hover {
+                    @include btn-general-hover;
+                }
+            }
+        }
+    }
+
+    &:hover {
+        box-shadow: $box-shadow-on-hover;
+    }
+}
+
+.todo-card-preview {
+    width: 98%;
+    height: 20%;
+    margin-bottom: 20px;
+
+    border-radius: $border-radius-container;
+    box-shadow: $box-shadow;
+    transition: 0.2s;
+
+    @include centralPositioning;
+
+    .wrapper-todo-card-preview {
+        position: relative;
+
+        width: 100%;
+        height: 100%;
+
+        background: $main_theme;
+        border-radius: $border-radius-container;
+
+        .card-contents {
+            position: absolute;
+            top: 2%;
+            left: 1%;
+
+            width: 98%;
+            height: 96%;
+
+            @include centralPositioning;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+
+            border-radius: 22px;
+            background: $support_color2;
+
+            .wrapper-input {
+                width: 62%;
+                margin-left: 10px;
+
+                display: flex;
+                justify-content: center;
+
+                input {
+                    @include input-fields(90%,
+                        10%,
+                        map.get($font-settings, 'small', 'portrait', 'input'));
+
+                    &:focus {
+                        @include input-fields-focus;
+                    }
+                }
+            }
+
+            .wrapper-controls {
+                width: 32%;
+                margin-right: 10px;
+
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+
+                .container-checkbox {
+                    position: relative;
+
+                    width: 36px;
+                    height: 36px;
+
+                    cursor: pointer;
+
+                    .tooltip-from-the-top {
+
+                        visibility: hidden;
+                        z-index: 1;
+                        position: absolute;
+                        top: -100%;
+                        left: -85%;
+                        width: 86px;
+                        padding: 4px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: $support_color2;
+                        color: $support_color1;
+                        font-size: 12px;
+                        border: 1px solid $support_color1;
+                        border-radius: 10px;
+                        @include text-settings(map.get($font-weights, 'regular'),
+                            map.get($font-settings, 'small', 'portrait', 'span'),
+                            $support_color1);
+
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            top: 100%;
+                            left: 46%;
+                            margin-top: 0px;
+                            border-width: 5px;
+                            border-style: solid;
+                            border-color: $support_color1 transparent transparent transparent;
+                        }
+                    }
+
+                    input {
+                        position: absolute;
+
+                        width: 0;
+                        height: 0;
+
+                        opacity: 0;
+
+                        &:checked~.checkmark {
+                            background: $support_color2;
+                        }
+
+                        &:checked~.checkmark::after {
+                            display: block;
+                        }
+                    }
+
+                    .checkmark {
+                        position: absolute;
+
+                        top: 0;
+                        left: 0;
+
+                        width: 36px;
+                        height: 36px;
+
+                        background: $support_color2;
+                        border: 1px solid $support_color1;
+                        border-radius: $border-radius-elements;
+
+                        box-sizing: border-box;
+
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            display: none;
+
+                            top: 4px;
+                            left: 4px;
+
+                            width: 26px;
+                            height: 26px;
+
+                            border-radius: 4px;
+                            background: $support_color1;
+
+                        }
+
+                    }
+
+                    &:hover {
+                        input~.checkmark {
+                            background: $support_color1;
+                        }
+
+                        input~.checkmark::after {
+                            background: $support_color2;
+                        }
+                    }
+                }
+
+                .container-checkbox:hover .tooltip-from-the-top {
+                    visibility: visible;
+                }
+
+                button {
+                    position: relative;
+                    @include btn-general(36px, 36px);
+
+                    svg {
+                        fill: $support_color1;
+                    }
+
+                    .tooltip-from-the-top {
+
+                        visibility: hidden;
+                        z-index: 1;
+                        position: absolute;
+                        top: -100%;
+                        left: -85%;
+                        width: 86px;
+                        padding: 4px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: $support_color2;
+                        color: $support_color1;
+                        font-size: 12px;
+                        border: 1px solid $support_color1;
+                        border-radius: 10px;
+                        @include text-settings(map.get($font-weights, 'regular'),
+                            map.get($font-settings, 'small', 'portrait', 'span'),
+                            $support_color1);
+
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            top: 100%;
+                            left: 46%;
+                            margin-top: 0px;
+                            border-width: 5px;
+                            border-style: solid;
+                            border-color: $support_color1 transparent transparent transparent;
+                        }
+                    }
+
+                    .tooltip-from-the-bottom {
+
+                        visibility: hidden;
+                        z-index: 1;
+                        position: absolute;
+                        top: 120%;
+                        left: -85%;
+                        width: 86px;
+                        padding: 4px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: $support_color2;
+                        color: $support_color1;
+                        font-size: 12px;
+                        border: 1px solid $support_color1;
+                        border-radius: 10px;
+                        @include text-settings(map.get($font-weights, 'regular'),
+                            map.get($font-settings, 'small', 'portrait', 'span'),
+                            $support_color1);
+
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            top: -35%;
+                            left: 46%;
+                            margin-top: 0px;
+                            border-width: 5px;
+                            border-style: solid;
+                            border-color: transparent transparent $support_color1 transparent;
+                        }
+                    }
+
+                    &:hover {
+                        @include btn-general-hover;
+
+                        svg {
+                            fill: $support_color2;
+                        }
+                    }
+                }
+
+                button:hover .tooltip-from-the-top,
+                button:hover .tooltip-from-the-bottom {
+                    visibility: visible;
+                }
+            }
+        }
+    }
+
+    &:hover {
+        box-shadow: $box-shadow-on-hover;
+    }
+}
+
+.todo-card {
+    width: 98%;
+    height: 50%;
+    margin-bottom: 20px;
+
+    border-radius: $border-radius-container;
+    box-shadow: $box-shadow;
+    transition: 0.2s;
+
+    .card-heading {
+        width: 100%;
+        height: 25%;
+
+        @include centralPositioning;
+        justify-content: space-around;
+
+        background: $main_theme;
+        border-radius: $border-radius-container $border-radius-container 0px 0px;
+
+        h2 {
+            width: 100%;
+
+            margin: {
+                top: 20px;
+                bottom: 0;
+            }
+
+            @include text-settings(map.get($font-weights, 'bold'),
+                24px,
+                $support_color2);
+            text-align: center;
+        }
+
+        .separating-line {
+            width: 90%;
+            height: 3px;
+            background: $support_color2;
+        }
+    }
+
+    .card-main {
+        width: 100%;
+        height: 75%;
+
+        box-sizing: border-box;
+
+        @include centralPositioning;
+        justify-content: space-around;
+
+        padding: 16px;
+
+        form {
+            width: 100%;
+            box-sizing: border-box;
+
+            @include centralPositioning;
+            gap: 20px;
+
+            input {
+                @include input-fields(map.get($inputs, 'small', 'portrait', 'width'),
+                    map.get($inputs, 'small', 'portrait', 'height'),
+                    map.get($font-settings, 'small', 'portrait', 'input'));
+
+                &:focus {
+                    @include input-fields-focus;
+                }
+            }
+
+            textarea {
+                resize: none;
+
+                @include input-fields(map.get($inputs, 'small', 'portrait', 'width'),
+                    64px,
+                    map.get($font-settings, 'small', 'portrait', 'input'));
+
+                &:focus {
+                    @include input-fields-focus;
+                }
+            }
+
+            .card-controls {
+                width: 100%;
+
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+
+                gap: 10px;
+
+                .container-checkbox {
+                    position: relative;
+
+                    width: 36px;
+                    height: 36px;
+
+                    cursor: pointer;
+
+                    .tooltip-from-the-top {
+
+                        visibility: hidden;
+                        z-index: 1;
+                        position: absolute;
+                        top: -100%;
+                        left: -85%;
+                        width: 86px;
+                        padding: 4px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: $support_color2;
+                        color: $support_color1;
+                        font-size: 12px;
+                        border: 1px solid $support_color1;
+                        border-radius: 10px;
+                        @include text-settings(map.get($font-weights, 'regular'),
+                            map.get($font-settings, 'small', 'portrait', 'span'),
+                            $support_color1);
+
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            top: 100%;
+                            left: 46%;
+                            margin-top: 0px;
+                            border-width: 5px;
+                            border-style: solid;
+                            border-color: $support_color1 transparent transparent transparent;
+                        }
+                    }
+
+                    input {
+                        position: absolute;
+
+                        width: 0;
+                        height: 0;
+
+                        opacity: 0;
+
+                        &:checked~.checkmark {
+                            background: $support_color2;
+                        }
+
+                        &:checked~.checkmark::after {
+                            display: block;
+                        }
+                    }
+
+                    .checkmark {
+                        position: absolute;
+
+                        top: 0;
+                        left: 0;
+
+                        width: 36px;
+                        height: 36px;
+
+                        background: $support_color2;
+                        border: 1px solid $support_color1;
+                        border-radius: $border-radius-elements;
+
+                        box-sizing: border-box;
+
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            display: none;
+
+                            top: 4px;
+                            left: 4px;
+
+                            width: 26px;
+                            height: 26px;
+
+                            border-radius: 4px;
+                            background: $support_color1;
+
+                        }
+
+                    }
+
+                    &:hover {
+                        input~.checkmark {
+                            background: $support_color1;
+                        }
+
+                        input~.checkmark::after {
+                            background: $support_color2;
+                        }
+                    }
+                }
+
+                .container-checkbox:hover .tooltip-from-the-top {
+                    visibility: visible;
+                }
+
+                button {
+                    position: relative;
+                    @include btn-general(36px, 36px);
+
+                    svg {
+                        fill: $support_color1;
+                    }
+
+                    .tooltip-from-the-top {
+
+                        visibility: hidden;
+                        z-index: 1;
+                        position: absolute;
+                        top: -100%;
+                        left: -85%;
+                        width: 86px;
+                        padding: 4px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: $support_color2;
+                        color: $support_color1;
+                        font-size: 12px;
+                        border: 1px solid $support_color1;
+                        border-radius: 10px;
+                        @include text-settings(map.get($font-weights, 'regular'),
+                            map.get($font-settings, 'small', 'portrait', 'span'),
+                            $support_color1);
+
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            top: 100%;
+                            left: 46%;
+                            margin-top: 0px;
+                            border-width: 5px;
+                            border-style: solid;
+                            border-color: $support_color1 transparent transparent transparent;
+                        }
+                    }
+
+                    .tooltip-from-the-bottom {
+
+                        visibility: hidden;
+                        z-index: 1;
+                        position: absolute;
+                        top: 120%;
+                        left: -85%;
+                        width: 86px;
+                        padding: 4px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: $support_color2;
+                        color: $support_color1;
+                        font-size: 12px;
+                        border: 1px solid $support_color1;
+                        border-radius: 10px;
+                        @include text-settings(map.get($font-weights, 'regular'),
+                            map.get($font-settings, 'small', 'portrait', 'span'),
+                            $support_color1);
+
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            top: -35%;
+                            left: 46%;
+                            margin-top: 0px;
+                            border-width: 5px;
+                            border-style: solid;
+                            border-color: transparent transparent $support_color1 transparent;
+                        }
+                    }
+
+                    &:hover {
+                        @include btn-general-hover;
+
+                        svg {
+                            fill: $support_color2;
+                        }
+                    }
+                }
+
+                button:hover .tooltip-from-the-top,
+                button:hover .tooltip-from-the-bottom {
+                    visibility: visible;
+                }
+            }
+        }
+
+    }
+
+    &:hover {
+        box-shadow: $box-shadow-on-hover;
+    }
+
+    display: none;
+}
+
+.modal-window {
+
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    padding-top: 25%;
+
+    background-color: rgba(black, 0.8);
+
+    .wrapper-modal-window-content {
+        @include wrapper-card;
+        width: 80%;
+        margin: auto;
+
+        .modal-window-content {
+            @include within-card;
+
+            width: 98%;
+            padding: 28px;
+
+            p {
+                @include text-settings(400, 16px);
+            }
+
+            .dropdown {
+                position: relative;
+                left: -45px;
+
+                width: 50%;
+                @include centralPositioning;
+
+                &-content {
+                    @include btn-general(96px, 136px, 20px);
+                    box-sizing: border-box;
+                    padding: 4px;
+
+                    .info-item {
+                        position: relative;
+                        @include btn-general(86px, 42px, 20px);
+                        border: none;
+                        display: flex;
+                        justify-content: space-evenly;
+                        align-items: center;
+
+                        .tooltip {
+                            visibility: visible;
+                            z-index: 1;
+                            position: absolute;
+                            top: 0;
+                            left: 116%;
+                            width: 86px;
+                            padding: 4px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: $support_color2;
+                            color: $support_color1;
+                            font-size: 12px;
+                            border: 1px solid $support_color1;
+                            border-radius: 10px;
+
+                            &::after {
+                                content: "";
+                                position: absolute;
+                                top: 50%;
+                                right: 100%;
+                                margin-top: -5px;
+                                border-width: 5px;
+                                border-style: solid;
+                                border-color: transparent $support_color1 transparent transparent;
+                            }
+
+                            &:hover {
+                                z-index: 2;
+                                background: $support_color1;
+                                color: $support_color2;
+                            }
+                        }
+
+
+
+
+                        &:hover {
+                            border: 1px solid $support_color1;
+                        }
+                    }
+                }
+            }
+
+            .btn-container {
+                @include btn-container-settings;
+
+                button {
+                    @include btn-general(96px, 34px, 20px);
+
+                    &:hover {
+                        @include btn-general-hover;
+                    }
+                }
+            }
+        }
+
+        animation: moveDownwards 2s ease;
+    }
+
+    .close {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        color: $support_color3;
+
+        font: {
+            size: 24px;
+            weight: bold;
+        }
+
+        cursor: pointer;
+    }
+
+    display: none;
+}
+
+.modal-window-errors {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    padding-top: 25%;
+
+    background-color: rgba($support_color3, 0.8);
+
+    .wrapper-modal-window-errors-content {
+        @include wrapper-card;
+        width: 90%;
+        margin: auto;
+
+        .modal-window-errors-content {
+            @include within-card;
+
+            width: 98%;
+            padding: 20px;
+
+            /*
+            overflow: scroll;
+            overflow-x: hidden;
+
+            &::-webkit-scrollbar {
+                width: 5px;
+                background-color: $support_color2;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: $support_color1;
+            }
+            &::-webkit-scrollbar-button {
+                display: none;
+            }
+            */
+
+            p {
+                width: 100%;
+                @include text-settings(map.get($font-weights, 'bold'),
+                    map.get($font-settings, 'small', 'portrait', 'sub-title'));
+            }
+
+            .container-for-errors {
+                @include centralPositioning;
+                justify-content: flex-start;
+                @include text-settings(map.get($font-weights, 'regular'),
+                    map.get($font-settings, 'small', 'portrait', 'sub-title'));
+
+                span {
+                    width: 100%;
+                    height: 60px;
+                    display: flex;
+                    align-items: center;
+
+                    img {
+                        margin-right: 16px;
+                    }
+                }
+
+                width: 100%;
+            }
+
+            .btn-ok-errors {
+                @include btn-general(map.get($buttons, 'small', 'portrait', 'width'),
+                    map.get($buttons, 'small', 'portrait', 'height'),
+                    map.get($font-settings, 'small', 'portrait', 'button'));
+
+                &:hover {
+                    @include btn-general-hover;
+                }
+            }
+        }
+    }
+
+    .errors-close {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        color: $support_color2;
+
+        font: {
+            size: 24px;
+            weight: bold;
+        }
+
+        cursor: pointer;
+    }
+
+    display: none;
+}
+
+@media only screen and (max-height: 638px) and (orientation: portrait) {
+
+    .wrapper-add-todo {
+        height: 60%;
+    }
+
+    .todo-card-preview {
+        height: 25%;
+
+        .wrapper-todo-card-preview {
+            .card-contents {
+                .wrapper-controls {
+                    width: 36%;
+                }
+            }
+        }
+    }
+
+    .todo-card {
+        height: 55%;
+    }
+
+}
+
+
+@media only screen and (min-width: 600px) and (orientation: landscape) {
+    .container-general {
+        .wrapper-btn {
+            .btn-informed {
+                @include btn-general(map.get($buttons, 'small', 'landscape', 'width'),
+                    map.get($buttons, 'small', 'landscape', 'height'),
+                    map.get($font-settings, 'small', 'landscape', 'button'));
+            }
+        }
+    }
+
+    .wrapper-add-todo {
+        width: 80%;
+        height: 70%;
+
+        #form-post {
+            input {
+                @include input-fields(map.get($inputs, 'small', 'landscape', 'width'),
+                    map.get($inputs, 'small', 'landscape', 'height'),
+                    map.get($font-settings, 'small', 'landscape', 'input'));
+            }
+
+            textarea {
+                @include input-fields(map.get($inputs, 'small', 'landscape', 'width'),
+                    57px,
+                    map.get($font-settings, 'small', 'landscape', 'input'));
+            }
+
+            .wrapper-btn {
+                button {
+                    @include btn-general(map.get($buttons, 'small', 'landscape', 'width'),
+                        map.get($buttons, 'small', 'landscape', 'height'),
+                        map.get($font-settings, 'small', 'landscape', 'button'));
+                }
+            }
+        }
+    }
+
+    .todo-card-preview {
+        width: 80%;
+        height: 34%;
+
+        .wrapper-todo-card-preview {
+            .card-contents {
+                .wrapper-controls {
+                    width: 28%;
+                    margin-right: 30px;
+                }
+            }
+        }
+    }
+
+    .todo-card {
+        width: 80%;
+        height: 54%;
+    }
+
+    .modal-window {
+        padding-top: 10%;
+
+        .wrapper-modal-window-content {
+            height: 74%;
+        }
+    }
+}
+
+@media only screen and (max-height: 320px) and (orientation: landscape) {
+    .container-general {
+        .wrapper-btn {
+            .btn-informed {
+                @include btn-general(map.get($buttons, 'small', 'landscape', 'width'),
+                    map.get($buttons, 'small', 'landscape', 'height'),
+                    map.get($font-settings, 'small', 'landscape', 'button'));
+            }
+        }
+    }
+
+    .wrapper-add-todo {
+        width: 80%;
+        height: 78%;
+
+        #form-post {
+            input {
+                @include input-fields(map.get($inputs, 'small', 'landscape', 'width'),
+                    map.get($inputs, 'small', 'landscape', 'height'),
+                    map.get($font-settings, 'small', 'landscape', 'input'));
+            }
+
+            textarea {
+                @include input-fields(map.get($inputs, 'small', 'landscape', 'width'),
+                    57px,
+                    map.get($font-settings, 'small', 'landscape', 'input'));
+            }
+
+            .wrapper-btn {
+                button {
+                    @include btn-general(map.get($buttons, 'small', 'landscape', 'width'),
+                        map.get($buttons, 'small', 'landscape', 'height'),
+                        map.get($font-settings, 'small', 'landscape', 'button'));
+                }
+            }
+        }
+    }
+
+    .todo-card-preview {
+        width: 80%;
+        height: 34%;
+
+        .wrapper-todo-card-preview {
+            .card-contents {
+                .wrapper-controls {
+                    width: 28%;
+                    margin-right: 30px;
+                }
+            }
+        }
+    }
+
+    .todo-card {
+        width: 80%;
+        height: 54%;
+    }
+
+    .modal-window {
+        padding-top: 10%;
+
+        .wrapper-modal-window-content {
+            height: 74%;
+        }
+    }
+
+}
+
+@media only screen and (min-width: 600px) and (orientation: portrait) {
+    .container-general {
+        .wrapper-btn {
+            .btn-informed {
+                @include btn-general(map.get($buttons, 'medium-600px', 'portrait', 'width'),
+                    map.get($buttons, 'medium-600px', 'portrait', 'height'),
+                    map.get($font-settings, 'medium-600px', 'portrait', 'button'));
+            }
+        }
+    }
+
+    .wrapper-add-todo {
+        width: 85%;
+        height: 35%;
+
+        #form-post {
+            input {
+                width: 70%;
+                height: 46px;
+                font-size: map.get($font-settings, 'medium-600px', 'portrait', 'input');
+            }
+
+            textarea {
+                width: 70%;
+                height: 69px;
+                font-size: map.get($font-settings, 'medium-600px', 'portrait', 'input');
+            }
+
+            .wrapper-btn {
+                button {
+                    @include btn-general(map.get($buttons, 'medium-600px', 'portrait', 'width'),
+                        map.get($buttons, 'medium-600px', 'portrait', 'height'),
+                        map.get($font-settings, 'medium-600px', 'portrait', 'button'));
+                }
+            }
+        }
+    }
+
+    .todo-card-preview {
+        width: 85%;
+        height: 15%;
+
+        .wrapper-todo-card-preview {
+            .card-contents {
+                .wrapper-input {
+                    input {
+                        font-size: map.get($font-settings, 'medium-600px', 'portrait', 'input');
+                    }
+                }
+
+                .wrapper-controls {
+                    width: 28%;
+
+                    .container-checkbox {
+                        width: 46px;
+                        height: 46px;
+
+                        .checkmark {
+                            width: 46px;
+                            height: 46px;
+
+                            &::after {
+                                width: 36px;
+                                height: 36px;
+                            }
+                        }
+
+                        .tooltip-from-the-top {
+                            top: -85%;
+                            left: -80%;
+                            width: 112px;
+                            font-size: 20px;
+                        }
+                    }
+
+                    button {
+                        width: 46px;
+                        height: 46px;
+                        display: flex;
+                        align-items: center;
+
+                        svg {
+                            width: 36px;
+                            height: 36px;
+                        }
+
+                        .tooltip-from-the-top {
+                            top: -90%;
+                            left: -85%;
+
+                            width: 112px;
+                            font-size: 20px;
+
+                        }
+
+                        .tooltip-from-the-bottom {
+                            width: 112px;
+                            font-size: 20px;
+
+                            &::after {
+                                top: -30%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .todo-card {
+        width: 85%;
+        height: 35%;
+
+        .card-main {
+            form {
+                input {
+                    width: 70%;
+                    height: 46px;
+                    font-size: 20px;
+                }
+
+                textarea {
+                    width: 70%;
+                    height: 69px;
+                    font-size: 20px;
+                }
+
+                .card-controls {
+                    .container-checkbox {
+                        width: 46px;
+                        height: 46px;
+
+                        .checkmark {
+                            width: 46px;
+                            height: 46px;
+
+                            &::after {
+                                width: 36px;
+                                height: 36px;
+                            }
+                        }
+
+                        .tooltip-from-the-top {
+                            top: -85%;
+                            left: -80%;
+                            width: 112px;
+                            font-size: 20px;
+                        }
+                    }
+
+                    button {
+                        width: 46px;
+                        height: 46px;
+                        display: flex;
+                        align-items: center;
+
+                        svg {
+                            width: 36px;
+                            height: 36px;
+                        }
+
+                        .tooltip-from-the-top {
+                            top: -90%;
+                            left: -85%;
+
+                            width: 112px;
+                            font-size: 20px;
+
+                        }
+
+                        .tooltip-from-the-bottom {
+                            width: 112px;
+                            font-size: 20px;
+
+                            &::after {
+                                top: -30%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .modal-window {
+        .wrapper-modal-window-content {
+            .modal-window-content {
+                p {
+                    width: 80%;
+                    font-size: 24px;
+                }
+
+                .dropdown {
+                    left: -75px;
+
+                    &-content {
+                        width: 148px;
+                        height: 198px;
+
+                        .info-item,
+                        .info-item+.info-item+.info-item {
+                            width: 138px;
+                            height: 62px;
+                            font-size: 30px;
+
+                            svg {
+                                width: 40px;
+                                height: 40px;
+                            }
+
+                            .tooltip {
+                                width: 148px;
+                                font-size: 20px;
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 742px) and (orientation: landscape) {
+    .container-general {
+        .wrapper-btn {
+            .btn-informed {
+                @include btn-general(map.get($buttons, 'medium-742px', 'landscape', 'width'),
+                                     map.get($buttons, 'medium-742px', 'landscape', 'height'),
+                                     map.get($font-settings, 'medium-742px', 'landscape', 'button'));
+            }
+        }
+    }
+
+    .wrapper-add-todo {
+        width: 80%;
+        height: 62%;
+
+        h1 {
+            font-size: map.get($font-settings, 'medium-742px', 'landscape', 'title');
+        }
+
+        #form-post {
+            input {
+                width: 70%;
+                height: 46px;
+                font-size: 20px;
+            }
+
+            textarea {
+                width: 70%;
+                height: 69px;
+                font-size: 20px;
+            }
+
+            .wrapper-btn {
+                button {
+                    @include btn-general(map.get($buttons, 'medium-742px', 'landscape', 'width'),
+                        map.get($buttons, 'medium-742px', 'landscape', 'height'),
+                        map.get($font-settings, 'medium-742px', 'landscape', 'button'))
+                }
+            }
+        }
+    }
+
+    .todo-card-preview {
+        height: 28%;
+
+        .wrapper-todo-card-preview {
+            .card-contents {
+                .wrapper-input {
+                    width: 70%;
+
+                    input {
+                        font-size: map.get($font-settings, 'medium-600px', 'portrait', 'input');
+                    }
+                }
+
+                .wrapper-controls {
+                    width: 22%;
+
+                    .container-checkbox {
+                        width: 40px;
+                        height: 40px;
+
+                        .checkmark {
+                            width: 40px;
+                            height: 40px;
+
+                            &::after {
+                                width: 30px;
+                                height: 30px;
+                            }
+                        }
+
+                        .tooltip-from-the-top {
+                            top: -100%;
+                            left: -100%;
+                            width: 112px;
+                            font-size: 20px;
+                        }
+                    }
+
+                    button {
+                        width: 40px;
+                        height: 40px;
+                        display: flex;
+                        align-items: center;
+
+                        svg {
+                            width: 30px;
+                            height: 30px;
+                        }
+
+                        .tooltip-from-the-top {
+                            top: -102%;
+                            left: -106%;
+
+                            width: 112px;
+                            font-size: 20px;
+
+                        }
+
+                        .tooltip-from-the-bottom {
+                            width: 112px;
+                            font-size: 20px;
+                            left: -105%;
+
+                            &::after {
+                                top: -30%;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    .todo-card {
+        .card-main {
+            form {
+                input {
+                    width: 70%;
+                    height: 46px;
+                    font-size: 20px;
+                }
+
+                textarea {
+                    width: 70%;
+                    height: 69px;
+                    font-size: 20px;
+                }
+
+                .card-controls {
+                    .container-checkbox {
+                        width: 40px;
+                        height: 40px;
+
+                        .checkmark {
+                            width: 40px;
+                            height: 40px;
+
+                            &::after {
+                                width: 30px;
+                                height: 30px;
+                            }
+                        }
+
+                        .tooltip-from-the-top {
+                            top: -100%;
+                            left: -100%;
+                            width: 112px;
+                            font-size: 20px;
+                        }
+                    }
+
+                    button {
+                        width: 40px;
+                        height: 40px;
+                        display: flex;
+                        align-items: center;
+
+                        svg {
+                            width: 30px;
+                            height: 30px;
+                        }
+
+                        .tooltip-from-the-top {
+                            top: -105%;
+                            left: -105%;
+
+                            width: 112px;
+                            font-size: 20px;
+
+                        }
+
+                        .tooltip-from-the-bottom {
+                            width: 112px;
+                            font-size: 20px;
+                            left: -105%;
+
+                            &::after {
+                                top: -30%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .modal-window {
+        .wrapper-modal-window-content {
+            height: 74%;
+
+            .modal-window-content {
+                padding: {
+                    top: 16px;
+                    left: 60px;
+                    right: 60px;
+                    bottom: 16px;
+                }
+
+                p {
+                    font-size: 24px;
+                }
+
+                .dropdown {
+                    width: 40%;
+
+                    &-content {
+                        width: 120px;
+                        height: 172px;
+
+                        .info-item,
+                        .info-item+.info-item+.info-item {
+                            width: 110px;
+                            height: 54px;
+                            font-size: 30px;
+                            
+                            svg {
+                                width: 30px;
+                                height: 30px;
+                            }
+
+                            .tooltip {
+                                width: 120px;
+                                font-size: 16px;
+                            }
+                        }
+                    }
+                }
+
+                .btn-container {
+                    button {
+                        width: 120px;
+                        height: 40px;
+                    }
+                }
+            }
+        }
+
+        .close {
+            font-size: 34px;
+        }
+    }
+}
+
+@media only screen and (min-width: 742px) and (max-height: 420px) and (orientation:landscape) {
+    .wrapper-add-todo {
+        height: 86%;
+    }
+    .todo-card-preview {
+        height: 36%;
+    }
+    .modal-window {
+        padding-top: 6%;
+        .wrapper-modal-window-content {
+            height: 80%;
+        }
+    }
+}
+
+@media only screen and (min-width: 800px) and (orientation: portrait) {
+    body {
+        @include gridLayout(15%, 70%, 15%);
+    }
+}
+
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
+    body {
+        @include gridLayout(15%, 70%, 15%);
+    }
+    .wrapper-add-todo {
+        height: 45%;
+    }
+    .todo-card-preview {
+        height: 20%;
+    }
+    .todo-card {
+        height: 50%;
+    }
+}
+
+@media only screen and (min-width: 1024px) and (orientation: portrait) {
+    .wrapper-add-todo {
+        height: 30%;
+    }
+    .todo-card-preview {
+        .wrapper-todo-card-preview {
+            .card-contents {
+                .wrapper-controls {
+                    width: 27%;
+                    margin-right: 30px;
+                }
+            }
+        }
+    }
+    .todo-card {
+        height: 30%;
+    }
+}
+
+@media only screen and (min-width: 1280px) and (orientation: landscape) {
+    .wrapper-add-todo {
+        height: 50%;
+    }
+    .modal-window {
+        .wrapper-modal-window-content {
+            .modal-window-content {
+                .dropdown {
+                    width: 50%;
+                }
+            }
+        }
+    }
+}

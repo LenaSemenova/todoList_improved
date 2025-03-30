@@ -28,6 +28,7 @@ const closeBtn = document.querySelector('.close');
 const inputs = document.querySelectorAll('input');
 
 
+
 // animation settings for sign up subtitles
 
 function subTitleAnimation() {

@@ -7,21 +7,21 @@ import generalQueries from '../db_models/db_general.js';
 
 const redirect = (req, res) => {
     console.log('redirecting from controllers');
-    res.redirect('/todos');
+    return res.redirect('/todos');
 }
 
 // rendering the main page of the app
 
 const openMainPage = (req, res) => {
     console.log('opening the main page');
-    res.render('main_page');
+    return res.render('main_page');
 }
 
 // server-side validation check
 
-const isValid = async(req, res) => {
+const isValid = async (req, res) => {
 
-    
+
     // object with error messages
 
     const errMessages = {
@@ -44,7 +44,7 @@ const isValid = async(req, res) => {
     await body('user_password').isLength({ max: 20 }).withMessage(errMessages.errorsPassword.tooLong).run(req);
 
     const errors = validationResult(req);
-    if(!errors.isEmpty()) {
+    if (!errors.isEmpty()) {
         req.validationErrors = errors.array();
         console.log('There are some errors');
         return req.validationErrors;
@@ -54,8 +54,8 @@ const isValid = async(req, res) => {
     }
 }
 
-const isValidPassword = async(req, res) => {
-    
+const isValidPassword = async (req, res) => {
+
     // object with different error messages
 
     const errMessages = {
@@ -73,7 +73,7 @@ const isValidPassword = async(req, res) => {
     // inform your users about possible problems if there are any
 
     const errors = validationResult(req);
-    if(!errors.isEmpty()) {
+    if (!errors.isEmpty()) {
         req.validationErrors = errors.array();
         console.log('There are some errors');
         return req.validationErrors;
@@ -93,7 +93,7 @@ const hashPasswordsBcrypt = (user_password) => {
 
 // saving users' data
 
-const getSignUpData = async(req, res) => {
+const getSignUpData = async (req, res) => {
     await isValid(req, res);
     if (req.validationErrors) {
         const errArr = req.validationErrors;
@@ -104,31 +104,38 @@ const getSignUpData = async(req, res) => {
         const user_data = req.body;
         const [result] = await generalQueries.isRegistered(user_data.user_email);
         console.log('Result after checking in the data_base: ', result);
-        if(result) {
-            res.status(409).json({ errorMessage: 'This e-mail is already used.'});
+        if (result) {
+            return res.status(409).json({ errorMessage: 'This e-mail is already used.' });
         } else {
             const hashedPassword = hashPasswordsBcrypt(user_data.user_password);
             user_data.user_password = hashedPassword;
             const new_userID = await createAccount(user_data);
-            console.log(new_userID);
+            return res.redirect(`/todos/list/${new_userID}`);
         }
-    } 
+    }
 }
 
 // let users log in 
 
-const getLogInData = async(req, res) => {
+const getLogInData = async (req, res) => {
     const user_login_data = req.body;
     console.log(user_login_data);
     const [isUser] = await generalQueries.isRegistered(user_login_data.user_email);
+    console.log(isUser);
     if (!isUser) {
-        res.status(403).json({ errorMessage: 'You are not registered with this e-mail!'});
+        return res.status(403).json({ errorMessage: 'You are not registered with this e-mail!' });
     } else {
         const isPassword = bcrypt.compareSync(user_login_data.user_password, isUser.user_password);
         if (!isPassword) {
-            res.status(401).json({ errorMessage: 'Your authorization attempt has failed. Try another e-mail and/or another password!' });
+            return res.status(401).json({ errorMessage: 'Your authorization attempt has failed. Try another e-mail and/or another password!' });
         } else {
             console.log('You are authorized! Wait for the further development of the app!');
+            if (isUser.user_knows_the_rules === null) {
+                await generalQueries.changeRulesStatus(isUser.user_id);
+                return res.redirect(`/todos/list/${isUser.user_id}?rules=0`);
+            } else {
+                return res.redirect(`/todos/list/${isUser.user_id}`);
+            }
         }
     }
 }
@@ -136,24 +143,24 @@ const getLogInData = async(req, res) => {
 // reset password_step one: check if there is a user that has been registered with a given e-mail
 // and send a ciphered username for some additional control 
 
-const resetPassword_stepOne = async(req, res) => {
+const resetPassword_stepOne = async (req, res) => {
     const user_reset_password_data = req.body;
     console.log(user_reset_password_data);
     const [isEmail] = await generalQueries.isRegistered(user_reset_password_data.user_email);
-        if(!isEmail) {
-            res.status(403).json({ errorMessage: 'You are not registered with this e-mail!'});
-        } else {
-            let cipheredUserName = '';
-            for (let i=0; i<isEmail.user_name.length; i++) {
-                if(i % 2 === 0) {
-                    cipheredUserName = cipheredUserName + '*';
-                } else {
-                    cipheredUserName = cipheredUserName + isEmail.user_name[i];
-                }
+    if (!isEmail) {
+        res.status(403).json({ errorMessage: 'You are not registered with this e-mail!' });
+    } else {
+        let cipheredUserName = '';
+        for (let i = 0; i < isEmail.user_name.length; i++) {
+            if (i % 2 === 0) {
+                cipheredUserName = cipheredUserName + '*';
+            } else {
+                cipheredUserName = cipheredUserName + isEmail.user_name[i];
             }
-            console.log(cipheredUserName);
-            res.status(200).json({ nextStep: `Enter your full username without any asterisks`, nextInfo: `${cipheredUserName}`});
         }
+        console.log(cipheredUserName);
+        res.status(200).json({ nextStep: `Enter your full username without any asterisks`, nextInfo: `${cipheredUserName}` });
+    }
 }
 
 const resetPassword_stepTwo = async (req, res) => {
@@ -162,16 +169,16 @@ const resetPassword_stepTwo = async (req, res) => {
     const [isUser] = await generalQueries.isRegistered(user_data.user_email);
     console.log(isUser);
     if (user_data.user_name !== isUser.user_name) {
-        res.status(403).json({ errorMessage: 'This name does not match the name from the database'});
+        res.status(403).json({ errorMessage: 'This name does not match the name from the database' });
     } else {
-res.status(200).json({ nextStep: "Your password must consist of at least 8 symbols and it mustn't be longer than 20 symbols"});
+        res.status(200).json({ nextStep: "Your password must consist of at least 8 symbols and it mustn't be longer than 20 symbols" });
     }
 }
 
-const resetPassword_stepThree = async(req, res) => {
+const resetPassword_stepThree = async (req, res) => {
     const user_data = req.body;
-    
-    await isValidPassword(req,res);
+
+    await isValidPassword(req, res);
     if (req.validationErrors) {
         const errArr = req.validationErrors;
         return res.status(400).json({ errorMessage: errArr });
@@ -180,11 +187,20 @@ const resetPassword_stepThree = async(req, res) => {
         user_data.user_password = hashedPassword;
         const isReset = await generalQueries.resetPassword(user_data);
         if (!isReset) {
-            res.status(400).json({ errorMessage: 'Something went wrong. Try to reset the password again'});
+            res.status(400).json({ errorMessage: 'Something went wrong. Try to reset the password again' });
         } else {
-            res.status(200).json({ successMessage: 'You have just reset your password. You can log in now'});
+            res.status(200).json({ successMessage: 'You have just reset your password. You can log in now' });
         }
     }
+}
+
+const openTodos = async (req, res) => {
+    const user_id = req.params.user_id;
+    const generalInfos = await generalQueries.getUserInfo(user_id);
+    const knowsTheRules = generalInfos.user_knows_the_rules;
+    const todos = await generalQueries.getTodos(user_id);
+
+    return res.render('todos', { knowsTheRules, todos });
 }
 
 export default {
@@ -194,6 +210,7 @@ export default {
     getLogInData,
     resetPassword_stepOne,
     resetPassword_stepTwo,
-    resetPassword_stepThree
+    resetPassword_stepThree,
+    openTodos
 }
 

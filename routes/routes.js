@@ -12,5 +12,7 @@ router.post('/todos/reset_password_stepOne', controllers.resetPassword_stepOne);
 router.post('/todos/reset_password_stepTwo', controllers.resetPassword_stepTwo);
 router.post('/todos/reset_password_stepThree', controllers.resetPassword_stepThree);
 
+router.get('/todos/list/:user_id', controllers.openTodos);
+
 export default router;
 

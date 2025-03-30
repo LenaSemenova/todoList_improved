@@ -21,7 +21,26 @@ const resetPassword = async(user_data) => {
         return result.affectedRows;
 }
 
+const getUserInfo = async (user_id) => {
+    const [result] = await db_connection.query('SELECT * FROM user_info WHERE user_id = ?', 
+        [user_id]);
+    return result;
+}
+
+const getTodos = async (user_id) => {
+    const [result] = await db_connection.query(`SELECT * FROM todos_for_${user_id}`);
+    return result;
+}
+
+const changeRulesStatus = async(user_id) => {
+    const [result] = await db_connection.query(`UPDATE user_info SET user_knows_the_rules = 1 WHERE user_id = ${user_id}`);
+    return result.affectedRows;
+}
+
 export default {
     isRegistered,
-    resetPassword
+    resetPassword,
+    getUserInfo,
+    getTodos,
+    changeRulesStatus
 };
