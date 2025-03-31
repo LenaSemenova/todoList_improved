@@ -16,8 +16,8 @@ const DB_START = {
         return result.insertId;
     },
     createTodos: async(userID) => {
-        const [result] = await connectionTransaction.query(`CREATE TABLE todos_for_${userID} AS SELECT * FROM todos`);
-        return result;
+        await connectionTransaction.query(`CREATE TABLE todos_for_${userID} AS SELECT * FROM todos`);
+        await connectionPool.query(`ALTER TABLE todos_for_${userID} MODIFY todo_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT`);
     }
 }
 

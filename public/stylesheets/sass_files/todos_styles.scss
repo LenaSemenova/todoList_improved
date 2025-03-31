@@ -3,6 +3,7 @@
 
 body {
     @include gridLayout(5%, 90%, 5%);
+    height: unset;
 }
 
 /* SIMPLE ANIMATIONS */
@@ -23,6 +24,7 @@ body {
 }
 
 .container-general {
+    height: 100vh;
     grid-column: 2;
     display: flex;
     flex-wrap: wrap;
@@ -125,10 +127,15 @@ body {
     }
 }
 
+.todo-container {
+    width: 98%;
+    height: 48%;
+    @include centralPositioning;
+    margin-bottom: 20px;
+
 .todo-card-preview {
     width: 98%;
-    height: 20%;
-    margin-bottom: 20px;
+    height: 50%;
 
     border-radius: $border-radius-container;
     box-shadow: $box-shadow;
@@ -392,7 +399,7 @@ body {
 
 .todo-card {
     width: 98%;
-    height: 50%;
+    height: 100%;
     margin-bottom: 20px;
 
     border-radius: $border-radius-container;
@@ -683,6 +690,7 @@ body {
     }
 
     display: none;
+}
 }
 
 .modal-window {

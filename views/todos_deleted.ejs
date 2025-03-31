@@ -15,56 +15,11 @@
         <div class="wrapper-add-todo">
             <h1>TO DO LIST</h1>
             <div class="separating-line"></div>
-            <form id="form-post">
-                <input type="text" id="title" name="title" placeholder="title" />
-                <textarea name="description" id="description" placeholder="description"></textarea>
-                <div class="wrapper-btn"><button id="save" type="submit">add</button></div>
-            </form>
         </div>
         <% todos.forEach(todo => { %>
-            <% if (todo.todo_deleted !== 1) { %>
+            <% if (todo.todo_deleted === 1) { %>
             <div class="todo-container">
-            <div class="todo-card-preview" data-number="<%= todo.todo_id %>">
-                <div class="wrapper-todo-card-preview">
-                    <div class="card-contents">
-                        <div class="wrapper-input">
-                            <input class="todo-input-preview" type="text" value="<%= todo.todo_title %>" data-number="<%= todo.todo_id %>" />
-                        </div>
-                        <div class="wrapper-controls">
-                            <label class="container-checkbox">
-                                <input class="completed todo-completed-preview" type="checkbox" <%= todo.todo_status ? 'checked' : '' %> data-number="<%= todo.todo_id %>" />
-                                <span class="checkmark"></span>
-                                <span class="tooltip-from-the-top">complete</span>
-                            </label>
-                            <button class="todo-update-preview" data-number="<%= todo.todo_id %>">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
-                                    width="24px" fill="#777676">
-                                    <path
-                                        d="M160-160v-80h110l-16-14q-52-46-73-105t-21-119q0-111 66.5-197.5T400-790v84q-72 26-116 88.5T240-478q0 45 17 87.5t53 78.5l10 10v-98h80v240H160Zm400-10v-84q72-26 116-88.5T720-482q0-45-17-87.5T650-648l-10-10v98h-80v-240h240v80H690l16 14q49 49 71.5 106.5T800-482q0 111-66.5 197.5T560-170Z" />
-                                </svg>
-                                <span class="tooltip-from-the-top">update</span>
-                            </button>
-                            <button class="todo-delete-preview" data-number="<%= todo.todo_id %>">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
-                                    width="24px" fill="#777676">
-                                    <path
-                                        d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
-                                </svg>
-                                <span class="tooltip-from-the-bottom">delete</span>
-                            </button>
-                            <button class="changePreview" id="changeView" data-number="<%= todo.todo_id %>">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
-                                    width="24px" fill="#777676">
-                                    <path
-                                        d="M120-120v-320h80v184l504-504H520v-80h320v320h-80v-184L256-200h184v80H120Z" />
-                                </svg>
-                                <span class="tooltip-from-the-bottom">full view</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="todo-card" data-number="<%= todo.todo_id %>">
+            <div class="todo-card" data-number="<%= todo.todo_id %>" style="display: block;">
                 <div class="card-heading">
                     <h2>YOUR TO DO</h2>
                     <div class="separating-line"></div>
@@ -112,7 +67,7 @@
             <% } %>
             <% }) %>
     <div class="wrapper-btn">
-        <button class="btn-informed">?</button>
+        <button class="btn-informed">btn back?</button>
     </div>
     </div>
         <div class="modal-window">

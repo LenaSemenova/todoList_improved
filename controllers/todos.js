@@ -2,6 +2,7 @@ import bcrypt, { hashSync } from 'bcrypt';
 import { body, validationResult } from 'express-validator';
 import createAccount from '../db_models/db_get_started.js';
 import generalQueries from '../db_models/db_general.js';
+import todosActions from '../db_models/db_todos.js';
 
 // redirecting to the endpoint '/todos' 
 
@@ -118,25 +119,30 @@ const getSignUpData = async (req, res) => {
 // let users log in 
 
 const getLogInData = async (req, res) => {
-    const user_login_data = req.body;
-    console.log(user_login_data);
-    const [isUser] = await generalQueries.isRegistered(user_login_data.user_email);
-    console.log(isUser);
-    if (!isUser) {
-        return res.status(403).json({ errorMessage: 'You are not registered with this e-mail!' });
-    } else {
-        const isPassword = bcrypt.compareSync(user_login_data.user_password, isUser.user_password);
-        if (!isPassword) {
-            return res.status(401).json({ errorMessage: 'Your authorization attempt has failed. Try another e-mail and/or another password!' });
+    console.log('Login attempt ', req.body);
+    try {
+        const user_login_data = req.body;
+        console.log(user_login_data);
+        const [isUser] = await generalQueries.isRegistered(user_login_data.user_email);
+        console.log(isUser);
+        if (!isUser) {
+            return res.status(403).json({ errorMessage: 'You are not registered with this e-mail!' });
         } else {
-            console.log('You are authorized! Wait for the further development of the app!');
-            if (isUser.user_knows_the_rules === null) {
-                await generalQueries.changeRulesStatus(isUser.user_id);
-                return res.redirect(`/todos/list/${isUser.user_id}?rules=0`);
+            const isPassword = bcrypt.compareSync(user_login_data.user_password, isUser.user_password);
+            if (!isPassword) {
+                return res.status(401).json({ errorMessage: 'Your authorization attempt has failed. Try another e-mail and/or another password!' });
             } else {
-                return res.redirect(`/todos/list/${isUser.user_id}`);
+                console.log('You are authorized! Wait for the further development of the app!');
+                if (isUser.user_knows_the_rules === null) {
+                    await generalQueries.changeRulesStatus(isUser.user_id);
+                    return res.redirect(`/todos/list/${isUser.user_id}?rules=0`);
+                } else {
+                    return res.redirect(`/todos/list/${isUser.user_id}`);
+                }
             }
         }
+    } catch (error) {
+        console.log('Error while attempting to log in ', error);
     }
 }
 
@@ -196,11 +202,112 @@ const resetPassword_stepThree = async (req, res) => {
 
 const openTodos = async (req, res) => {
     const user_id = req.params.user_id;
-    const generalInfos = await generalQueries.getUserInfo(user_id);
-    const knowsTheRules = generalInfos.user_knows_the_rules;
+    console.log('openTodos is opened with ', user_id);
     const todos = await generalQueries.getTodos(user_id);
+    console.log('Todos from the openTodos ', todos.length);
 
-    return res.render('todos', { knowsTheRules, todos });
+    return res.render('todos', { todos });
+}
+
+
+const addTodo = async (req, res) => {
+    const user_id = req.params.user_id;
+    const newTodo = req.body;
+
+    const result = await todosActions.addNewTodo(user_id, newTodo);
+    if (result.affectedRows) {
+        return res.redirect(`/todos/list/${user_id}`);
+    } else {
+        console.log('Something went wrong while reloading the page with the newly added todos');
+    }
+}
+
+const updateTodo = async (req, res) => {
+    const updatesFromClient = req.body;
+    console.log(updatesFromClient);
+    const user_id = req.params.user_id;
+    const updatesForServer = {};
+
+    const [existingTodo] = await generalQueries.getOneTodo(user_id, updatesFromClient.todo_id);
+
+    updatesForServer.todo_id = updatesFromClient.todo_id;
+
+    //check if there are any changes in the title
+
+    if (!updatesFromClient.todo_title) {
+        updatesForServer.todo_title = existingTodo.todo_title;
+    } else {
+        if (updatesFromClient.todo_title !== existingTodo.todo_title) {
+            updatesForServer.todo_title = updatesFromClient.todo_title;
+        } else {
+            updatesForServer.todo_title = existingTodo.todo_title;
+        }
+    }
+
+    // check if there are any changes in the description
+
+    if (!updatesFromClient.todo_description) {
+        updatesForServer.todo_description = existingTodo.todo_description;
+    } else {
+        if (updatesFromClient.todo_description !== existingTodo.todo_description) {
+            updatesForServer.todo_description = updatesFromClient.todo_description;
+        } else {
+            updatesForServer.todo_description = existingTodo.todo_description;
+        }
+    }
+
+    // check if there are any changes in the status
+
+
+    if (updatesFromClient.todo_status !== existingTodo.todo_status) {
+        updatesForServer.todo_status = updatesFromClient.todo_status;
+    } else {
+        updatesForServer.todo_status = existingTodo.todo_status;
+    }
+
+    console.log(updatesForServer);
+    const resultOfUpdate = await todosActions.updateTodo(user_id, updatesForServer);
+    if (resultOfUpdate.affectedRows) {
+        return res.redirect(`/todos/list/${user_id}`);
+    } else {
+        console.error('An error occurred while updating');
+    }
+}
+
+const deleteTodo = async(req, res) => {
+    const user_id = req.params.user_id;
+    const deleteTodo = req.body;
+    
+    const resultOfDelete = await todosActions.deleteTodo(user_id, deleteTodo);
+    
+    if(resultOfDelete.affectedRows) {
+        return res.redirect(`/todos/list/${user_id}`);
+    } else {
+        console.error('An error occurred while deleting a todo-card');
+    }
+}
+
+const bringBack = async(req, res) => {
+    const user_id = req.params.user_id;
+    
+    const resultOfBringingBack = await todosActions.bringDeletedTodosBack(user_id);
+    if (resultOfBringingBack.affectedRows) {
+        res.redirect(`/todos/list/${user_id}`);
+    } else {
+        console.error('An error happened while bringing all the deleted tasks back');
+    }
+}
+
+const showDeletedTodos = async(req, res) => {
+    const user_id = req.params.user_id;
+    return res.redirect(`/todos/list_deleted/${user_id}/`);
+}
+
+const openDeletedTodos = async(req, res) => {
+    console.log('redirected from show_deleted_todos');
+    const user_id = req.params.user_id;
+    const todos = await generalQueries.getTodos(user_id);
+    return res.render('todos_deleted', { todos });
 }
 
 export default {
@@ -211,6 +318,12 @@ export default {
     resetPassword_stepOne,
     resetPassword_stepTwo,
     resetPassword_stepThree,
-    openTodos
+    openTodos,
+    addTodo,
+    updateTodo,
+    deleteTodo,
+    bringBack,
+    showDeletedTodos,
+    openDeletedTodos
 }
 

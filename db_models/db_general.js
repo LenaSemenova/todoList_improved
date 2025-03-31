@@ -32,6 +32,11 @@ const getTodos = async (user_id) => {
     return result;
 }
 
+const getOneTodo = async(user_id, todo_id) => {
+    const [result] = await db_connection.query(`SELECT * FROM todos_for_${user_id} WHERE todo_id = ${todo_id}`);
+    return result;
+}
+
 const changeRulesStatus = async(user_id) => {
     const [result] = await db_connection.query(`UPDATE user_info SET user_knows_the_rules = 1 WHERE user_id = ${user_id}`);
     return result.affectedRows;
@@ -42,5 +47,6 @@ export default {
     resetPassword,
     getUserInfo,
     getTodos,
+    getOneTodo,
     changeRulesStatus
 };
