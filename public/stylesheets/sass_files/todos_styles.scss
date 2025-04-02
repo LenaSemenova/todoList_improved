@@ -35,6 +35,7 @@ body {
         text-align: center;
 
         .btn-informed {
+            margin-bottom: 20px;
             @include btn-general(map.get($buttons, 'small', 'portrait', 'width'),
                 map.get($buttons, 'small', 'portrait', 'height'),
                 map.get($font-settings, 'small', 'portrait', 'button'));
@@ -186,7 +187,7 @@ body {
             }
 
             .wrapper-controls {
-                width: 32%;
+                width: 34%;
                 margin-right: 10px;
 
                 display: flex;
@@ -467,6 +468,7 @@ body {
 
             textarea {
                 resize: none;
+                overflow: hidden;
 
                 @include input-fields(map.get($inputs, 'small', 'portrait', 'width'),
                     64px,
@@ -786,17 +788,34 @@ body {
                 }
             }
 
-            .btn-container {
-                @include btn-container-settings;
+            .current-info {
+                width: 100%;
+                background: $support_color1;
+                border: 1px solid $support_color1;
 
-                button {
-                    @include btn-general(96px, 34px, 20px);
+                border-radius: 10px;
+                
 
-                    &:hover {
-                        @include btn-general-hover;
-                    }
-                }
+                @include text-settings(map.get($font-weights, 'regular'),
+                                       map.get($font-settings, 'small', 'portrait', span),
+                                       $support_color2);
+                text-align: center;
+
+                padding: 8px;
+                visibility: visible;
             }
+            .btn-delete-account {
+                @include btn-general(184px, 34px, 16px);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                &:hover {
+                    @include btn-general-hover;
+                }
+                visibility: visible;
+            }
+            
         }
 
         animation: moveDownwards 2s ease;
@@ -876,6 +895,7 @@ body {
                     height: 60px;
                     display: flex;
                     align-items: center;
+                    margin-bottom: 16px;
 
                     img {
                         margin-right: 16px;
@@ -920,22 +940,18 @@ body {
         height: 60%;
     }
 
-    .todo-card-preview {
-        height: 25%;
+    .todo-container {
+        height: 60%;
+    }
 
-        .wrapper-todo-card-preview {
-            .card-contents {
-                .wrapper-controls {
-                    width: 36%;
-                }
-            }
+    .modal-window {
+        padding-top: 20%;
+
+        .wrapper-modal-window-content {
+            height: 80%;
         }
-    }
 
-    .todo-card {
-        height: 55%;
     }
-
 }
 
 
@@ -976,10 +992,13 @@ body {
             }
         }
     }
+    .todo-container {
+         width: 80%;
+         height: 90%;
 
     .todo-card-preview {
-        width: 80%;
-        height: 34%;
+        width: 98%;
+        height: 50%;
 
         .wrapper-todo-card-preview {
             .card-contents {
@@ -992,8 +1011,9 @@ body {
     }
 
     .todo-card {
-        width: 80%;
-        height: 54%;
+        width: 98%;
+        height: 100%;
+    }
     }
 
     .modal-window {
@@ -1001,6 +1021,44 @@ body {
 
         .wrapper-modal-window-content {
             height: 74%;
+            border-radius: 25px 0px 0px 25px;
+
+            .modal-window-content {
+                border-radius: 22px 0px 0px 22px;
+                overflow: scroll;
+                overflow-x: hidden;
+
+                &::-webkit-scrollbar {
+                    width: 5px;
+                    background-color: $support_color2;
+                }
+    
+                &::-webkit-scrollbar-thumb {
+                    background: $support_color1;
+                }
+
+                .dropdown,
+                .current-info {
+                    margin-bottom: 20px;
+                }
+            }
+        }
+    }
+    .modal-window-errors {
+        padding-top: 10%;
+        .wrapper-modal-window-errors-content {
+            height: 72%;
+            .modal-window-errors-content {
+                .container-for-errors {
+                    span {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+        .errors-close {
+            top: 25px;
+            right: 25px;
         }
     }
 }
@@ -1043,23 +1101,9 @@ body {
         }
     }
 
-    .todo-card-preview {
+    .todo-container {
         width: 80%;
-        height: 34%;
-
-        .wrapper-todo-card-preview {
-            .card-contents {
-                .wrapper-controls {
-                    width: 28%;
-                    margin-right: 30px;
-                }
-            }
-        }
-    }
-
-    .todo-card {
-        width: 80%;
-        height: 54%;
+        height: 90%;
     }
 
     .modal-window {
@@ -1067,9 +1111,44 @@ body {
 
         .wrapper-modal-window-content {
             height: 74%;
+            border-radius: 25px 0px 0px 25px;
+
+            .modal-window-content {
+                border-radius: 22px 0px 0px 22px;
+                overflow: scroll;
+                overflow-x: hidden;
+
+                &::-webkit-scrollbar {
+                    width: 5px;
+                    background-color: $support_color2;
+                }
+    
+                &::-webkit-scrollbar-thumb {
+                    background: $support_color1;
+                }
+                
+                .dropdown {
+                    margin-bottom: 20px;
+                }
+                .current-info {
+                    margin-bottom: 20px;
+                }
+
+            }
         }
     }
+    .modal-window-errors {
+        padding-top: 6%;
 
+        .wrapper-modal-window-errors-content {
+            height: 84%;
+        }
+
+        .errors-close {
+            top: 10px;
+            right: 15px;
+        }
+    }
 }
 
 @media only screen and (min-width: 600px) and (orientation: portrait) {
@@ -1109,10 +1188,14 @@ body {
             }
         }
     }
-
-    .todo-card-preview {
+    .todo-container {
         width: 85%;
-        height: 15%;
+        height: 35%;
+    
+    
+        .todo-card-preview {
+        width: 98%;
+        height: 50%;
 
         .wrapper-todo-card-preview {
             .card-contents {
@@ -1182,8 +1265,8 @@ body {
     }
 
     .todo-card {
-        width: 85%;
-        height: 35%;
+        width: 98%;
+        height: 100%;
 
         .card-main {
             form {
@@ -1255,16 +1338,22 @@ body {
             }
         }
     }
+    }
 
     .modal-window {
         .wrapper-modal-window-content {
             .modal-window-content {
+                align-items: flex-start;
+
                 p {
                     width: 80%;
                     font-size: 24px;
+                    margin-top: 40px;
+                    text-align: center;
                 }
 
                 .dropdown {
+                    top: -5%;
                     left: -75px;
 
                     &-content {
@@ -1288,6 +1377,36 @@ body {
 
                             }
                         }
+                    }
+                }
+                .current-info {
+                    width: 80%;
+                    padding: 16px;
+                    font-size: 24px;
+                }
+                .btn-delete-account {
+                    width: 280px;
+                    padding: 8px;
+                    font-size: 24px;
+                }
+
+            }
+        }
+    }
+    .modal-window-errors {
+        .wrapper-modal-window-errors-content {
+            .modal-window-errors-content {
+                p {
+                    font-size: 24px;
+                }
+                .btn-ok-errors {
+                    @include btn-general (map.get($buttons, 'medium-600px', 'portrait', 'width'),
+                                          map.get($buttons, 'medium-600px', 'portrait', 'height'),
+                                          map.get($font-settings, 'medium-600px', 'portrait', 'button'));
+                }
+                .container-for-errors {
+                    span {
+                        font-size: 24px;
                     }
                 }
             }
@@ -1337,151 +1456,9 @@ body {
         }
     }
 
-    .todo-card-preview {
-        height: 28%;
-
-        .wrapper-todo-card-preview {
-            .card-contents {
-                .wrapper-input {
-                    width: 70%;
-
-                    input {
-                        font-size: map.get($font-settings, 'medium-600px', 'portrait', 'input');
-                    }
-                }
-
-                .wrapper-controls {
-                    width: 22%;
-
-                    .container-checkbox {
-                        width: 40px;
-                        height: 40px;
-
-                        .checkmark {
-                            width: 40px;
-                            height: 40px;
-
-                            &::after {
-                                width: 30px;
-                                height: 30px;
-                            }
-                        }
-
-                        .tooltip-from-the-top {
-                            top: -100%;
-                            left: -100%;
-                            width: 112px;
-                            font-size: 20px;
-                        }
-                    }
-
-                    button {
-                        width: 40px;
-                        height: 40px;
-                        display: flex;
-                        align-items: center;
-
-                        svg {
-                            width: 30px;
-                            height: 30px;
-                        }
-
-                        .tooltip-from-the-top {
-                            top: -102%;
-                            left: -106%;
-
-                            width: 112px;
-                            font-size: 20px;
-
-                        }
-
-                        .tooltip-from-the-bottom {
-                            width: 112px;
-                            font-size: 20px;
-                            left: -105%;
-
-                            &::after {
-                                top: -30%;
-                            }
-                        }
-                    }
-                }
-            }
-
-        }
-    }
-
-    .todo-card {
-        .card-main {
-            form {
-                input {
-                    width: 70%;
-                    height: 46px;
-                    font-size: 20px;
-                }
-
-                textarea {
-                    width: 70%;
-                    height: 69px;
-                    font-size: 20px;
-                }
-
-                .card-controls {
-                    .container-checkbox {
-                        width: 40px;
-                        height: 40px;
-
-                        .checkmark {
-                            width: 40px;
-                            height: 40px;
-
-                            &::after {
-                                width: 30px;
-                                height: 30px;
-                            }
-                        }
-
-                        .tooltip-from-the-top {
-                            top: -100%;
-                            left: -100%;
-                            width: 112px;
-                            font-size: 20px;
-                        }
-                    }
-
-                    button {
-                        width: 40px;
-                        height: 40px;
-                        display: flex;
-                        align-items: center;
-
-                        svg {
-                            width: 30px;
-                            height: 30px;
-                        }
-
-                        .tooltip-from-the-top {
-                            top: -105%;
-                            left: -105%;
-
-                            width: 112px;
-                            font-size: 20px;
-
-                        }
-
-                        .tooltip-from-the-bottom {
-                            width: 112px;
-                            font-size: 20px;
-                            left: -105%;
-
-                            &::after {
-                                top: -30%;
-                            }
-                        }
-                    }
-                }
-            }
-        }
+    .todo-container {
+        height: 60%;
+        width: 50%;
     }
     .modal-window {
         .wrapper-modal-window-content {
@@ -1525,11 +1502,13 @@ body {
                     }
                 }
 
-                .btn-container {
-                    button {
-                        width: 120px;
-                        height: 40px;
-                    }
+                .current-info {
+                    width: 80%;
+                    font-size: 20px;
+                }
+                .btn-delete-account {
+                    width: 246px;
+                    font-size: 20px;
                 }
             }
         }
@@ -1538,14 +1517,29 @@ body {
             font-size: 34px;
         }
     }
+    .modal-window-errors {
+        .wrapper-modal-window-errors-content {
+            .modal-window-errors-content {
+                p {
+                    font-size: 20px;
+                }
+                .container-for-errors {
+                    span {
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+    }
 }
 
-@media only screen and (min-width: 742px) and (max-height: 420px) and (orientation:landscape) {
+@media only screen and (min-width: 742px) and (max-height: 430px) and (orientation:landscape) {
     .wrapper-add-todo {
         height: 86%;
     }
-    .todo-card-preview {
-        height: 36%;
+
+    .todo-container {
+        height: 80%;
     }
     .modal-window {
         padding-top: 6%;
@@ -1559,6 +1553,45 @@ body {
     body {
         @include gridLayout(15%, 70%, 15%);
     }
+    .wrapper-add-todo {
+        width: 100%;
+        height: 30%;
+    }
+    .todo-container {
+        width: 100%;
+        height: 30%;
+    }
+    .modal-window {
+        .wrapper-modal-window-content {
+            .modal-window-content {
+                .dropdown {
+                    &-content {
+                        width: 170px;
+                        height: 250px;
+
+                        .info-item,
+                        .info-item + .info-item + .info-item {
+                            width: 160px;
+                            height: 80px;
+
+                            .tooltip {
+                                width: 172px;
+                                font-size: 24px;
+                            }
+                        }
+                    }
+                }
+                .current-info {
+                    font-size: 24px;
+                }
+                .btn-delete-account {
+                    width: 280px;
+                    padding: 12px;
+                    font-size: 24px;
+                }
+            }
+        }
+    }
 }
 
 @media only screen and (min-width: 1024px) and (orientation: landscape) {
@@ -1566,13 +1599,58 @@ body {
         @include gridLayout(15%, 70%, 15%);
     }
     .wrapper-add-todo {
-        height: 45%;
-    }
-    .todo-card-preview {
-        height: 20%;
-    }
-    .todo-card {
         height: 50%;
+    }
+    .todo-container {
+        height: 50%;
+    }
+
+    .modal-window {
+        .wrapper-modal-window-content {
+            .modal-window-content {
+                .dropdown {
+                    &-content {
+                        height: 190px;
+                        width: 145px;
+
+                        .info-item,
+                        .info-item + .info-item + .info-item {
+                            width: 135px;
+                            height: 60px;
+
+                            svg {
+                                width: 36px;
+                                height: 36px;
+                            }
+
+                            .tooltip {
+                                width: 145px;
+                                font-size: 20px;
+                            }
+                        }
+                    }
+                }
+                .current-info {
+                    font-size: 24px;
+                }
+                .btn-delete-account {
+                    width: 300px;
+                    font-size: 24px;
+                    padding: 4px;
+                }
+            }
+        }
+    }
+    .modal-window-errors {
+        .wrapper-modal-window-errors-content {
+            .modal-window-errors-content {
+                .btn-ok-errors {
+                    @include btn-general(map.get($buttons, 'large-1024px', 'landscape', 'width'),
+                                         map.get($buttons, 'large-1024px', 'landscape', 'height'),
+                                         map.get($font-settings, 'large-1024px', 'landscape', 'button'));
+                }
+            }
+        }
     }
 }
 
@@ -1580,23 +1658,28 @@ body {
     .wrapper-add-todo {
         height: 30%;
     }
-    .todo-card-preview {
-        .wrapper-todo-card-preview {
-            .card-contents {
-                .wrapper-controls {
-                    width: 27%;
-                    margin-right: 30px;
+    .modal-window {
+        padding-top: 20%;
+        .wrapper-modal-window-content {
+            .modal-window-content {
+                p {
+                text-align: center;
                 }
             }
         }
     }
-    .todo-card {
-        height: 30%;
+    .modal-window-errors {
+        .wrapper-modal-window-errors-content {
+            height: 50%;
+        }
     }
 }
 
 @media only screen and (min-width: 1280px) and (orientation: landscape) {
     .wrapper-add-todo {
+        height: 50%;
+    }
+    .todo-container {
         height: 50%;
     }
     .modal-window {
@@ -1606,6 +1689,32 @@ body {
                     width: 50%;
                 }
             }
+        }
+    }
+    .modal-window-errors {
+        padding-top: 10%;
+        .wrapper-modal-window-errors-content {
+            height: 50%;
+        }
+    }
+}
+
+@media only screen and (min-width: 1280px) and (min-height: 900px) and (orientation: landscape) {
+    .wrapper-add-todo {
+        height: 30%;
+    }
+    .todo-container {
+        height: 30%;
+    }
+    .modal-window {
+        .wrapper-modal-window-content {
+            height: 60%;
+        }
+    }
+    .modal-window-errors {
+        padding-top: 15%;
+        .wrapper-modal-window-errors-content {
+            height: 50%;
         }
     }
 }

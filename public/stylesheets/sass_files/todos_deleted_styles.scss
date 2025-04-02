@@ -1,0 +1,559 @@
+@use 'sass:map';
+@use '../sass_basics/basics' as *;
+
+body {
+    @include gridLayout(5%, 90%, 5%);
+    height: unset;
+}
+
+/* SIMPLE ANIMATIONS */
+
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    /*background: $support_color2;*/
+}
+
+::-webkit-scrollbar-thumb {
+    background: $main_theme;
+}
+
+::-webkit-scrollbar-button:single-button {
+    display: none;
+}
+
+.container-general {
+    height: 100vh;
+    grid-column: 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    .wrapper-btn {
+        width: 100%;
+        text-align: center;
+
+        .btn-informed {
+            margin-bottom: 20px;
+            @include btn-general(176px, 52px, 16px);
+
+            &:hover {
+                @include btn-general-hover;
+            }
+        }
+    }
+}
+
+.wrapper-add-todo {
+    width: 98%;
+    height: 21%;
+    margin-bottom: 20px;
+
+    @include centralPositioning;
+    border-radius: $border-radius-container;
+    background: $main_theme;
+    box-shadow: $box-shadow;
+    transition: 0.2s;
+
+
+    h1 {
+        margin: {
+            top: 20px;
+            bottom: 0;
+        }
+
+        @include text-settings(map.get($font-weights, 'bold'),
+            map.get($font-settings, 'small', 'portrait', 'title'),
+            $support_color2);
+    }
+
+    .separating-line {
+        width: 90%;
+        height: 3px;
+        background: $support_color2;
+    }
+
+    h2 {
+        @include text-settings(map.get($font-weights, 'bold'),
+            20px,
+            $support_color2);
+    }
+
+    &:hover {
+        box-shadow: $box-shadow-on-hover;
+    }
+}
+
+.todo-container {
+    width: 98%;
+    height: 48%;
+    @include centralPositioning;
+    margin-bottom: 20px;
+
+    .todo-card {
+        width: 98%;
+        height: 100%;
+        margin-bottom: 20px;
+
+        border-radius: $border-radius-container;
+        box-shadow: $box-shadow;
+        transition: 0.2s;
+
+        .card-heading {
+            width: 100%;
+            height: 25%;
+
+            @include centralPositioning;
+            justify-content: space-around;
+
+            background: $main_theme;
+            border-radius: $border-radius-container $border-radius-container 0px 0px;
+
+            h2 {
+                width: 100%;
+
+                margin: {
+                    top: 20px;
+                    bottom: 0;
+                }
+
+                @include text-settings(map.get($font-weights, 'bold'),
+                    24px,
+                    $support_color2);
+                text-align: center;
+            }
+
+            .separating-line {
+                width: 90%;
+                height: 3px;
+                background: $support_color2;
+            }
+        }
+
+        .card-main {
+            width: 100%;
+            height: 75%;
+
+            box-sizing: border-box;
+
+            @include centralPositioning;
+            justify-content: space-around;
+
+            padding: 16px;
+
+            form {
+                width: 100%;
+                box-sizing: border-box;
+
+                @include centralPositioning;
+                gap: 20px;
+
+                input {
+                    @include input-fields(map.get($inputs, 'small', 'portrait', 'width'),
+                        map.get($inputs, 'small', 'portrait', 'height'),
+                        map.get($font-settings, 'small', 'portrait', 'input'));
+
+                    &:focus {
+                        @include input-fields-focus;
+                    }
+                }
+
+                textarea {
+                    resize: none;
+                    overflow: hidden;
+
+                    @include input-fields(map.get($inputs, 'small', 'portrait', 'width'),
+                        64px,
+                        map.get($font-settings, 'small', 'portrait', 'input'));
+
+                    &:focus {
+                        @include input-fields-focus;
+                    }
+                }
+
+                .card-controls {
+                    width: 100%;
+
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    align-items: center;
+
+                    .dropdown-content {
+                        @include btn-general(96px, 42px, 20px);
+                        box-sizing: border-box;
+                        padding: 4px;
+
+
+                        .info-item {
+                            position: relative;
+                            @include btn-general(86px, 32px, 20px);
+                            border: none;
+                            display: flex;
+                            justify-content: space-evenly;
+                            align-items: center;
+
+                            .tooltip {
+                                visibility: hidden;
+                                z-index: 1;
+                                position: absolute;
+                                top: 0;
+                                left: 116%;
+                                width: 86px;
+                                padding: 4px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                background-color: $support_color2;
+                                color: $support_color1;
+                                font-size: 12px;
+                                border: 1px solid $support_color1;
+                                border-radius: 10px;
+
+                                &::after {
+                                    content: "";
+                                    position: absolute;
+                                    top: 50%;
+                                    right: 100%;
+                                    margin-top: -5px;
+                                    border-width: 5px;
+                                    border-style: solid;
+                                    border-color: transparent $support_color1 transparent transparent;
+                                }
+
+                                &:hover {
+                                    z-index: 2;
+                                    background: $support_color1;
+                                    color: $support_color2;
+                                }
+                            }
+
+                        }
+
+                        .info-item:hover .tooltip {
+                            visibility: visible;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        &:hover {
+            box-shadow: $box-shadow-on-hover;
+        }
+
+        display: none;
+    }
+}
+
+@media only screen and (max-height: 638px) and (orientation: portrait) {
+
+    .wrapper-add-todo {
+        height: 26%;
+    }
+
+    .todo-container {
+        height: 60%;
+    }
+}
+
+
+@media only screen and (min-width: 600px) and (orientation: landscape) {
+    .container-general {
+        .wrapper-btn {
+            .btn-informed {
+                @include btn-general(176px, 52px, 16px);
+            }
+        }
+    }
+
+    .wrapper-add-todo {
+        width: 80%;
+        height: 40%;
+    }
+
+    .todo-container {
+        width: 80%;
+        height: 80%;
+
+        .todo-card {
+            width: 98%;
+            height: 100%;
+
+            .card-main {
+                form {
+                    .card-controls {
+                        .dropdown-content {
+                            .info-item {
+                                .tooltip {
+                                    top: -8%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-height: 320px) and (orientation: landscape) {
+    .container-general {
+        .wrapper-btn {
+            .btn-informed {
+                @include btn-general(176px, 52px, 16px);
+            }
+        }
+    }
+
+    .wrapper-add-todo {
+        width: 80%;
+        height: 40%;
+    }
+
+    .todo-container {
+        width: 80%;
+        height: 90%;
+    }
+}
+
+@media only screen and (min-width: 600px) and (orientation: portrait) {
+    .container-general {
+        .wrapper-btn {
+            .btn-informed {
+                @include btn-general(220px, 68px, 20px);
+            }
+        }
+    }
+
+    .wrapper-add-todo {
+        width: 85%;
+        height: 16%;
+
+        h2 {
+            margin-top: 0px;
+        }
+    }
+
+    .todo-container {
+        width: 85%;
+        height: 35%;
+
+        .todo-card {
+            width: 98%;
+            height: 100%;
+
+            .card-main {
+                form {
+                    input {
+                        width: 70%;
+                        height: 46px;
+                        font-size: 20px;
+                    }
+
+                    textarea {
+                        width: 70%;
+                        height: 69px;
+                        font-size: 20px;
+                    }
+
+                    .card-controls {
+                        .dropdown-content {
+                            width: 140px;
+                            height: 50px;
+
+                            .info-item {
+                                width: 130px;
+                                height: 40px;
+                                font-size: 26px;
+
+                                svg {
+                                    width: 36px;
+                                    height: 36px;
+                                }
+
+                                .tooltip {
+                                    width: 140px;
+                                    top: -12%;
+                                    font-size: 16px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 742px) and (orientation: landscape) {
+    .container-general {
+        .wrapper-btn {
+            .btn-informed {
+                @include btn-general(200px, 60px, 20px);
+            }
+        }
+    }
+
+    .wrapper-add-todo {
+        width: 80%;
+        height: 26%;
+
+        h1 {
+            font-size: map.get($font-settings, 'medium-742px', 'landscape', 'title');
+        }
+    }
+
+    .todo-container {
+        height: 60%;
+        width: 50%;
+
+        .todo-card {
+            .card-main {
+                form {
+                    .card-controls {
+                        .dropdown-content {
+                            width: 120px;
+                            height: 42px;
+
+                            .info-item {
+                                width: 110px;
+                                height: 32px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 742px) and (max-height: 430px) and (orientation:landscape) {
+    .wrapper-add-todo {
+        height: 36%;
+    }
+
+    .todo-container {
+        height: 84%;
+    }
+
+    .modal-window {
+        padding-top: 6%;
+
+        .wrapper-modal-window-content {
+            height: 80%;
+        }
+    }
+}
+
+@media only screen and (min-width: 800px) and (orientation: portrait) {
+    body {
+        @include gridLayout(15%, 70%, 15%);
+    }
+
+    .wrapper-add-todo {
+        width: 100%;
+        height: 16%;
+    }
+
+    .todo-container {
+        width: 100%;
+        height: 30%;
+
+        .todo-card {
+            .card-main {
+                form {
+                    .card-controls {
+                        .dropdown-content {
+                            width: 170px;
+                            height: 60px;
+
+                            .info-item {
+                                width: 160px;
+                                height: 50px;
+
+                                .tooltip {
+                                    top: -20%;
+                                    padding: 10px;
+                                    width: 170px;
+                                    font-size: 20px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
+    body {
+        @include gridLayout(15%, 70%, 15%);
+    }
+
+    .wrapper-add-todo {
+        height: 20%;
+    }
+
+    .todo-container {
+        height: 50%;
+        .todo-card {
+            .card-main {
+                form {
+                    .card-controls {
+                        .dropdown-content {
+                            width: 145px;
+                            height: 45px;
+                            .info-item {
+                                width: 135px;
+                                height: 35px;
+                                font-size: 25px;
+
+                                svg {
+                                    width: 32px;
+                                    height: 32px;
+                                }
+                                .tooltip {
+                                    width: 145px;
+                                    top: -24%;
+                                    font-size: 16px;
+                                    padding: 8px;
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1024px) and (orientation: portrait) {
+    .wrapper-add-todo {
+        height: 12%;
+    }
+}
+
+@media only screen and (min-width: 1280px) and (orientation: landscape) {
+    .wrapper-add-todo {
+        height: 22%;
+    }
+
+    .todo-container {
+        height: 52%;
+    }
+}
+
+@media only screen and (min-width: 1280px) and (min-height: 900px) and (orientation: landscape) {
+    .wrapper-add-todo {
+        height: 16%;
+    }
+
+    .todo-container {
+        height: 30%;
+    }
+}

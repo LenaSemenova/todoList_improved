@@ -19,7 +19,9 @@ router.post('/todos/list/:user_id/updateTodo', controllers.updateTodo);
 router.delete('/todos/list/:user_id/deleteTodo', controllers.deleteTodo);
 router.put('/todos/list/:user_id/bringDeletedCardsBack', controllers.bringBack);
 router.get('/todos/list/:user_id/showDeletedCards', controllers.showDeletedTodos);
+
 router.get('/todos/list_deleted/:user_id', controllers.openDeletedTodos);
+router.put('/todos/list_deleted/:user_id/bringCardsBack', controllers.bringOneCardBack);
 
 export default router;
 

@@ -107,8 +107,8 @@ function createNewTodo() {
         };
 
         const errors = [];
-        if (addNewTitle.value.length > 60) {
-            errors.push("Titles of your tasks in todo-cards mustn't be longer than 60 symbols.");
+        if (addNewTitle.value.length === 0 || addNewTitle.value.length > 60) {
+            errors.push("Titles of your tasks in todo-cards mustn't be empty, but they also mustn't be longer than 60 symbols.");
         } else {
             newTodo.todo_title = addNewTitle.value;
         }
@@ -222,6 +222,24 @@ function deleteTodo () {
                 if(previewTodos[i].dataset.number === deleteBtn.dataset.number) {
                     deleteTodoCard.todo_id = deleteBtn.dataset.number;
                     deleteTodoCard.todo_deleted = 1;
+                }
+            }
+            const response = await sendDeleteTodo(deleteTodoCard);
+            if (response.url) {
+                window.location.href = response.url;
+            } else {
+                console.error('An error occurred while deleting a todo-card');
+            }
+        }
+    });
+    fullviewDeleteBtns.forEach((deleteBtn) => {
+        deleteBtn.onclick = async(event) => {
+            event.preventDefault();
+            const deleteTodoCard = {};
+            for (let i = 0; i < fullviewDeleteBtns.length; i++) {
+                if (fullviewTodos[i].dataset.number === deleteBtn.dataset.number) {
+                    deleteTodoCard.todo_id = deleteBtn.dataset.number;
+                    deleteTodoCard.todo_deleted = 1
                 }
             }
             const response = await sendDeleteTodo(deleteTodoCard);

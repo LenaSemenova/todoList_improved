@@ -310,6 +310,18 @@ const openDeletedTodos = async(req, res) => {
     return res.render('todos_deleted', { todos });
 }
 
+const bringOneCardBack = async(req, res) => {
+    const user_id = req.params.user_id;
+    const user_data = req.body;
+
+    const changedStatus = await todosActions.bringOneDeletedCardBack(user_id, user_data.todo_id); 
+    if (changedStatus.affectedRows) {
+        return res.redirect(`/todos/list_deleted/${user_id}`);
+    } else {
+        console.error('Something went wrong while changing the status');
+    }
+}
+
 export default {
     redirect,
     openMainPage,
@@ -324,6 +336,7 @@ export default {
     deleteTodo,
     bringBack,
     showDeletedTodos,
-    openDeletedTodos
+    openDeletedTodos,
+    bringOneCardBack
 }
 

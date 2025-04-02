@@ -32,9 +32,16 @@ const bringDeletedTodosBack = async(user_id) => {
     return result;
 }
 
+const bringOneDeletedCardBack = async(user_id, todo_id) => {
+    const [result] = await db_connection.query(`UPDATE todos_for_${user_id} SET todo_deleted = 0 WHERE todo_id = ?`, 
+                     [todo_id]);
+    return result;
+}
+
 export default {
     addNewTodo,
     updateTodo,
     deleteTodo,
-    bringDeletedTodosBack
+    bringDeletedTodosBack,
+    bringOneDeletedCardBack
 }
