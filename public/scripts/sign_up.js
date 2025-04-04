@@ -67,7 +67,6 @@ async function collectServerErrors (response) {
 }
 
 async function sendData(data) {
-    console.log('data has been sent');
     try {
         return await fetch('/todos/sign_up', {
             method: 'POST',
@@ -111,7 +110,6 @@ async function collectDataSignUpPortrait(event) {
         handlingValidationErrors(errors);
     } else {
         const response = await sendData(newUser);
-        console.log('data has been sent', newUser);
         if (response.status === 200) {
             window.location.href = response.url;
         }
@@ -153,7 +151,6 @@ async function collectDataSignUpLandscape(event) {
         handlingValidationErrors(errors);
     } else {
         const response = await sendData(newUser);
-        console.log('data has been sent', newUser);
         if (response.status === 200) {
             window.location.href = response.url;
         }

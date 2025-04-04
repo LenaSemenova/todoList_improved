@@ -25,13 +25,18 @@ const fullviewDeleteBtns = document.querySelectorAll('.todo-delete-fullview');
 const modalWindowErrors = document.querySelector('.modal-window-errors');
 const btnCloseErrors = document.querySelector('.errors-close');
 const containerForErrors = document.querySelector('.container-for-errors');
-const btnOkErrors = document.querySelector('.btn-ok-errors'); 
+const btnOkErrors = document.querySelector('.btn-ok-errors');
 
 // modal window that shows some addtional functions of the app
 
 const allDeletedTasks = document.querySelector('.deletedTasks');
 const bringDeletedTasksBack = document.querySelector('.bringDeletedTasksBack');
-const deleteAccount = document.querySelector('.deleteAccount');
+const btnDeleteAccount = document.querySelector('.deleteAccount');
+
+// elements to delete the whole account
+
+const extraQuestion = document.querySelector('.current-info');
+const btnDeleteForever = document.querySelector('.btn-delete-account');
 
 const urlQueries = new URLSearchParams(window.location.search);
 const rules = urlQueries.get('rules');
@@ -42,7 +47,6 @@ const extractedID = currentURL.match(regExpID)[1];
 
 
 function informUser() {
-    console.log('Opened todos!');
     if (rules === '0') {
         modalWindow.style.display = 'block';
         btnClose.onclick = () => {
@@ -80,6 +84,17 @@ function handlingValidationErrors(errors) {
 }
 
 async function collectServerErrors(response) {
+    const result = await response.json();
+    const errorMessage = [];
+    for (let i = 0; i < result.errorMessage.length; i++) {
+        errorMessage.push(result.errorMessage[i].msg);
+    }
+    handlingValidationErrors(errorMessage);
+}
+
+// add a function that can handle errors that are not sent by express-validator
+
+async function collectServerErrors_2(response) {
     const result = await response.json();
     const errorMessage = [];
     errorMessage.push(result.errorMessage);
@@ -127,33 +142,36 @@ function createNewTodo() {
 
             if (response.status === 200) {
                 window.location.href = response.url;
-            } else {
+            } 
+            if (response.status === 422) {
                 await collectServerErrors(response);
             }
-
+            if (response.status === 400) {
+                await collectServerErrors_2(response);
+            }
         }
     }
 }
 
-async function sendUpdatedTodo (data) {
+async function sendUpdatedTodo(data) {
     try {
-    return await fetch(`/todos/list/${extractedID}/updateTodo`, {
-        method: 'POST',
-        headers: { 'Content-Type' : 'application/json' },
-        body: JSON.stringify(data)
-    })
+        return await fetch(`/todos/list/${extractedID}/updateTodo`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
     } catch (error) {
         console.error(`This error occurred while updating an existing todo: ${error}`);
     }
 }
 
-function updateTodo () {
+function updateTodo() {
     previewUpdateBtns.forEach((updateBtn) => {
-        updateBtn.onclick = async(event) => {
+        updateBtn.onclick = async (event) => {
             event.preventDefault();
             const updatedTodo = {};
             updatedTodo.todo_id = updateBtn.dataset.number;
-            for(let i = 0; i < previewUpdateBtns.length; i++) {
+            for (let i = 0; i < previewUpdateBtns.length; i++) {
                 if (previewInputs[i].dataset.number === updateBtn.dataset.number) {
                     updatedTodo.todo_title = previewInputs[i].value;
                 }
@@ -166,15 +184,16 @@ function updateTodo () {
                 }
             }
             const response = await sendUpdatedTodo(updatedTodo);
-            if(response.status === 200) {
+            if (response.status === 200) {
                 window.location.href = response.url;
             }
         }
     });
 
     fullviewUpdateBtns.forEach((updateBtn) => {
-        updateBtn.onclick = async(event) => {
+        updateBtn.onclick = async (event) => {
             event.preventDefault();
+            const errors = [];
             const updatedTodo = {};
 
             updatedTodo.todo_id = updateBtn.dataset.number;
@@ -183,43 +202,51 @@ function updateTodo () {
                     updatedTodo.todo_title = fullviewInputs[i].value;
                 }
                 if (fullviewTextareas[i].dataset.number === updateBtn.dataset.number) {
-                    updatedTodo.todo_description = fullviewTextareas[i].value;
+                    if (fullviewTextareas[i].value.length > 200) {
+                        errors.push("Descriptions of your tasks in todo-cards mustn't be longer than 200 symbols.");
+                    } else {
+                        updatedTodo.todo_description = fullviewTextareas[i].value;
+                    }
                 }
                 if (fullviewCompleted[i].dataset.number === updateBtn.dataset.number) {
-                    if(fullviewCompleted[i].checked === true) {
+                    if (fullviewCompleted[i].checked === true) {
                         updatedTodo.todo_status = 1;
                     } else {
                         updatedTodo.todo_status = 0;
                     }
                 }
             }
-            const response = await sendUpdatedTodo(updatedTodo);
-            if (response.status === 200) {
-                window.location.href = response.url;
+            if (errors.length) {
+                handlingValidationErrors(errors);
+            } else {
+                const response = await sendUpdatedTodo(updatedTodo);
+                if (response.status === 200) {
+                    window.location.href = response.url;
+                }
             }
         }
     })
 }
 
-async function sendDeleteTodo (data) {
+async function sendDeleteTodo(data) {
     try {
-    return await fetch(`/todos/list/${extractedID}/deleteTodo`, {
-        method: 'DELETE',
-        headers: { 'Content-Type' : 'application/json' },
-        body: JSON.stringify(data)
-    })
-    } catch(error) {
+        return await fetch(`/todos/list/${extractedID}/deleteTodo`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+    } catch (error) {
         console.error(`An error occurred while deleting one of the todos: ${error}`);
     }
 }
 
-function deleteTodo () {
+function deleteTodo() {
     previewDeleteBtns.forEach((deleteBtn) => {
-        deleteBtn.onclick = async(event) => {
+        deleteBtn.onclick = async (event) => {
             event.preventDefault();
             const deleteTodoCard = {};
             for (let i = 0; i < previewDeleteBtns.length; i++) {
-                if(previewTodos[i].dataset.number === deleteBtn.dataset.number) {
+                if (previewTodos[i].dataset.number === deleteBtn.dataset.number) {
                     deleteTodoCard.todo_id = deleteBtn.dataset.number;
                     deleteTodoCard.todo_deleted = 1;
                 }
@@ -233,7 +260,7 @@ function deleteTodo () {
         }
     });
     fullviewDeleteBtns.forEach((deleteBtn) => {
-        deleteBtn.onclick = async(event) => {
+        deleteBtn.onclick = async (event) => {
             event.preventDefault();
             const deleteTodoCard = {};
             for (let i = 0; i < fullviewDeleteBtns.length; i++) {
@@ -251,20 +278,20 @@ function deleteTodo () {
         }
     })
 }
-async function bringBack (data) {
+async function bringBack(data) {
     try {
-    return await fetch(`/todos/list/${extractedID}/bringDeletedCardsBack`, {
-        method: 'PUT',
-        headers: { 'Content-Type' : 'application/json' },
-        body: JSON.stringify(data)
-    })
-    } catch(error) {
+        return await fetch(`/todos/list/${extractedID}/bringDeletedCardsBack`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+    } catch (error) {
         console.error(`An error occurred while bringing the deleted tasks back: ${error}`);
     }
-} 
+}
 
-function bringDeletedCardsBack () {
-    bringDeletedTasksBack.onclick = async(event) => {
+function bringDeletedCardsBack() {
+    bringDeletedTasksBack.onclick = async (event) => {
         event.preventDefault();
         const bringCardsBack = { user_id: extractedID };
         const response = await bringBack(bringCardsBack);
@@ -276,11 +303,57 @@ function bringDeletedCardsBack () {
     }
 }
 
-function showDeletedTodos () {
-    allDeletedTasks.onclick = async() => {
+function showDeletedTodos() {
+    allDeletedTasks.onclick = async () => {
         const response = await fetch(`/todos/list/${extractedID}/showDeletedCards`);
-        if(response.url) {
+        if (response.url) {
             window.location.href = response.url;
+        }
+    }
+}
+
+async function sendDeleteAccount() {
+    try {
+        return await fetch(`/todos/list/${extractedID}/deleteAccount`, {
+            method: 'DELETE'
+        })
+    } catch (error) {
+        console.error('This error occurred while deleting the account ', error);
+    }
+}
+
+function deleteAccount() {
+    btnDeleteAccount.onclick = () => {
+        extraQuestion.style.animation = 'opacityChanger 2s ease';
+        extraQuestion.style.visibility = 'visible';
+        
+        setTimeout(() => {
+            btnDeleteForever.style.animation = 'opacityChanger 2s ease';
+            btnDeleteForever.style.visibility = 'visible';
+        }, 1000);
+
+        btnDeleteForever.onclick = async () => {
+            const response = await sendDeleteAccount();
+            if (response.status === 200) {
+                const msg = [];
+                const result = await response.json();
+                msg.push(result.successMessage);
+                handlingValidationErrors(msg);
+
+                setTimeout(() => {
+                    window.location.href = `/todos`;
+                }, 3000);
+            }
+            if (response.status === 400) {
+                const msg = [];
+                const result = await response.json();
+                msg.push(result.errorMessage);
+                handlingValidationErrors(msg);
+
+                setTimeout(() => {
+                    window.location.href = `/todos`;
+                }, 3000);
+            }
         }
     }
 }
@@ -296,6 +369,7 @@ function init() {
     deleteTodo();
     bringDeletedCardsBack();
     showDeletedTodos();
+    deleteAccount();
 }
 
 window.addEventListener('DOMContentLoaded', init);

@@ -38,7 +38,6 @@ function resetPassword_stepOne() {
                     } else {
                         currentInfo.style.animation = 'none';
                         const result = await response.json();
-                        console.log(result.nextStep, result.nextInfo);
                         currentInfo.innerHTML = `${result.nextStep}`;
                         currentInfo.style.animation = 'slideInFromTheTop 3s ease';
                         resetPasswordFullUsername.removeAttribute('disabled');

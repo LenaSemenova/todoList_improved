@@ -70,7 +70,6 @@ async function collectDataLoginPortrait(event) {
     if (errors.length) {
         handlingValidationErrors(errors);
     } else {
-        //console.log(userData);
         const response = await sendLoginData(userData);
         if (response.status === 200) {
             window.location.href = response.url;
@@ -111,10 +110,8 @@ async function collectDataLoginLandscape(event) {
     if (errors.length) {
         handlingValidationErrors(errors);
     } else {
-        console.log(userData);
         const response = await sendLoginData(userData);
         if (response.status === 200) {
-            console.log('Successfull log in');
             window.location.href = response.url;
         }
         if (response.status === 403) {

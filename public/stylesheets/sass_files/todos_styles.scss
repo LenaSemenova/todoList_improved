@@ -7,7 +7,38 @@ body {
 }
 
 /* SIMPLE ANIMATIONS */
+@keyframes moveUpwards {
+    from {
+        bottom: -24%;
+        opacity: 0;
+    }
 
+    to {
+        bottom: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromTheTop {
+    from {
+        height: 0;
+        bottom: 100%;
+    }
+    to {
+        bottom: 0;
+        height: 100%;
+    }
+}
+
+@keyframes opacityChanger {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
 
 /* custom scrollbar */
 ::-webkit-scrollbar {
@@ -802,7 +833,7 @@ body {
                 text-align: center;
 
                 padding: 8px;
-                visibility: visible;
+                visibility: hidden;
             }
             .btn-delete-account {
                 @include btn-general(184px, 34px, 16px);
@@ -813,7 +844,7 @@ body {
                 &:hover {
                     @include btn-general-hover;
                 }
-                visibility: visible;
+                visibility: hidden;
             }
             
         }
@@ -1017,7 +1048,7 @@ body {
     }
 
     .modal-window {
-        padding-top: 10%;
+        padding-top: 8%;
 
         .wrapper-modal-window-content {
             height: 74%;
