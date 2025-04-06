@@ -24,6 +24,7 @@ body {
         height: 0;
         bottom: 100%;
     }
+
     to {
         bottom: 0;
         height: 100%;
@@ -63,7 +64,8 @@ body {
 
     .wrapper-btn {
         width: 100%;
-        text-align: center;
+        display: flex;
+        justify-content: space-evenly;
 
         .btn-informed {
             margin-bottom: 20px;
@@ -73,6 +75,23 @@ body {
 
             &:hover {
                 @include btn-general-hover;
+            }
+        }
+
+        .exit {
+            @include btn-general(map.get($buttons, 'small', 'portrait', 'width'),
+                map.get($buttons, 'small', 'portrait', 'height'),
+                map.get($font-settings, 'small', 'portrait', 'button'));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:hover {
+                @include btn-general-hover;
+
+                svg {
+                    fill: $support_color2;
+                }
             }
         }
     }
@@ -165,565 +184,565 @@ body {
     @include centralPositioning;
     margin-bottom: 20px;
 
-.todo-card-preview {
-    width: 98%;
-    height: 50%;
+    .todo-card-preview {
+        width: 98%;
+        height: 50%;
 
-    border-radius: $border-radius-container;
-    box-shadow: $box-shadow;
-    transition: 0.2s;
-
-    @include centralPositioning;
-
-    .wrapper-todo-card-preview {
-        position: relative;
-
-        width: 100%;
-        height: 100%;
-
-        background: $main_theme;
         border-radius: $border-radius-container;
+        box-shadow: $box-shadow;
+        transition: 0.2s;
 
-        .card-contents {
-            position: absolute;
-            top: 2%;
-            left: 1%;
+        @include centralPositioning;
 
-            width: 98%;
-            height: 96%;
+        .wrapper-todo-card-preview {
+            position: relative;
+
+            width: 100%;
+            height: 100%;
+
+            background: $main_theme;
+            border-radius: $border-radius-container;
+
+            .card-contents {
+                position: absolute;
+                top: 2%;
+                left: 1%;
+
+                width: 98%;
+                height: 96%;
+
+                @include centralPositioning;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+
+                border-radius: 22px;
+                background: $support_color2;
+
+                .wrapper-input {
+                    width: 62%;
+                    margin-left: 10px;
+
+                    display: flex;
+                    justify-content: center;
+
+                    input {
+                        @include input-fields(90%,
+                            10%,
+                            map.get($font-settings, 'small', 'portrait', 'input'));
+
+                        &:focus {
+                            @include input-fields-focus;
+                        }
+                    }
+                }
+
+                .wrapper-controls {
+                    width: 34%;
+                    margin-right: 10px;
+
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10px;
+
+                    .container-checkbox {
+                        position: relative;
+
+                        width: 36px;
+                        height: 36px;
+
+                        cursor: pointer;
+
+                        .tooltip-from-the-top {
+
+                            visibility: hidden;
+                            z-index: 1;
+                            position: absolute;
+                            top: -100%;
+                            left: -85%;
+                            width: 86px;
+                            padding: 4px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: $support_color2;
+                            color: $support_color1;
+                            font-size: 12px;
+                            border: 1px solid $support_color1;
+                            border-radius: 10px;
+                            @include text-settings(map.get($font-weights, 'regular'),
+                                map.get($font-settings, 'small', 'portrait', 'span'),
+                                $support_color1);
+
+                            &::after {
+                                content: "";
+                                position: absolute;
+                                top: 100%;
+                                left: 46%;
+                                margin-top: 0px;
+                                border-width: 5px;
+                                border-style: solid;
+                                border-color: $support_color1 transparent transparent transparent;
+                            }
+                        }
+
+                        input {
+                            position: absolute;
+
+                            width: 0;
+                            height: 0;
+
+                            opacity: 0;
+
+                            &:checked~.checkmark {
+                                background: $support_color2;
+                            }
+
+                            &:checked~.checkmark::after {
+                                display: block;
+                            }
+                        }
+
+                        .checkmark {
+                            position: absolute;
+
+                            top: 0;
+                            left: 0;
+
+                            width: 36px;
+                            height: 36px;
+
+                            background: $support_color2;
+                            border: 1px solid $support_color1;
+                            border-radius: $border-radius-elements;
+
+                            box-sizing: border-box;
+
+                            &::after {
+                                content: "";
+                                position: absolute;
+                                display: none;
+
+                                top: 4px;
+                                left: 4px;
+
+                                width: 26px;
+                                height: 26px;
+
+                                border-radius: 4px;
+                                background: $support_color1;
+
+                            }
+
+                        }
+
+                        &:hover {
+                            input~.checkmark {
+                                background: $support_color1;
+                            }
+
+                            input~.checkmark::after {
+                                background: $support_color2;
+                            }
+                        }
+                    }
+
+                    .container-checkbox:hover .tooltip-from-the-top {
+                        visibility: visible;
+                    }
+
+                    button {
+                        position: relative;
+                        @include btn-general(36px, 36px);
+
+                        svg {
+                            fill: $support_color1;
+                        }
+
+                        .tooltip-from-the-top {
+
+                            visibility: hidden;
+                            z-index: 1;
+                            position: absolute;
+                            top: -100%;
+                            left: -85%;
+                            width: 86px;
+                            padding: 4px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: $support_color2;
+                            color: $support_color1;
+                            font-size: 12px;
+                            border: 1px solid $support_color1;
+                            border-radius: 10px;
+                            @include text-settings(map.get($font-weights, 'regular'),
+                                map.get($font-settings, 'small', 'portrait', 'span'),
+                                $support_color1);
+
+                            &::after {
+                                content: "";
+                                position: absolute;
+                                top: 100%;
+                                left: 46%;
+                                margin-top: 0px;
+                                border-width: 5px;
+                                border-style: solid;
+                                border-color: $support_color1 transparent transparent transparent;
+                            }
+                        }
+
+                        .tooltip-from-the-bottom {
+
+                            visibility: hidden;
+                            z-index: 1;
+                            position: absolute;
+                            top: 120%;
+                            left: -85%;
+                            width: 86px;
+                            padding: 4px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: $support_color2;
+                            color: $support_color1;
+                            font-size: 12px;
+                            border: 1px solid $support_color1;
+                            border-radius: 10px;
+                            @include text-settings(map.get($font-weights, 'regular'),
+                                map.get($font-settings, 'small', 'portrait', 'span'),
+                                $support_color1);
+
+                            &::after {
+                                content: "";
+                                position: absolute;
+                                top: -35%;
+                                left: 46%;
+                                margin-top: 0px;
+                                border-width: 5px;
+                                border-style: solid;
+                                border-color: transparent transparent $support_color1 transparent;
+                            }
+                        }
+
+                        &:hover {
+                            @include btn-general-hover;
+
+                            svg {
+                                fill: $support_color2;
+                            }
+                        }
+                    }
+
+                    button:hover .tooltip-from-the-top,
+                    button:hover .tooltip-from-the-bottom {
+                        visibility: visible;
+                    }
+                }
+            }
+        }
+
+        &:hover {
+            box-shadow: $box-shadow-on-hover;
+        }
+    }
+
+    .todo-card {
+        width: 98%;
+        height: 100%;
+        margin-bottom: 20px;
+
+        border-radius: $border-radius-container;
+        box-shadow: $box-shadow;
+        transition: 0.2s;
+
+        .card-heading {
+            width: 100%;
+            height: 25%;
 
             @include centralPositioning;
-            flex-wrap: nowrap;
-            justify-content: space-between;
+            justify-content: space-around;
 
-            border-radius: 22px;
-            background: $support_color2;
+            background: $main_theme;
+            border-radius: $border-radius-container $border-radius-container 0px 0px;
 
-            .wrapper-input {
-                width: 62%;
-                margin-left: 10px;
+            h2 {
+                width: 100%;
 
-                display: flex;
-                justify-content: center;
+                margin: {
+                    top: 20px;
+                    bottom: 0;
+                }
+
+                @include text-settings(map.get($font-weights, 'bold'),
+                    24px,
+                    $support_color2);
+                text-align: center;
+            }
+
+            .separating-line {
+                width: 90%;
+                height: 3px;
+                background: $support_color2;
+            }
+        }
+
+        .card-main {
+            width: 100%;
+            height: 75%;
+
+            box-sizing: border-box;
+
+            @include centralPositioning;
+            justify-content: space-around;
+
+            padding: 16px;
+
+            form {
+                width: 100%;
+                box-sizing: border-box;
+
+                @include centralPositioning;
+                gap: 20px;
 
                 input {
-                    @include input-fields(90%,
-                        10%,
+                    @include input-fields(map.get($inputs, 'small', 'portrait', 'width'),
+                        map.get($inputs, 'small', 'portrait', 'height'),
                         map.get($font-settings, 'small', 'portrait', 'input'));
 
                     &:focus {
                         @include input-fields-focus;
                     }
                 }
-            }
 
-            .wrapper-controls {
-                width: 34%;
-                margin-right: 10px;
+                textarea {
+                    resize: none;
+                    overflow: hidden;
 
-                display: flex;
-                flex-wrap: wrap;
-                align-items: center;
-                justify-content: center;
-                gap: 10px;
+                    @include input-fields(map.get($inputs, 'small', 'portrait', 'width'),
+                        64px,
+                        map.get($font-settings, 'small', 'portrait', 'input'));
 
-                .container-checkbox {
-                    position: relative;
-
-                    width: 36px;
-                    height: 36px;
-
-                    cursor: pointer;
-
-                    .tooltip-from-the-top {
-
-                        visibility: hidden;
-                        z-index: 1;
-                        position: absolute;
-                        top: -100%;
-                        left: -85%;
-                        width: 86px;
-                        padding: 4px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        background-color: $support_color2;
-                        color: $support_color1;
-                        font-size: 12px;
-                        border: 1px solid $support_color1;
-                        border-radius: 10px;
-                        @include text-settings(map.get($font-weights, 'regular'),
-                            map.get($font-settings, 'small', 'portrait', 'span'),
-                            $support_color1);
-
-                        &::after {
-                            content: "";
-                            position: absolute;
-                            top: 100%;
-                            left: 46%;
-                            margin-top: 0px;
-                            border-width: 5px;
-                            border-style: solid;
-                            border-color: $support_color1 transparent transparent transparent;
-                        }
+                    &:focus {
+                        @include input-fields-focus;
                     }
+                }
 
-                    input {
-                        position: absolute;
+                .card-controls {
+                    width: 100%;
 
-                        width: 0;
-                        height: 0;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    align-items: center;
 
-                        opacity: 0;
+                    gap: 10px;
 
-                        &:checked~.checkmark {
-                            background: $support_color2;
-                        }
-
-                        &:checked~.checkmark::after {
-                            display: block;
-                        }
-                    }
-
-                    .checkmark {
-                        position: absolute;
-
-                        top: 0;
-                        left: 0;
+                    .container-checkbox {
+                        position: relative;
 
                         width: 36px;
                         height: 36px;
 
-                        background: $support_color2;
-                        border: 1px solid $support_color1;
-                        border-radius: $border-radius-elements;
+                        cursor: pointer;
 
-                        box-sizing: border-box;
+                        .tooltip-from-the-top {
 
-                        &::after {
-                            content: "";
+                            visibility: hidden;
+                            z-index: 1;
                             position: absolute;
-                            display: none;
+                            top: -100%;
+                            left: -85%;
+                            width: 86px;
+                            padding: 4px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: $support_color2;
+                            color: $support_color1;
+                            font-size: 12px;
+                            border: 1px solid $support_color1;
+                            border-radius: 10px;
+                            @include text-settings(map.get($font-weights, 'regular'),
+                                map.get($font-settings, 'small', 'portrait', 'span'),
+                                $support_color1);
 
-                            top: 4px;
-                            left: 4px;
-
-                            width: 26px;
-                            height: 26px;
-
-                            border-radius: 4px;
-                            background: $support_color1;
-
+                            &::after {
+                                content: "";
+                                position: absolute;
+                                top: 100%;
+                                left: 46%;
+                                margin-top: 0px;
+                                border-width: 5px;
+                                border-style: solid;
+                                border-color: $support_color1 transparent transparent transparent;
+                            }
                         }
 
-                    }
+                        input {
+                            position: absolute;
 
-                    &:hover {
-                        input~.checkmark {
-                            background: $support_color1;
+                            width: 0;
+                            height: 0;
+
+                            opacity: 0;
+
+                            &:checked~.checkmark {
+                                background: $support_color2;
+                            }
+
+                            &:checked~.checkmark::after {
+                                display: block;
+                            }
                         }
 
-                        input~.checkmark::after {
+                        .checkmark {
+                            position: absolute;
+
+                            top: 0;
+                            left: 0;
+
+                            width: 36px;
+                            height: 36px;
+
                             background: $support_color2;
+                            border: 1px solid $support_color1;
+                            border-radius: $border-radius-elements;
+
+                            box-sizing: border-box;
+
+                            &::after {
+                                content: "";
+                                position: absolute;
+                                display: none;
+
+                                top: 4px;
+                                left: 4px;
+
+                                width: 26px;
+                                height: 26px;
+
+                                border-radius: 4px;
+                                background: $support_color1;
+
+                            }
+
                         }
-                    }
-                }
 
-                .container-checkbox:hover .tooltip-from-the-top {
-                    visibility: visible;
-                }
+                        &:hover {
+                            input~.checkmark {
+                                background: $support_color1;
+                            }
 
-                button {
-                    position: relative;
-                    @include btn-general(36px, 36px);
-
-                    svg {
-                        fill: $support_color1;
-                    }
-
-                    .tooltip-from-the-top {
-
-                        visibility: hidden;
-                        z-index: 1;
-                        position: absolute;
-                        top: -100%;
-                        left: -85%;
-                        width: 86px;
-                        padding: 4px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        background-color: $support_color2;
-                        color: $support_color1;
-                        font-size: 12px;
-                        border: 1px solid $support_color1;
-                        border-radius: 10px;
-                        @include text-settings(map.get($font-weights, 'regular'),
-                            map.get($font-settings, 'small', 'portrait', 'span'),
-                            $support_color1);
-
-                        &::after {
-                            content: "";
-                            position: absolute;
-                            top: 100%;
-                            left: 46%;
-                            margin-top: 0px;
-                            border-width: 5px;
-                            border-style: solid;
-                            border-color: $support_color1 transparent transparent transparent;
+                            input~.checkmark::after {
+                                background: $support_color2;
+                            }
                         }
                     }
 
-                    .tooltip-from-the-bottom {
-
-                        visibility: hidden;
-                        z-index: 1;
-                        position: absolute;
-                        top: 120%;
-                        left: -85%;
-                        width: 86px;
-                        padding: 4px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        background-color: $support_color2;
-                        color: $support_color1;
-                        font-size: 12px;
-                        border: 1px solid $support_color1;
-                        border-radius: 10px;
-                        @include text-settings(map.get($font-weights, 'regular'),
-                            map.get($font-settings, 'small', 'portrait', 'span'),
-                            $support_color1);
-
-                        &::after {
-                            content: "";
-                            position: absolute;
-                            top: -35%;
-                            left: 46%;
-                            margin-top: 0px;
-                            border-width: 5px;
-                            border-style: solid;
-                            border-color: transparent transparent $support_color1 transparent;
-                        }
+                    .container-checkbox:hover .tooltip-from-the-top {
+                        visibility: visible;
                     }
 
-                    &:hover {
-                        @include btn-general-hover;
+                    button {
+                        position: relative;
+                        @include btn-general(36px, 36px);
 
                         svg {
-                            fill: $support_color2;
+                            fill: $support_color1;
                         }
-                    }
-                }
 
-                button:hover .tooltip-from-the-top,
-                button:hover .tooltip-from-the-bottom {
-                    visibility: visible;
-                }
-            }
-        }
-    }
+                        .tooltip-from-the-top {
 
-    &:hover {
-        box-shadow: $box-shadow-on-hover;
-    }
-}
-
-.todo-card {
-    width: 98%;
-    height: 100%;
-    margin-bottom: 20px;
-
-    border-radius: $border-radius-container;
-    box-shadow: $box-shadow;
-    transition: 0.2s;
-
-    .card-heading {
-        width: 100%;
-        height: 25%;
-
-        @include centralPositioning;
-        justify-content: space-around;
-
-        background: $main_theme;
-        border-radius: $border-radius-container $border-radius-container 0px 0px;
-
-        h2 {
-            width: 100%;
-
-            margin: {
-                top: 20px;
-                bottom: 0;
-            }
-
-            @include text-settings(map.get($font-weights, 'bold'),
-                24px,
-                $support_color2);
-            text-align: center;
-        }
-
-        .separating-line {
-            width: 90%;
-            height: 3px;
-            background: $support_color2;
-        }
-    }
-
-    .card-main {
-        width: 100%;
-        height: 75%;
-
-        box-sizing: border-box;
-
-        @include centralPositioning;
-        justify-content: space-around;
-
-        padding: 16px;
-
-        form {
-            width: 100%;
-            box-sizing: border-box;
-
-            @include centralPositioning;
-            gap: 20px;
-
-            input {
-                @include input-fields(map.get($inputs, 'small', 'portrait', 'width'),
-                    map.get($inputs, 'small', 'portrait', 'height'),
-                    map.get($font-settings, 'small', 'portrait', 'input'));
-
-                &:focus {
-                    @include input-fields-focus;
-                }
-            }
-
-            textarea {
-                resize: none;
-                overflow: hidden;
-
-                @include input-fields(map.get($inputs, 'small', 'portrait', 'width'),
-                    64px,
-                    map.get($font-settings, 'small', 'portrait', 'input'));
-
-                &:focus {
-                    @include input-fields-focus;
-                }
-            }
-
-            .card-controls {
-                width: 100%;
-
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                align-items: center;
-
-                gap: 10px;
-
-                .container-checkbox {
-                    position: relative;
-
-                    width: 36px;
-                    height: 36px;
-
-                    cursor: pointer;
-
-                    .tooltip-from-the-top {
-
-                        visibility: hidden;
-                        z-index: 1;
-                        position: absolute;
-                        top: -100%;
-                        left: -85%;
-                        width: 86px;
-                        padding: 4px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        background-color: $support_color2;
-                        color: $support_color1;
-                        font-size: 12px;
-                        border: 1px solid $support_color1;
-                        border-radius: 10px;
-                        @include text-settings(map.get($font-weights, 'regular'),
-                            map.get($font-settings, 'small', 'portrait', 'span'),
-                            $support_color1);
-
-                        &::after {
-                            content: "";
+                            visibility: hidden;
+                            z-index: 1;
                             position: absolute;
-                            top: 100%;
-                            left: 46%;
-                            margin-top: 0px;
-                            border-width: 5px;
-                            border-style: solid;
-                            border-color: $support_color1 transparent transparent transparent;
+                            top: -100%;
+                            left: -85%;
+                            width: 86px;
+                            padding: 4px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: $support_color2;
+                            color: $support_color1;
+                            font-size: 12px;
+                            border: 1px solid $support_color1;
+                            border-radius: 10px;
+                            @include text-settings(map.get($font-weights, 'regular'),
+                                map.get($font-settings, 'small', 'portrait', 'span'),
+                                $support_color1);
+
+                            &::after {
+                                content: "";
+                                position: absolute;
+                                top: 100%;
+                                left: 46%;
+                                margin-top: 0px;
+                                border-width: 5px;
+                                border-style: solid;
+                                border-color: $support_color1 transparent transparent transparent;
+                            }
                         }
-                    }
 
-                    input {
-                        position: absolute;
+                        .tooltip-from-the-bottom {
 
-                        width: 0;
-                        height: 0;
-
-                        opacity: 0;
-
-                        &:checked~.checkmark {
-                            background: $support_color2;
-                        }
-
-                        &:checked~.checkmark::after {
-                            display: block;
-                        }
-                    }
-
-                    .checkmark {
-                        position: absolute;
-
-                        top: 0;
-                        left: 0;
-
-                        width: 36px;
-                        height: 36px;
-
-                        background: $support_color2;
-                        border: 1px solid $support_color1;
-                        border-radius: $border-radius-elements;
-
-                        box-sizing: border-box;
-
-                        &::after {
-                            content: "";
+                            visibility: hidden;
+                            z-index: 1;
                             position: absolute;
-                            display: none;
+                            top: 120%;
+                            left: -85%;
+                            width: 86px;
+                            padding: 4px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: $support_color2;
+                            color: $support_color1;
+                            font-size: 12px;
+                            border: 1px solid $support_color1;
+                            border-radius: 10px;
+                            @include text-settings(map.get($font-weights, 'regular'),
+                                map.get($font-settings, 'small', 'portrait', 'span'),
+                                $support_color1);
 
-                            top: 4px;
-                            left: 4px;
-
-                            width: 26px;
-                            height: 26px;
-
-                            border-radius: 4px;
-                            background: $support_color1;
-
+                            &::after {
+                                content: "";
+                                position: absolute;
+                                top: -35%;
+                                left: 46%;
+                                margin-top: 0px;
+                                border-width: 5px;
+                                border-style: solid;
+                                border-color: transparent transparent $support_color1 transparent;
+                            }
                         }
 
-                    }
+                        &:hover {
+                            @include btn-general-hover;
 
-                    &:hover {
-                        input~.checkmark {
-                            background: $support_color1;
-                        }
-
-                        input~.checkmark::after {
-                            background: $support_color2;
-                        }
-                    }
-                }
-
-                .container-checkbox:hover .tooltip-from-the-top {
-                    visibility: visible;
-                }
-
-                button {
-                    position: relative;
-                    @include btn-general(36px, 36px);
-
-                    svg {
-                        fill: $support_color1;
-                    }
-
-                    .tooltip-from-the-top {
-
-                        visibility: hidden;
-                        z-index: 1;
-                        position: absolute;
-                        top: -100%;
-                        left: -85%;
-                        width: 86px;
-                        padding: 4px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        background-color: $support_color2;
-                        color: $support_color1;
-                        font-size: 12px;
-                        border: 1px solid $support_color1;
-                        border-radius: 10px;
-                        @include text-settings(map.get($font-weights, 'regular'),
-                            map.get($font-settings, 'small', 'portrait', 'span'),
-                            $support_color1);
-
-                        &::after {
-                            content: "";
-                            position: absolute;
-                            top: 100%;
-                            left: 46%;
-                            margin-top: 0px;
-                            border-width: 5px;
-                            border-style: solid;
-                            border-color: $support_color1 transparent transparent transparent;
+                            svg {
+                                fill: $support_color2;
+                            }
                         }
                     }
 
-                    .tooltip-from-the-bottom {
-
-                        visibility: hidden;
-                        z-index: 1;
-                        position: absolute;
-                        top: 120%;
-                        left: -85%;
-                        width: 86px;
-                        padding: 4px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        background-color: $support_color2;
-                        color: $support_color1;
-                        font-size: 12px;
-                        border: 1px solid $support_color1;
-                        border-radius: 10px;
-                        @include text-settings(map.get($font-weights, 'regular'),
-                            map.get($font-settings, 'small', 'portrait', 'span'),
-                            $support_color1);
-
-                        &::after {
-                            content: "";
-                            position: absolute;
-                            top: -35%;
-                            left: 46%;
-                            margin-top: 0px;
-                            border-width: 5px;
-                            border-style: solid;
-                            border-color: transparent transparent $support_color1 transparent;
-                        }
+                    button:hover .tooltip-from-the-top,
+                    button:hover .tooltip-from-the-bottom {
+                        visibility: visible;
                     }
-
-                    &:hover {
-                        @include btn-general-hover;
-
-                        svg {
-                            fill: $support_color2;
-                        }
-                    }
-                }
-
-                button:hover .tooltip-from-the-top,
-                button:hover .tooltip-from-the-bottom {
-                    visibility: visible;
                 }
             }
+
         }
 
-    }
+        &:hover {
+            box-shadow: $box-shadow-on-hover;
+        }
 
-    &:hover {
-        box-shadow: $box-shadow-on-hover;
+        display: none;
     }
-
-    display: none;
-}
 }
 
 .modal-window {
@@ -741,14 +760,28 @@ body {
 
     .wrapper-modal-window-content {
         @include wrapper-card;
+        border-radius: 25px 0px 0px 25px;
         width: 80%;
         margin: auto;
 
         .modal-window-content {
             @include within-card;
+            border-radius: 22px 0px 0px 22px;
 
             width: 98%;
             padding: 28px;
+
+            overflow: scroll;
+            overflow-x: hidden;
+
+            &::-webkit-scrollbar {
+                width: 5px;
+                background-color: $support_color2;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: $support_color1;
+            }
 
             p {
                 @include text-settings(400, 16px);
@@ -825,16 +858,17 @@ body {
                 border: 1px solid $support_color1;
 
                 border-radius: 10px;
-                
+
 
                 @include text-settings(map.get($font-weights, 'regular'),
-                                       map.get($font-settings, 'small', 'portrait', span),
-                                       $support_color2);
+                    map.get($font-settings, 'small', 'portrait', span),
+                    $support_color2);
                 text-align: center;
 
                 padding: 8px;
                 visibility: hidden;
             }
+
             .btn-delete-account {
                 @include btn-general(184px, 34px, 16px);
                 display: flex;
@@ -844,9 +878,15 @@ body {
                 &:hover {
                     @include btn-general-hover;
                 }
+
                 visibility: hidden;
             }
-            
+
+            .dropdown,
+            .current-info {
+                margin-bottom: 20px;
+            }
+
         }
 
         animation: moveDownwards 2s ease;
@@ -994,6 +1034,11 @@ body {
                     map.get($buttons, 'small', 'landscape', 'height'),
                     map.get($font-settings, 'small', 'landscape', 'button'));
             }
+            .exit {
+                @include btn-general(map.get($buttons, 'small', 'landscape', 'width'),
+                    map.get($buttons, 'small', 'landscape', 'height'),
+                    map.get($font-settings, 'small', 'landscape', 'button'));
+            }
         }
     }
 
@@ -1023,28 +1068,29 @@ body {
             }
         }
     }
+
     .todo-container {
-         width: 80%;
-         height: 90%;
+        width: 80%;
+        height: 90%;
 
-    .todo-card-preview {
-        width: 98%;
-        height: 50%;
+        .todo-card-preview {
+            width: 98%;
+            height: 50%;
 
-        .wrapper-todo-card-preview {
-            .card-contents {
-                .wrapper-controls {
-                    width: 28%;
-                    margin-right: 30px;
+            .wrapper-todo-card-preview {
+                .card-contents {
+                    .wrapper-controls {
+                        width: 28%;
+                        margin-right: 30px;
+                    }
                 }
             }
         }
-    }
 
-    .todo-card {
-        width: 98%;
-        height: 100%;
-    }
+        .todo-card {
+            width: 98%;
+            height: 100%;
+        }
     }
 
     .modal-window {
@@ -1063,7 +1109,7 @@ body {
                     width: 5px;
                     background-color: $support_color2;
                 }
-    
+
                 &::-webkit-scrollbar-thumb {
                     background: $support_color1;
                 }
@@ -1075,10 +1121,13 @@ body {
             }
         }
     }
+
     .modal-window-errors {
         padding-top: 10%;
+
         .wrapper-modal-window-errors-content {
             height: 72%;
+
             .modal-window-errors-content {
                 .container-for-errors {
                     span {
@@ -1087,6 +1136,7 @@ body {
                 }
             }
         }
+
         .errors-close {
             top: 25px;
             right: 25px;
@@ -1098,6 +1148,12 @@ body {
     .container-general {
         .wrapper-btn {
             .btn-informed {
+                @include btn-general(map.get($buttons, 'small', 'landscape', 'width'),
+                    map.get($buttons, 'small', 'landscape', 'height'),
+                    map.get($font-settings, 'small', 'landscape', 'button'));
+            }
+
+            .exit {
                 @include btn-general(map.get($buttons, 'small', 'landscape', 'width'),
                     map.get($buttons, 'small', 'landscape', 'height'),
                     map.get($font-settings, 'small', 'landscape', 'button'));
@@ -1153,14 +1209,15 @@ body {
                     width: 5px;
                     background-color: $support_color2;
                 }
-    
+
                 &::-webkit-scrollbar-thumb {
                     background: $support_color1;
                 }
-                
+
                 .dropdown {
                     margin-bottom: 20px;
                 }
+
                 .current-info {
                     margin-bottom: 20px;
                 }
@@ -1168,6 +1225,7 @@ body {
             }
         }
     }
+
     .modal-window-errors {
         padding-top: 6%;
 
@@ -1189,6 +1247,17 @@ body {
                 @include btn-general(map.get($buttons, 'medium-600px', 'portrait', 'width'),
                     map.get($buttons, 'medium-600px', 'portrait', 'height'),
                     map.get($font-settings, 'medium-600px', 'portrait', 'button'));
+            }
+
+            .exit {
+                @include btn-general(map.get($buttons, 'medium-600px', 'portrait', 'width'),
+                    map.get($buttons, 'medium-600px', 'portrait', 'height'),
+                    map.get($font-settings, 'medium-600px', 'portrait', 'button'));
+
+                svg {
+                    width: 36px;
+                    height: 36px;
+                }
             }
         }
     }
@@ -1219,156 +1288,157 @@ body {
             }
         }
     }
+
     .todo-container {
         width: 85%;
         height: 35%;
-    
-    
+
+
         .todo-card-preview {
-        width: 98%;
-        height: 50%;
+            width: 98%;
+            height: 50%;
 
-        .wrapper-todo-card-preview {
-            .card-contents {
-                .wrapper-input {
+            .wrapper-todo-card-preview {
+                .card-contents {
+                    .wrapper-input {
+                        input {
+                            font-size: map.get($font-settings, 'medium-600px', 'portrait', 'input');
+                        }
+                    }
+
+                    .wrapper-controls {
+                        width: 28%;
+
+                        .container-checkbox {
+                            width: 46px;
+                            height: 46px;
+
+                            .checkmark {
+                                width: 46px;
+                                height: 46px;
+
+                                &::after {
+                                    width: 36px;
+                                    height: 36px;
+                                }
+                            }
+
+                            .tooltip-from-the-top {
+                                top: -85%;
+                                left: -80%;
+                                width: 112px;
+                                font-size: 20px;
+                            }
+                        }
+
+                        button {
+                            width: 46px;
+                            height: 46px;
+                            display: flex;
+                            align-items: center;
+
+                            svg {
+                                width: 36px;
+                                height: 36px;
+                            }
+
+                            .tooltip-from-the-top {
+                                top: -90%;
+                                left: -85%;
+
+                                width: 112px;
+                                font-size: 20px;
+
+                            }
+
+                            .tooltip-from-the-bottom {
+                                width: 112px;
+                                font-size: 20px;
+
+                                &::after {
+                                    top: -30%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .todo-card {
+            width: 98%;
+            height: 100%;
+
+            .card-main {
+                form {
                     input {
-                        font-size: map.get($font-settings, 'medium-600px', 'portrait', 'input');
-                    }
-                }
-
-                .wrapper-controls {
-                    width: 28%;
-
-                    .container-checkbox {
-                        width: 46px;
+                        width: 70%;
                         height: 46px;
+                        font-size: 20px;
+                    }
 
-                        .checkmark {
+                    textarea {
+                        width: 70%;
+                        height: 69px;
+                        font-size: 20px;
+                    }
+
+                    .card-controls {
+                        .container-checkbox {
                             width: 46px;
                             height: 46px;
 
-                            &::after {
-                                width: 36px;
-                                height: 36px;
+                            .checkmark {
+                                width: 46px;
+                                height: 46px;
+
+                                &::after {
+                                    width: 36px;
+                                    height: 36px;
+                                }
+                            }
+
+                            .tooltip-from-the-top {
+                                top: -85%;
+                                left: -80%;
+                                width: 112px;
+                                font-size: 20px;
                             }
                         }
 
-                        .tooltip-from-the-top {
-                            top: -85%;
-                            left: -80%;
-                            width: 112px;
-                            font-size: 20px;
-                        }
-                    }
+                        button {
+                            width: 46px;
+                            height: 46px;
+                            display: flex;
+                            align-items: center;
 
-                    button {
-                        width: 46px;
-                        height: 46px;
-                        display: flex;
-                        align-items: center;
+                            svg {
+                                width: 36px;
+                                height: 36px;
+                            }
 
-                        svg {
-                            width: 36px;
-                            height: 36px;
-                        }
+                            .tooltip-from-the-top {
+                                top: -90%;
+                                left: -85%;
 
-                        .tooltip-from-the-top {
-                            top: -90%;
-                            left: -85%;
+                                width: 112px;
+                                font-size: 20px;
 
-                            width: 112px;
-                            font-size: 20px;
+                            }
 
-                        }
+                            .tooltip-from-the-bottom {
+                                width: 112px;
+                                font-size: 20px;
 
-                        .tooltip-from-the-bottom {
-                            width: 112px;
-                            font-size: 20px;
-
-                            &::after {
-                                top: -30%;
+                                &::after {
+                                    top: -30%;
+                                }
                             }
                         }
                     }
                 }
             }
         }
-    }
-
-    .todo-card {
-        width: 98%;
-        height: 100%;
-
-        .card-main {
-            form {
-                input {
-                    width: 70%;
-                    height: 46px;
-                    font-size: 20px;
-                }
-
-                textarea {
-                    width: 70%;
-                    height: 69px;
-                    font-size: 20px;
-                }
-
-                .card-controls {
-                    .container-checkbox {
-                        width: 46px;
-                        height: 46px;
-
-                        .checkmark {
-                            width: 46px;
-                            height: 46px;
-
-                            &::after {
-                                width: 36px;
-                                height: 36px;
-                            }
-                        }
-
-                        .tooltip-from-the-top {
-                            top: -85%;
-                            left: -80%;
-                            width: 112px;
-                            font-size: 20px;
-                        }
-                    }
-
-                    button {
-                        width: 46px;
-                        height: 46px;
-                        display: flex;
-                        align-items: center;
-
-                        svg {
-                            width: 36px;
-                            height: 36px;
-                        }
-
-                        .tooltip-from-the-top {
-                            top: -90%;
-                            left: -85%;
-
-                            width: 112px;
-                            font-size: 20px;
-
-                        }
-
-                        .tooltip-from-the-bottom {
-                            width: 112px;
-                            font-size: 20px;
-
-                            &::after {
-                                top: -30%;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
     }
 
     .modal-window {
@@ -1380,12 +1450,14 @@ body {
                     width: 80%;
                     font-size: 24px;
                     margin-top: 40px;
+                    margin-bottom: 40px;
                     text-align: center;
                 }
 
                 .dropdown {
                     top: -5%;
                     left: -75px;
+                    margin-top: 20px;
 
                     &-content {
                         width: 148px;
@@ -1410,11 +1482,13 @@ body {
                         }
                     }
                 }
+
                 .current-info {
                     width: 80%;
                     padding: 16px;
                     font-size: 24px;
                 }
+
                 .btn-delete-account {
                     width: 280px;
                     padding: 8px;
@@ -1424,17 +1498,20 @@ body {
             }
         }
     }
+
     .modal-window-errors {
         .wrapper-modal-window-errors-content {
             .modal-window-errors-content {
                 p {
                     font-size: 24px;
                 }
+
                 .btn-ok-errors {
                     @include btn-general (map.get($buttons, 'medium-600px', 'portrait', 'width'),
-                                          map.get($buttons, 'medium-600px', 'portrait', 'height'),
-                                          map.get($font-settings, 'medium-600px', 'portrait', 'button'));
+                        map.get($buttons, 'medium-600px', 'portrait', 'height'),
+                        map.get($font-settings, 'medium-600px', 'portrait', 'button'));
                 }
+
                 .container-for-errors {
                     span {
                         font-size: 24px;
@@ -1450,8 +1527,14 @@ body {
         .wrapper-btn {
             .btn-informed {
                 @include btn-general(map.get($buttons, 'medium-742px', 'landscape', 'width'),
-                                     map.get($buttons, 'medium-742px', 'landscape', 'height'),
-                                     map.get($font-settings, 'medium-742px', 'landscape', 'button'));
+                    map.get($buttons, 'medium-742px', 'landscape', 'height'),
+                    map.get($font-settings, 'medium-742px', 'landscape', 'button'));
+            }
+
+            .exit {
+                @include btn-general(map.get($buttons, 'medium-742px', 'landscape', 'width'),
+                    map.get($buttons, 'medium-742px', 'landscape', 'height'),
+                    map.get($font-settings, 'medium-742px', 'landscape', 'button'));
             }
         }
     }
@@ -1481,7 +1564,7 @@ body {
                 button {
                     @include btn-general(map.get($buttons, 'medium-742px', 'landscape', 'width'),
                         map.get($buttons, 'medium-742px', 'landscape', 'height'),
-                        map.get($font-settings, 'medium-742px', 'landscape', 'button'))
+                        map.get($font-settings, 'medium-742px', 'landscape', 'button'));
                 }
             }
         }
@@ -1491,6 +1574,7 @@ body {
         height: 60%;
         width: 50%;
     }
+
     .modal-window {
         .wrapper-modal-window-content {
             height: 74%;
@@ -1519,7 +1603,7 @@ body {
                             width: 110px;
                             height: 54px;
                             font-size: 30px;
-                            
+
                             svg {
                                 width: 30px;
                                 height: 30px;
@@ -1537,6 +1621,7 @@ body {
                     width: 80%;
                     font-size: 20px;
                 }
+
                 .btn-delete-account {
                     width: 246px;
                     font-size: 20px;
@@ -1548,12 +1633,14 @@ body {
             font-size: 34px;
         }
     }
+
     .modal-window-errors {
         .wrapper-modal-window-errors-content {
             .modal-window-errors-content {
                 p {
                     font-size: 20px;
                 }
+
                 .container-for-errors {
                     span {
                         font-size: 20px;
@@ -1572,8 +1659,10 @@ body {
     .todo-container {
         height: 80%;
     }
+
     .modal-window {
         padding-top: 6%;
+
         .wrapper-modal-window-content {
             height: 80%;
         }
@@ -1584,14 +1673,17 @@ body {
     body {
         @include gridLayout(15%, 70%, 15%);
     }
+
     .wrapper-add-todo {
         width: 100%;
         height: 30%;
     }
+
     .todo-container {
         width: 100%;
         height: 30%;
     }
+
     .modal-window {
         .wrapper-modal-window-content {
             .modal-window-content {
@@ -1601,7 +1693,7 @@ body {
                         height: 250px;
 
                         .info-item,
-                        .info-item + .info-item + .info-item {
+                        .info-item+.info-item+.info-item {
                             width: 160px;
                             height: 80px;
 
@@ -1612,9 +1704,11 @@ body {
                         }
                     }
                 }
+
                 .current-info {
                     font-size: 24px;
                 }
+
                 .btn-delete-account {
                     width: 280px;
                     padding: 12px;
@@ -1629,9 +1723,11 @@ body {
     body {
         @include gridLayout(15%, 70%, 15%);
     }
+
     .wrapper-add-todo {
         height: 50%;
     }
+
     .todo-container {
         height: 50%;
     }
@@ -1639,13 +1735,17 @@ body {
     .modal-window {
         .wrapper-modal-window-content {
             .modal-window-content {
+                p {
+                    margin-top: 20px;
+                }
+
                 .dropdown {
                     &-content {
                         height: 190px;
                         width: 145px;
 
                         .info-item,
-                        .info-item + .info-item + .info-item {
+                        .info-item+.info-item+.info-item {
                             width: 135px;
                             height: 60px;
 
@@ -1661,9 +1761,11 @@ body {
                         }
                     }
                 }
+
                 .current-info {
                     font-size: 24px;
                 }
+
                 .btn-delete-account {
                     width: 300px;
                     font-size: 24px;
@@ -1672,13 +1774,14 @@ body {
             }
         }
     }
+
     .modal-window-errors {
         .wrapper-modal-window-errors-content {
             .modal-window-errors-content {
                 .btn-ok-errors {
                     @include btn-general(map.get($buttons, 'large-1024px', 'landscape', 'width'),
-                                         map.get($buttons, 'large-1024px', 'landscape', 'height'),
-                                         map.get($font-settings, 'large-1024px', 'landscape', 'button'));
+                        map.get($buttons, 'large-1024px', 'landscape', 'height'),
+                        map.get($font-settings, 'large-1024px', 'landscape', 'button'));
                 }
             }
         }
@@ -1689,16 +1792,20 @@ body {
     .wrapper-add-todo {
         height: 30%;
     }
+
     .modal-window {
         padding-top: 20%;
+
         .wrapper-modal-window-content {
             .modal-window-content {
                 p {
-                text-align: center;
+                    text-align: center;
+                    margin-top: 40px;
                 }
             }
         }
     }
+
     .modal-window-errors {
         .wrapper-modal-window-errors-content {
             height: 50%;
@@ -1710,9 +1817,11 @@ body {
     .wrapper-add-todo {
         height: 50%;
     }
+
     .todo-container {
         height: 50%;
     }
+
     .modal-window {
         .wrapper-modal-window-content {
             .modal-window-content {
@@ -1722,8 +1831,10 @@ body {
             }
         }
     }
+
     .modal-window-errors {
         padding-top: 10%;
+
         .wrapper-modal-window-errors-content {
             height: 50%;
         }
@@ -1734,16 +1845,20 @@ body {
     .wrapper-add-todo {
         height: 30%;
     }
+
     .todo-container {
         height: 30%;
     }
+
     .modal-window {
         .wrapper-modal-window-content {
             height: 60%;
         }
     }
+
     .modal-window-errors {
         padding-top: 15%;
+
         .wrapper-modal-window-errors-content {
             height: 50%;
         }

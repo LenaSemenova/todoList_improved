@@ -30,19 +30,26 @@ function resetPassword_stepOne() {
                     const response = await sendData_resetPassword_stepOne(user_reset_password);
                     if (response.status === 403) {
                         const result = await response.json();
-                        currentInfo.innerHTML = `${result.errorMessage}`;
+                        currentInfo.innerHTML = result.errorMessage;
                         currentInfo.style.animation = 'slideInFromTheTop 3s ease';
+                    }
 
-                        // second step: check if the person who tries to reset the password can decipher their own username
+                    if (response.status === 400) {
+                        const result = await response.json();
+                        currentInfo.innerHTML = result.errorMessage;
+                        currentInfo.style.animation = 'slideInFromTheTop 3s ease';
+                    }
 
-                    } else {
+                    // second step: check if the person who tries to reset the password can decipher their own username
+
+                    if (response.status === 200) {
                         currentInfo.style.animation = 'none';
                         const result = await response.json();
-                        currentInfo.innerHTML = `${result.nextStep}`;
+                        currentInfo.innerHTML = result.nextStep;
                         currentInfo.style.animation = 'slideInFromTheTop 3s ease';
                         resetPasswordFullUsername.removeAttribute('disabled');
                         btnSubmitUsername.removeAttribute('disabled');
-                        hiddenName.innerHTML = `${result.nextInfo}`;
+                        hiddenName.innerHTML = result.nextInfo;
                     }
                 }
             }
@@ -76,12 +83,17 @@ function resetPassword_stepTwo() {
             const response = await sendData_resetPassword_stepTwo(user_reset_password);
             if (response.status === 403) {
                 const result = await response.json();
-                currentInfo.innerHTML = `${result.errorMessage}`;
+                currentInfo.innerHTML = result.errorMessage;
+                currentInfo.style.animation = 'slideInFromTheTop 3s ease';
+            }
+            if (response.status === 400) {
+                const result = await response.json();
+                currentInfo.innerHTML = result.errorMessage;
                 currentInfo.style.animation = 'slideInFromTheTop 3s ease';
             }
             if (response.status === 200) {
                 const result = await response.json();
-                currentInfo.innerHTML = `${result.nextStep}`;
+                currentInfo.innerHTML = result.nextStep;
                 currentInfo.style.animation = 'slideInFromTheTop 3s ease';
                 resetNewPassword.removeAttribute('disabled');
                 btnSubmitNewPassword.removeAttribute('disabled');
@@ -113,11 +125,17 @@ function resetPassword_stepThree() {
         } else {
             user_reset_password.user_password = resetNewPassword.value;
             const response = await sendData_resetPassword_stepThree(user_reset_password);
+            if (response.status === 422) {
+                const result = await response.json();
+                currentInfo.innerHTML = result.errorMessage;
+                currentInfo.style.animation = 'slideInFromTheTop 3s ease';
+            }
             if (response.status === 400) {
                 const result = await response.json();
-                currentInfo.innerHTML = `${result.errorMessage}`;
+                currentInfo.innerHTML = result.errorMessage;
                 currentInfo.style.animation = 'slideInFromTheTop 3s ease';
-            } else {
+            }
+            if (response.status === 200) {
                 currentInfo.style.animation = 'none';
                 const result = await response.json();
                 currentInfo.innerHTML = `${result.successMessage}`;

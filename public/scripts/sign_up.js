@@ -59,7 +59,7 @@ function handlingValidationErrors(errors) {
     modalWindowErrors.style.zIndex = '2';
 }
 
-async function collectServerErrors (response) {
+async function collectServerErrors(response) {
     const result = await response.json();
     const errorMessage = [];
     errorMessage.push(result.errorMessage);
@@ -87,10 +87,10 @@ function userKnowsRules() {
 
 async function collectDataSignUpPortrait(event) {
     event.preventDefault();
-    
+
     // collecting user's data
     if (!nameP.value || nameP.value.length < 5 || nameP.value.length > 20) {
-        errors.push("Your name must consist of at least 5 symbols and it mustn't be longer than 20 symbols");
+        errors.push("Your name must consist of at least 5 symbols and it mustn't be longer than 20 symbols.");
     } else {
         newUser.user_name = nameP.value;
     }
@@ -100,7 +100,7 @@ async function collectDataSignUpPortrait(event) {
         newUser.user_email = emailP.value;
     }
     if (!passwordP.value || passwordP.value.length < 8 || passwordP.value.length > 20) {
-        errors.push("Your password must consist of at least 8 symbols and it mustn't be longer than 20 symbols");
+        errors.push("Your password must consist of at least 8 symbols and it mustn't be longer than 20 symbols.");
     } else {
         newUser.user_password = passwordP.value;
     }
@@ -111,18 +111,26 @@ async function collectDataSignUpPortrait(event) {
     } else {
         const response = await sendData(newUser);
         if (response.status === 200) {
+            nameP.value = '';
+            emailP.value = '';
+            passwordP.value = '';
             window.location.href = response.url;
         }
         if (response.status === 409) {
             await collectServerErrors(response);
         }
-        const result = await response.json();
-        const receivedErrors = result.errors;
-        const serverErrors = [];
-        for (let i = 0; i < receivedErrors.length; i++) {
-            serverErrors.push(receivedErrors[i].msg);
+        if (response.status === 422) {
+            const result = await response.json();
+            const receivedErrors = result.errors;
+            const serverErrors = [];
+            for (let i = 0; i < receivedErrors.length; i++) {
+                serverErrors.push(receivedErrors[i].msg);
+            }
+            handlingValidationErrors(serverErrors);
         }
-        handlingValidationErrors(serverErrors);
+        if (response.status === 400) {
+            await collectServerErrors(response);
+        }
     }
 }
 
@@ -131,7 +139,7 @@ async function collectDataSignUpLandscape(event) {
 
     // collecting user's data
     if (!nameL.value || nameL.value.length < 5 || nameL.value.length > 20) {
-        errors.push("Your name must consist of at least 5 symbols and it mustn't be longer than 20 symbols");
+        errors.push("Your name must consist of at least 5 symbols and it mustn't be longer than 20 symbols.");
     } else {
         newUser.user_name = nameL.value;
     }
@@ -141,7 +149,7 @@ async function collectDataSignUpLandscape(event) {
         newUser.user_email = emailL.value;
     }
     if (!passwordL.value || passwordL.value.length < 8 || passwordL.value.length > 20) {
-        errors.push("Your password must consist of at least 8 symbols and it mustn't be longer than 20 symbols");
+        errors.push("Your password must consist of at least 8 symbols and it mustn't be longer than 20 symbols.");
     } else {
         newUser.user_password = passwordL.value;
     }
@@ -152,17 +160,25 @@ async function collectDataSignUpLandscape(event) {
     } else {
         const response = await sendData(newUser);
         if (response.status === 200) {
+            nameL.value = '';
+            emailL.value = '';
+            passwordL.value = '';
             window.location.href = response.url;
         }
         if (response.status === 409) {
             await collectServerErrors(response);
         }
-        const result = await response.json();
-        const receivedErrors = result.errors;
-        const serverErrors = [];
-        for (let i = 0; i < receivedErrors.length; i++) {
-            serverErrors.push(receivedErrors[i].msg);
+        if (response.status === 422) {
+            const result = await response.json();
+            const receivedErrors = result.errors;
+            const serverErrors = [];
+            for (let i = 0; i < receivedErrors.length; i++) {
+                serverErrors.push(receivedErrors[i].msg);
+            }
+            handlingValidationErrors(serverErrors);
         }
-        handlingValidationErrors(serverErrors);
+        if (response.status === 400) {
+            await collectServerErrors(response);
+        }
     }
 }

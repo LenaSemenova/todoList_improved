@@ -88,27 +88,31 @@ const hashPasswordsBcrypt = (user_password) => {
 // saving users' data
 
 const getSignUpData = async (req, res) => {
-    await isValid(req, res);
-    if (req.validationErrors) {
-        const errArr = req.validationErrors;
-        return res.status(400).json({ errors: errArr });
-    } else {
-        const user_data = req.body;
-        const [result] = await generalQueries.isRegistered(user_data.user_email);
-        if (result) {
-            return res.status(409).json({ errorMessage: 'This e-mail is already used.' });
+    try {
+        await isValid(req, res);
+        if (req.validationErrors) {
+            const errArr = req.validationErrors;
+            return res.status(422).json({ errors: errArr });
         } else {
-            const hashedPassword = hashPasswordsBcrypt(user_data.user_password);
-            user_data.user_password = hashedPassword;
-            const new_userID = await createAccount(user_data);
-            const [userInfo] = await generalQueries.getUserInfo(new_userID);
-            if (userInfo.user_knows_the_rules === null) {
-                await generalQueries.changeRulesStatus(userInfo.user_knows_the_rules);
-                return res.redirect(`/todos/list/${new_userID}?rules=0`);
+            const user_data = req.body;
+            const [result] = await generalQueries.isRegistered(user_data.user_email);
+            if (result) {
+                return res.status(409).json({ errorMessage: 'This e-mail is already used.' });
             } else {
-                return res.redirect(`/todos/list/${new_userID}`);
+                const hashedPassword = hashPasswordsBcrypt(user_data.user_password);
+                user_data.user_password = hashedPassword;
+                const new_userID = await createAccount(user_data);
+                const [userInfo] = await generalQueries.getUserInfo(new_userID);
+                if (userInfo.user_knows_the_rules === null) {
+                    await generalQueries.changeRulesStatus(userInfo.user_knows_the_rules);
+                    return res.redirect(`/todos/list/${new_userID}?rules=0`);
+                } else {
+                    return res.redirect(`/todos/list/${new_userID}`);
+                }
             }
         }
+    } catch (error) {
+        return res.statuss(400).json({ errorMessage: `Something went wrong while signing up: ${error}. Reload this page.` });
     }
 }
 
@@ -134,8 +138,8 @@ const getLogInData = async (req, res) => {
             }
         }
     } catch (error) {
-        console.log('Error while attempting to log in ', error);
-        return res.status(400).json({ errorMessage: 'Something went wrong while logging in. Reload this page.'});
+        console.error('Error while attempting to log in ', error);
+        return res.status(400).json({ errorMessage: 'Something went wrong while logging in. Reload this page.' });
     }
 }
 

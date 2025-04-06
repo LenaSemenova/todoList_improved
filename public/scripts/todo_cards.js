@@ -38,6 +38,10 @@ const btnDeleteAccount = document.querySelector('.deleteAccount');
 const extraQuestion = document.querySelector('.current-info');
 const btnDeleteForever = document.querySelector('.btn-delete-account');
 
+// element to leave the account 
+
+const btnExit = document.querySelector('.exit');
+
 const urlQueries = new URLSearchParams(window.location.search);
 const rules = urlQueries.get('rules');
 
@@ -187,6 +191,9 @@ function updateTodo() {
             if (response.status === 200) {
                 window.location.href = response.url;
             }
+            if (response.status === 400) {
+                await collectServerErrors_2(response);
+            }
         }
     });
 
@@ -223,6 +230,9 @@ function updateTodo() {
                 if (response.status === 200) {
                     window.location.href = response.url;
                 }
+                if (response.status === 400) {
+                    await collectServerErrors_2(response);
+                }
             }
         }
     })
@@ -254,8 +264,9 @@ function deleteTodo() {
             const response = await sendDeleteTodo(deleteTodoCard);
             if (response.url) {
                 window.location.href = response.url;
-            } else {
-                console.error('An error occurred while deleting a todo-card');
+            } 
+            if (response.status === 400) {
+                await collectServerErrors_2(response);
             }
         }
     });
@@ -272,8 +283,9 @@ function deleteTodo() {
             const response = await sendDeleteTodo(deleteTodoCard);
             if (response.url) {
                 window.location.href = response.url;
-            } else {
-                console.error('An error occurred while deleting a todo-card');
+            } 
+            if (response.status === 400) {
+                await collectServerErrors_2(response);
             }
         }
     })
@@ -297,8 +309,9 @@ function bringDeletedCardsBack() {
         const response = await bringBack(bringCardsBack);
         if (response.url) {
             window.location.href = response.url;
-        } else {
-            console.error('An error while bringing back');
+        }
+        if (response.status === 400) {
+            await collectServerErrors_2(response);
         }
     }
 }
@@ -354,11 +367,20 @@ function deleteAccount() {
                     window.location.href = `/todos`;
                 }, 3000);
             }
+            if(response.status === 400) {
+                await collectServerErrors_2(response);
+            }
         }
     }
 }
 
-
+function leaveAccount () {
+    btnExit.onclick = () => {
+    localStorage.removeItem('authToken');
+    window.history.replaceState(null, '', '/todos');
+    window.location.href = '/todos';
+}
+}
 
 function init() {
     showInfo();
@@ -370,6 +392,7 @@ function init() {
     bringDeletedCardsBack();
     showDeletedTodos();
     deleteAccount();
+    leaveAccount ()
 }
 
 window.addEventListener('DOMContentLoaded', init);

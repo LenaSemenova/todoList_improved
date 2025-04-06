@@ -72,6 +72,8 @@ async function collectDataLoginPortrait(event) {
     } else {
         const response = await sendLoginData(userData);
         if (response.status === 200) {
+            emailLoginP.value = '';
+            passwordLoginP.value = '';
             window.location.href = response.url;
         }
         if (response.status === 403) {
@@ -112,6 +114,8 @@ async function collectDataLoginLandscape(event) {
     } else {
         const response = await sendLoginData(userData);
         if (response.status === 200) {
+            emailLoginL.value = '';
+            passwordLoginL.value = '';
             window.location.href = response.url;
         }
         if (response.status === 403) {
