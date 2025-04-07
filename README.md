@@ -44,7 +44,7 @@
 
 <h1 id="demos">GIF IMAGES (DEMONSTRATION)</h1>
 <h2> SIGN UP / ADD TO-DOs / UPDATE TO-DOs / DELETE TO-DOs </h2>
-<img src='./demos_sign_up.gif'>
+<img src='./demos/sign_up.gif'>
 
 <h2> LOG IN / UPDATE TO-DOs / BRING BACK TO-DOs / DELETE ACCOUNT </h2>
 <img src='./demos/log_in.gif'>
