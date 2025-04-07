@@ -39,3 +39,12 @@
 <h3><a href='https://www.figma.com/design/vHPomETm8SYWcQGOkQVX5v/To-Do-List-App-UI-Design-With-Animation-(Community)?node-id=0-1&t=bVXbMzJBpKfCd5qC-1'>Design inspiration (Figma Community)</a></h3>
 
 <h3>Am Ende dieser README-Datei gibt es <a href='#demos'>zwei gif-Images</a>, die die App in ihrer Funktion auf meinem lokalen Server zeigen.</h3>
+
+<hr>
+
+<h1 id="demos">GIF IMAGES (DEMONSTRATION)</h1>
+<h2> SIGN UP / ADD TO-DOs / UPDATE TO-DOs / DELETE TO-DOs </h2>
+<img src='./demos_sign_up.gif'>
+
+<h2> LOG IN / UPDATE TO-DOs / BRING BACK TO-DOs / DELETE ACCOUNT </h2>
+<img src='./demos/log_in.gif'>

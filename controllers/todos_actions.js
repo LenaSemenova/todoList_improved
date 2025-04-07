@@ -194,6 +194,5 @@ export default {
     showDeletedTodos,
     openDeletedTodos,
     bringOneCardBack,
-    deleteAccount,
-    leaveAccout
+    deleteAccount
 }
